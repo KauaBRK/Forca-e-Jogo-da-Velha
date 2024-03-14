@@ -194,7 +194,7 @@ int main(){
       				printf ( "\nVoce acertou a palavra: %s\n\nVOCE VENCEU PARABENS!!!!\n\nDeseja continuar a jogar no mesmo jogador, deseja trocar de jogador ou deseja sair?\n1-Jogar no mesmo\n2-Trocar de jogador\n3-Sair\n" , secretWord );
       				fflush(stdin);
       				playersScore[player][1]++;
-      				scoreSum[player][1]=playersScore[player][1]+playersScore[player][2];
+      				scoreSum[player][1]=playersScore[player][1]-playersScore[player][2];
       				scanf ( "%d" , &continue_ );
 				
       				if ( continue_ == 2 ){
@@ -212,8 +212,13 @@ int main(){
       				forca ( errors );
       				printf ( "\nVoce errou a palavra: %s\n\nDeseja continuar a jogar no mesmo jogador, deseja trocar de jogador ou deseja sair?\n1-Jogar no mesmo\n2-Trocar de jogador\n3-Sair\n", secretWord );
       				fflush ( stdin );
-      				playersScore[player][2]--;
-      				scoreSum[player][1]=playersScore[player][1]+playersScore[player][2];
+      				playersScore[player][2]++;
+      				scoreSum[player][1]=playersScore[player][1]-playersScore[player][2];
+      				
+      				if(scoreSum[player][1]<0){
+						scoreSum[player][1]=0;
+						playersScore[player][2]=0;
+					}
       				scanf ( "%d" , &continue_ );
 				
       				if ( continue_ == 2 ){
@@ -232,6 +237,11 @@ int main(){
   	player=1;
   	
 		for( i = 0 ; i < counter; i++){
+			
+			if(scoreSum[player][1]<0){
+				scoreSum[player][1]=0;
+			}
+			
 			printf ("\nJogador n° %d\nPontos: %d\n", player, scoreSum [ player ] [ 1 ] );
 			player ++;
 		}
