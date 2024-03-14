@@ -1,2 +1,2 @@
-Repositorio da forca game
+Repositorio da forca game e
 Repositorio do jogo da velha game
