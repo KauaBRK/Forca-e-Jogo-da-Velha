@@ -180,58 +180,59 @@ int main(){
     					if ( guessWord  == secretWord [ i ] ){	
       					screenWord [ i ] = guessWord;
       					madeMistake = 0;
-					}
+						}
     				}
-      		}
+      			}	
     			if ( madeMistake == 1 ) errors++;
       			
     			if ( strcmp ( secretWord , screenWord ) == 0){
     				streak ++;
-      			system ( "cls" );
-      			if(streak>4){
-				printf("\n\nO Jogador %d está numa streak de %d acertos!! +2 pontos pra você\n\n",player,streak);
-				playersScore[player][1]+=2;
-				}
-      			forca ( errors );
-      			printf ( "\nVoce acertou a palavra: %s\n\nVOCE VENCEU PARABENS!!!!\n\nDeseja continuar a jogar no mesmo jogador, deseja trocar de jogador ou deseja sair?\n1-Jogar no mesmo\n2-Trocar de jogador\n3-Sair\n" , secretWord );
-      			fflush(stdin);
-      			playersScore[player][1]++;
-      			scoreSum[player][1]=playersScore[player][1]+playersScore[player][2];
-      			scanf ( "%d" , &continue_ );
+      				system ( "cls" );
+      				if(streak>4){
+						printf("\n\nO Jogador %d está numa streak de %d acertos!! +2 pontos pra você\n\n",player,streak);
+						playersScore[player][1]+=2;
+					}
+      				forca ( errors );
+      				printf ( "\nVoce acertou a palavra: %s\n\nVOCE VENCEU PARABENS!!!!\n\nDeseja continuar a jogar no mesmo jogador, deseja trocar de jogador ou deseja sair?\n1-Jogar no mesmo\n2-Trocar de jogador\n3-Sair\n" , secretWord );
+      				fflush(stdin);
+      				playersScore[player][1]++;
+      				scoreSum[player][1]=playersScore[player][1]+playersScore[player][2];
+      				scanf ( "%d" , &continue_ );
 				
-      			if ( continue_ == 2 ){
-      				player++;
-      				counter++;
-      				streak=0;
+      				if ( continue_ == 2 ){
+      					player++;
+      					counter++;
+      					streak=0;
+      					break;
+			  		}
       				break;
-			  	}
-      			break;
     			}
     			else if ( strcmp ( secretWord , screenWord) != 0 && errors == 6 ){
     		
     				streak=0;
     				system ( "cls" );
-      			forca ( errors );
-      			printf ( "\nVoce errou a palavra: %s\n\nDeseja continuar a jogar no mesmo jogador, deseja trocar de jogador ou deseja sair?\n1-Jogar no mesmo\n2-Trocar de jogador\n3-Sair\n", secretWord );
-      			fflush ( stdin );
-      			playersScore[player][2]--;
-      			scoreSum[player][1]=playersScore[player][1]+playersScore[player][2];
-      			scanf ( "%d" , &continue_ );
+      				forca ( errors );
+      				printf ( "\nVoce errou a palavra: %s\n\nDeseja continuar a jogar no mesmo jogador, deseja trocar de jogador ou deseja sair?\n1-Jogar no mesmo\n2-Trocar de jogador\n3-Sair\n", secretWord );
+      				fflush ( stdin );
+      				playersScore[player][2]--;
+      				scoreSum[player][1]=playersScore[player][1]+playersScore[player][2];
+      				scanf ( "%d" , &continue_ );
 				
-      			if ( continue_ == 2 ){
-      				player++;
-      				streak=0;
+      				if ( continue_ == 2 ){
+      					player++;
+      					streak=0;
+      					break;
+			  		}
       				break;
-			  	}
-      			break;
     			}
-    			system ( "cls" );
+    				system ( "cls" );
     		}
   	}
   	system ( "cls" );
   	printf ( "OBRIGADO POR JOGAR %d VEZES MEU JOGO DA FORCA!\n\nA seguir o placar: ", loops );
   	counter=player;
   	player=1;
+  	
 		for( i = 0 ; i < counter; i++){
 			printf ("\nJogador n° %d\nPontos: %d\n", player, scoreSum [ player ] [ 1 ] );
 			player ++;
