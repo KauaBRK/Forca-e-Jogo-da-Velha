@@ -191,7 +191,7 @@ int main(){
 			}
 			printf("\n\n\n");
 			if(winner!='n'){
-				printf("O Ganhador foi o jogador %c\nDeseja continuar a jogar?", winner);
+				printf("O Ganhador foi o jogador: ' %c '\nDeseja continuar a jogar?", winner);
 				fflush(stdin);
 				scanf("%c", &continue_);
 				system("cls");
