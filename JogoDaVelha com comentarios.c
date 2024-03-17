@@ -3,6 +3,7 @@
 #include <locale.h>
 #include <string.h>
 void ticTacToeLoop(char ticTacToe[3][3]){
+	/*essa primeira funcao serve apenas pra zerar todos os parametros caso o jogador queira jogar mais uma vez*/
 		ticTacToe[0][0]='1';
 		ticTacToe[0][1]='2';
 		ticTacToe[0][2]='3';
@@ -15,6 +16,7 @@ void ticTacToeLoop(char ticTacToe[3][3]){
 		
 }
 void ticTacToePrint(char ticTacToe[3][3]){
+	/*essa segunda funcao serve pra imprimir o jogo da velha sempre que chamada*/
 	int line, column;
 		printf("\n\n\n");
 			for(line = 0; line <3; line++){
@@ -35,6 +37,8 @@ void ticTacToePrint(char ticTacToe[3][3]){
 		
 }	
 int ticTacToeCorpo(char ticTacToe[3][3]){
+	/*esta é a funcao que faz o jogo todo funcionar, ja que ela diz pra main onde o jogador quer
+	jogar, e o que ele quer jogar X ou O*/
 	int plays;
 	char lineChoose, charChoose, winner,continue_='s';
 		scanf("%c", &lineChoose);
@@ -174,13 +178,13 @@ int main(){
     char winner,continue_='s';
 		while(continue_=='s'){
 			system("cls");
-			winner='n';
-			ticTacToeLoop(ticTacToe);
+			winner='n';/*zerando o vencedor da ultima partida*/
+			ticTacToeLoop(ticTacToe);/*chamando a funcao pra terminar de zerar tudo*/
 			while(winner=='n'){
 				system("cls");
-				ticTacToePrint(ticTacToe);
+				ticTacToePrint(ticTacToe);/*chamando a funcao pra imprimir na tela o jogo*/
 				printf("\n\nDigite qual lugar vai jogar: ");
-				ticTacToeCorpo(ticTacToe);
+				ticTacToeCorpo(ticTacToe);/*chamando a funcao que da vida ao jogo todo*/
 				plays++;
 				/*vitorias por line*/
 				if(ticTacToe[0][0]==ticTacToe[0][1] && ticTacToe[0][1]==ticTacToe[0][2]) winner=ticTacToe[0][0];
@@ -193,22 +197,21 @@ int main(){
 				/*vitorias por diagonal*/
 				if(ticTacToe[0][0]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][2]) winner=ticTacToe[0][0];
 					if(ticTacToe[0][2]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][0]) winner=ticTacToe[0][2];
-		if(plays==9){
-			break;
-		}
+					
+				if(plays==9) break;
 	}
 	system("cls");
-			ticTacToePrint(ticTacToe);
-				if(winner!='n'){
+			ticTacToePrint(ticTacToe);/*imprimindo o jogo mais uma vez pra mostrar o tabuleiro final*/
+				if(winner!='n'){/*declarando qual o nome do vencedor*/
 					printf("O Ganhador foi o jogador: ' %c '\nDeseja continuar a jogar? ", winner);
 					fflush(stdin);
-					scanf("%c", &continue_);
+					scanf("%c", &continue_);/*vendo se continua*/
 					system("cls");
 				}
-				else{
+				else{/*declarando se deu velha*/
 					printf("Nao houve vencedor.\nDeseja continuar a jogar? ");
 					fflush(stdin);
-					scanf(" %c", &continue_);
+					scanf(" %c", &continue_);/*vendo se continua*/
 					system("cls");
 				}
 			}
