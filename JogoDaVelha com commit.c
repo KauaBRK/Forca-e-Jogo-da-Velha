@@ -16,7 +16,7 @@ void ticTacToeLoop(char ticTacToe[3][3]){
 }
 void ticTacToePrint(char ticTacToe[3][3]){
 	int line, column;
-		printf("\n\n\n   ###JOGO DA VELHA####\n\n\n");
+		printf("\n\n\n");
 			for(line = 0; line <3; line++){
 				for(column = 0; column <3; column++){
 					printf("    %c  ", ticTacToe[line][column]);         
@@ -34,8 +34,8 @@ void ticTacToePrint(char ticTacToe[3][3]){
 		printf("\n\n\n");
 		
 }	
-int ticTacToeCorpo(char ticTacToe[3][3], int plays){
-	
+int ticTacToeCorpo(char ticTacToe[3][3]){
+	int plays;
 	char lineChoose, charChoose, winner,continue_='s';
 		scanf("%c", &lineChoose);
     		switch(lineChoose){
@@ -180,37 +180,39 @@ int main(){
 				system("cls");
 				ticTacToePrint(ticTacToe);
 				printf("\n\nDigite qual lugar vai jogar: ");
-				ticTacToeCorpo(ticTacToe, plays);
-				
+				ticTacToeCorpo(ticTacToe);
+				plays++;
+				/*vitorias por line*/
 				if(ticTacToe[0][0]==ticTacToe[0][1] && ticTacToe[0][1]==ticTacToe[0][2]) winner=ticTacToe[0][0];
 					if (ticTacToe[1][0]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[1][2]) winner=ticTacToe[1][0];
 						if (ticTacToe[2][0]==ticTacToe[2][1] && ticTacToe[2][1]==ticTacToe[2][2]) winner=ticTacToe[2][0];
-				
+				/*vitorias por column*/
 				if(ticTacToe[0][0]==ticTacToe[1][0] && ticTacToe[1][0]==ticTacToe[2][0]) winner=ticTacToe[0][0];
 					if(ticTacToe[0][1]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][1]) winner=ticTacToe[0][1];
 						if(ticTacToe[0][2]==ticTacToe[1][2] && ticTacToe[1][2]==ticTacToe[2][2]) winner=ticTacToe[0][2];
-				
+				/*vitorias por diagonal*/
 				if(ticTacToe[0][0]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][2]) winner=ticTacToe[0][0];
 					if(ticTacToe[0][2]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][0]) winner=ticTacToe[0][2];
-				
-				if(ticTacToeCorpo(ticTacToe, plays)>8) break;
-			}
-			system("cls");
-			ticTacToePrint(ticTacToe);
-			if(winner!='n'){
-				printf("O Ganhador foi o jogador: ' %c '\nDeseja continuar a jogar? ", winner);
-				fflush(stdin);
-				scanf("%c", &continue_);
-				system("cls");
-			}
-			else{
-				printf("Nao houve vencedor.\nDeseja continuar a jogar? ");
-				fflush(stdin);
-				scanf(" %c", &continue_);
-				system("cls");
-			}
+		if(plays==9){
+			break;
 		}
-		printf("\n\n\nObrigado por jogar :)\n");
+	}
+	system("cls");
+			ticTacToePrint(ticTacToe);
+				if(winner!='n'){
+					printf("O Ganhador foi o jogador: ' %c '\nDeseja continuar a jogar? ", winner);
+					fflush(stdin);
+					scanf("%c", &continue_);
+					system("cls");
+				}
+				else{
+					printf("Nao houve vencedor.\nDeseja continuar a jogar? ");
+					fflush(stdin);
+					scanf(" %c", &continue_);
+					system("cls");
+				}
+			}
+		printf("\nObrigado por jogar :)\n");
 }
 	
 
