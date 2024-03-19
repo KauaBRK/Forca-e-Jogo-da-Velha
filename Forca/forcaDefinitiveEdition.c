@@ -97,7 +97,7 @@ int forcaOption(){
 			  			else{
 			  				
 			  				fflush ( stdin );
-			  				printf ( "\nCaracter incorreto. Digite novamente com base nas opções.\n " );
+			  				printf ( "\nOpção inválida. Digite novamente.\n " );
 			  				correctOption = 0;
 			  				aux = scanf("%d", &option);
 							fflush(stdin);
