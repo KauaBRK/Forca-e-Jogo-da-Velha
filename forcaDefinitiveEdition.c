@@ -80,29 +80,27 @@ void forca(int errors){
   }
 }
 
-void forcaWordUser( char *secretWord, char* tipWord, char* screenWord){
-
-	char secretWordSystem [MAX_WORD] [50] = {"aguia", "alpaca", "beluga", "cagado", "chinchila", "dromedario", "escaravelho", "gnu", "hamster", "lemure", "lhama", "lince", "marreco", "ornitorrinco", "ourico", "pelicano", "percevejo", "pirilampo", "quati", "kiwi", "rouxinol", "sanguessuga", "surucucu", "tapir", "texugo", "zebu", "apicultor", "auditor", "bartender", "cerimonialista", "chef", "desembargador", "despachante", "endocrinologista", "embaixador", "gerente", "hepatologista", "interprete", "juiz", "nanotecnologo", "nutrologo", "pizzaiolo", "perito", "quiromante", "quiroprata", "roteirizador", "silvicultor", "trader", "taquigrafo", "turismologo", "UVA", "FIGO", "MAMAO", "AMORA","CAJU", "LARANJA","CUPUACU","MORANGO","CEREJA", "ABACAXI" , "MARMELO" , "JACA", "BANANA" , "FRAMBOESA" , "ACAI", "PERA" , "PITANGA" , "COCO" , "ACEROLA" , "MANGA", "Afrodite","Apolo","Ares","Artemis","Atena","Demeter","Dionisio","Eos","Eros","Hades","Helios","Hermes","Hera","Hestia","Horas","Mnemosine","Persefone","Poseidon","Selene","Temis","Zeus","Belerofonte","Perseu","Teseu","Heracles","Prometeu","Orfeu","Ulisses","Aquiles","Hercules","Eolo","Cronos","Atlas","Pan","Narciso","Tantalo","Euridice","Icaro","Medeia","Pandora","Tritao","Cerbero","Minos","Nemesis","Nix","Tique","Quiron","Clio","Euterpe","Talia","Melpomene","Terpsicore","Erato","Polimnia","Urania","Caliope","Mickey Mouse", "Pato Donald", "Pateta", "Pluto", "Minnie Mouse", "Margarida", "Tom", "Jerry", "Scooby Doo", "Fred Flintstone", "Barney Rubble", "George Jetson", "Elroy Jetson", "Pernalonga", "Patolino", "Popeye", "Olivia Palito", "Brutus", "Papa-Leguas", "Coelho Ricochete", "Frajola", "Piu-Piu", "Ze Colmeia", "Catatau", "Guarda Smith", "Bart Simpson", "Homer Simpson", "Marge Simpson", "Lisa Simpson", "Maggie Simpson","Abecasia","Afeganistao","Africa do Sul","Albania","Alemanha","Andorra","Angola","Antigua","Arabia Saudita","Argelia","Argentina","Armenia","Australia","Austria","Azerbaijao","Bahamas","Bahrein","Bangladesh","Barbados","Belgica","Belize","Benim","Bielorrussia","Bolivia","Bosnia","Botswana","Brasil","Brunei","Bulgaria","Burkina","Feijoada","Pao de Queijo","Coxinha","Pastel","Moqueca","Bobo de Camar√£o","Tapioca","Baiao de Dois","Vatapa","Carne de Sol","Acai","Tutu de Feijao","Canjica","Cuscuz Paulista","Pamonha","Quindim","Pacoca","Escondidinho","Torta de Frango","Caldinho de Feijao","Bolo de Fuba","Cocada","Rabada","Bolo de Rolo","Casquinha de Siri","Empadao","Buchada de Bode","Camarao na Moranga","Bolo de Milho Verde","Canjiquinha"};
-  	char tipWordSystem [MAX_CATEGORY] [25] = {"Animal","Profiss√£o","Fruta","Seres mit√≥logicos","Personagens de Cartoon","Pa√≠ses","Comidas"};
+int forcaOption(){
 	int player = 1 , sortNumberWord , sortNumberCategory, i, correctOption=0, tryNumber=0;
-	int option=0;
-	char correctSecretWord;
-	
-		printf("###JOGO DA FORCA###\nBem vindo jogador %d\nPara come√ßar digite o numero para a op√ß√£o que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n",player);
-		scanf ("%d", &option );
-			while ( correctOption != 1 ){
+	int option, aux;
+	char letter;
+	do{
+		aux = scanf("%d", &option);
+		fflush(stdin);
+		while ( correctOption != 1 ){
     				fflush ( stdin );
   					for(i = 0; i <= 51; i++){
-  						if (option==1 || option==2 ){
+  						if (option==1 || option==2 || option==3){
   							fflush ( stdin );
   							correctOption = 1;
 			  			}
 			  			else{
-			  				system ( "cls" );
+			  				
 			  				fflush ( stdin );
-			  				printf ( "\nCaracter incorreto. Digite novamente com base nas op√ß√µes.\n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n " );
+			  				printf ( "\nCaracter incorreto. Digite novamente com base nas opÁıes.\n " );
 			  				correctOption = 0;
-			  				scanf (" %d", &option);
+			  				aux = scanf("%d", &option);
+							fflush(stdin);
 			  				tryNumber++;
 			  			}
 			  			if(tryNumber == 51){
@@ -112,10 +110,26 @@ void forcaWordUser( char *secretWord, char* tipWord, char* screenWord){
 		  			}
 		  			system("cls");
 	  			}
+	}while(aux == 0 && option<=3);
+	return option;
+	
+
+}
+
+void forcaWordUser( char *secretWord, char* tipWord, char* screenWord){
+
+	char secretWordSystem [MAX_WORD] [50] = {"aguia", "alpaca", "beluga", "cagado", "chinchila", "dromedario", "escaravelho", "gnu", "hamster", "lemure", "lhama", "lince", "marreco", "ornitorrinco", "ourico", "pelicano", "percevejo", "pirilampo", "quati", "kiwi", "rouxinol", "sanguessuga", "surucucu", "tapir", "texugo", "zebu", "apicultor", "auditor", "bartender", "cerimonialista", "chef", "desembargador", "despachante", "endocrinologista", "embaixador", "gerente", "hepatologista", "interprete", "juiz", "nanotecnologo", "nutrologo", "pizzaiolo", "perito", "quiromante", "quiroprata", "roteirizador", "silvicultor", "trader", "taquigrafo", "turismologo", "UVA", "FIGO", "MAMAO", "AMORA","CAJU", "LARANJA","CUPUACU","MORANGO","CEREJA", "ABACAXI" , "MARMELO" , "JACA", "BANANA" , "FRAMBOESA" , "ACAI", "PERA" , "PITANGA" , "COCO" , "ACEROLA" , "MANGA", "Afrodite","Apolo","Ares","Artemis","Atena","Demeter","Dionisio","Eos","Eros","Hades","Helios","Hermes","Hera","Hestia","Horas","Mnemosine","Persefone","Poseidon","Selene","Temis","Zeus","Belerofonte","Perseu","Teseu","Heracles","Prometeu","Orfeu","Ulisses","Aquiles","Hercules","Eolo","Cronos","Atlas","Pan","Narciso","Tantalo","Euridice","Icaro","Medeia","Pandora","Tritao","Cerbero","Minos","Nemesis","Nix","Tique","Quiron","Clio","Euterpe","Talia","Melpomene","Terpsicore","Erato","Polimnia","Urania","Caliope","Mickey Mouse", "Pato Donald", "Pateta", "Pluto", "Minnie Mouse", "Margarida", "Tom", "Jerry", "Scooby Doo", "Fred Flintstone", "Barney Rubble", "George Jetson", "Elroy Jetson", "Pernalonga", "Patolino", "Popeye", "Olivia Palito", "Brutus", "Papa-Leguas", "Coelho Ricochete", "Frajola", "Piu-Piu", "Ze Colmeia", "Catatau", "Guarda Smith", "Bart Simpson", "Homer Simpson", "Marge Simpson", "Lisa Simpson", "Maggie Simpson","Abecasia","Afeganistao","Africa do Sul","Albania","Alemanha","Andorra","Angola","Antigua","Arabia Saudita","Argelia","Argentina","Armenia","Australia","Austria","Azerbaijao","Bahamas","Bahrein","Bangladesh","Barbados","Belgica","Belize","Benim","Bielorrussia","Bolivia","Bosnia","Botswana","Brasil","Brunei","Bulgaria","Burkina","Feijoada","Pao de Queijo","Coxinha","Pastel","Moqueca","Bobo de Camar„o","Tapioca","Baiao de Dois","Vatapa","Carne de Sol","Acai","Tutu de Feijao","Canjica","Cuscuz Paulista","Pamonha","Quindim","Pacoca","Escondidinho","Torta de Frango","Caldinho de Feijao","Bolo de Fuba","Cocada","Rabada","Bolo de Rolo","Casquinha de Siri","Empadao","Buchada de Bode","Camarao na Moranga","Bolo de Milho Verde","Canjiquinha"};
+  	char tipWordSystem [MAX_CATEGORY] [25] = {"Animal","Profiss„o","Fruta","Seres mitÛlogicos","Personagens de Cartoon","PaÌses","Comidas"};
+	int player = 1 , sortNumberWord , sortNumberCategory, i, correctOption=0, tryNumber=0, option=0;
+	
+	char correctSecretWord;
+	
+		printf("###JOGO DA FORCA###\nBem vindo jogador %d\nPara comeÁar digite o numero para a opÁ„o que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n3- Sair sem ver o placar\n",player);
+		option=forcaOption();
 			if (option == 1 ){
   			
   				fflush(stdin);
-    			printf ( "Boa escolha!\nDigite qual vai ser a palavra secreta:" );
+    			printf ( "\n\nBoa escolha!\nDigite qual vai ser a palavra secreta:" );
     			scanf (" %s", secretWord);
 	
     			while ( correctSecretWord != 'c'){
@@ -138,7 +152,7 @@ void forcaWordUser( char *secretWord, char* tipWord, char* screenWord){
    				printf ( "\n\nAgora digite a dica para esta palavra: " );
 				fgets ( tipWord , 20 , stdin );
  		}
- 		if(option!=1){
+ 		if(option==2){
 			fflush(stdin);
 			int player = 1 , madeMistake , errors=0 , option , sortNumberWord , sortNumberCategory, i, continue_=1, loops, streak=0, counter;
 			srand ( time ( NULL ) );
@@ -156,12 +170,16 @@ void forcaWordUser( char *secretWord, char* tipWord, char* screenWord){
     		strcpy ( secretWord, secretWordSystem [ sortNumberWord ] );
 			strcpy ( tipWord , tipWordSystem [ sortNumberCategory ] );
 		}
+		else if(option==3){
+			system("cls");
+			printf("\n\n\nResultados apagados :(\n\n");
+			abort();
+		}
 		strcpy ( screenWord , secretWord );
 		for ( i = 0; i < strlen ( screenWord ) ; i++){
     		screenWord [ i ]  = '_';
   		}
-  		
-  		printf ( "Tudo pronto pro Jogador %d come√ßar a jogar\n" , player );
+  		printf ( "\n\nTudo pronto pro Jogador %d comeÁar a jogar\n" , player );
   		system ( "pause" );
   		system ( "cls" );
 }
@@ -169,11 +187,11 @@ void forcaWordUser( char *secretWord, char* tipWord, char* screenWord){
 int main(){
   setlocale(LC_ALL,"portuguese");
   char secretWord [50] ,screenWord [50],tipWord [20],guessWord;
-  int player = 1 , madeMistake ,option, errors=0 ,i, continue_=1, loops, streak=0, counter;
+  int player = 1 , madeMistake ,option, errors=0 ,i, continue_=1, loops=0, streak=0, counter;
   int playersScore[10][2]={0,0}, scoreSum[10][1]={0};
   
   	while (continue_ == 1 || continue_ == 2){
-		loops++;
+		loops+=1;
   		system ("cls");
   		errors = 0;
 		forcaWordUser(secretWord, tipWord, screenWord);
@@ -182,7 +200,7 @@ int main(){
     	
     			fflush(stdin);
     			madeMistake = 1;
-    			printf ( "\n\n###JOGO DA FORCA###\n\nBem vindo Jogador %d\n\nN√∫mero de letras da palavra: %lu\n\nA dica para a palavra √©: %s\nPontos do Jogador n¬∞ %d: %d\n" , player , strlen ( secretWord ), tipWord, player, scoreSum[player][1]);
+    			printf ( "\n\n###JOGO DA FORCA###\n\nBem vindo Jogador %d\n\nN˙mero de letras da palavra: %lu\n\nA dica para a palavra È: %s\nPontos do Jogador n∞ %d: %d\n" , player , strlen ( secretWord ), tipWord, player, scoreSum[player][1]);
     			forca ( errors );
     			printf ( "\nPalavra: %s\nDigite uma letra ou a palavra inteira: " , screenWord );
     			guessWord=getch();
@@ -203,7 +221,7 @@ int main(){
     				streak ++;
       				system ( "cls" );
       				if(streak>4){
-						printf("\n\nO Jogador %d est√° numa streak de %d acertos!! +2 pontos pra voc√™\n\n",player,streak);
+						printf("\n\nO Jogador %d est· numa streak de %d acertos!! +2 pontos pra vocÍ\n\n",player,streak);
 						playersScore[player][1]+=2;
 						
 					}
@@ -212,7 +230,7 @@ int main(){
       				fflush(stdin);
       				playersScore[player][1]++;
       				scoreSum[player][1]=playersScore[player][1]-playersScore[player][2];
-      				scanf ( "%d" , &continue_ );
+      				continue_=forcaOption();
 				
       				if ( continue_ == 2 ){
       					
@@ -238,7 +256,7 @@ int main(){
 						scoreSum[player][1]=0;
 						playersScore[player][2]=0;
 					}
-      				scanf ( "%d" , &continue_ );
+      				continue_=forcaOption();
 				
       				if ( continue_ == 2 ){
       					player++;
@@ -261,9 +279,10 @@ int main(){
 				scoreSum[player][1]=0;
 			}
 			
-			printf ("\nJogador n¬∞ %d\nPontos: %d\n", player, scoreSum [ player ] [ 1 ] );
+			printf ("\nJogador n∞ %d\nPontos: %d\n", player, scoreSum [ player ] [ 1 ] );
 			player ++;
 		}
   	system ( "pause" );
 }
+
 
