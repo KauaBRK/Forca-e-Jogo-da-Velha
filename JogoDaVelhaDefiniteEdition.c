@@ -37,10 +37,11 @@ void ticTacToePrint(char ticTacToe[3][3]){
 int ticTacToeCorpo(char ticTacToe[3][3], int plays){
 	
 	char lineChoose, charChoose, winner,continue_='s';
+
 		scanf("%c", &lineChoose);
     		switch(lineChoose){
     			case '1':
-    				if(ticTacToe[0][0]=='1'){
+    				if(ticTacToe[0][0]=='1' && ticTacToe[0][0]!='\n'){
     					fflush(stdin);
     					printf("\nX ou O ?\n");
     					scanf("%c", &charChoose);
@@ -49,7 +50,7 @@ int ticTacToeCorpo(char ticTacToe[3][3], int plays){
     						break;
 					}
     				else{
-    					printf("\nEste local ja foi jogado\n");
+    					printf("\nEste local ja foi jogado ou opção invalida\n");
     					system("pause");
     						break;
 					}
