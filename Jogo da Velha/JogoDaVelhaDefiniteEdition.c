@@ -39,12 +39,21 @@ void ticTacToePrint(char ticTacToe[3][3]){
 		
 }	
 
-int ticTacToeCorpo(char ticTacToe[3][3], int plays){
-	
-	char lineChoose, charChoose, winner,continue_='s';
-	
-	
-    			scanf("%c", &lineChoose);
+
+int main(){
+	int plays;
+    char ticTacToe[3][3];
+    char winner,continue_='s';
+		while(continue_=='s'){
+			system("cls");
+			winner='n';
+			ticTacToeLoop(ticTacToe);
+			while(winner=='n'){
+				system("cls");
+				ticTacToePrint(ticTacToe);
+				printf("\n\nDigite qual lugar vai jogar: ");
+				char lineChoose, charChoose, winner,continue_='s';
+    scanf("%c", &lineChoose);
     								
 	
 					
@@ -207,21 +216,6 @@ int ticTacToeCorpo(char ticTacToe[3][3], int plays){
     						break;
     				}						    					
 			}
-			
-}
-int main(){
-	int plays;
-    char ticTacToe[3][3];
-    char winner,continue_='s';
-		while(continue_=='s'){
-			system("cls");
-			winner='n';
-			ticTacToeLoop(ticTacToe);
-			while(winner=='n'){
-				system("cls");
-				ticTacToePrint(ticTacToe);
-				printf("\n\nDigite qual lugar vai jogar: ");
-				ticTacToeCorpo(ticTacToe, plays);
 				
 				if(ticTacToe[0][0]==ticTacToe[0][1] && ticTacToe[0][1]==ticTacToe[0][2]) winner=ticTacToe[0][0];
 					if (ticTacToe[1][0]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[1][2]) winner=ticTacToe[1][0];
@@ -234,7 +228,7 @@ int main(){
 				if(ticTacToe[0][0]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][2]) winner=ticTacToe[0][0];
 					if(ticTacToe[0][2]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][0]) winner=ticTacToe[0][2];
 				
-				if(ticTacToeCorpo(ticTacToe, plays)>=8) break;
+				if(plays>8) break;
 			}
 			system("cls");
 			ticTacToePrint(ticTacToe);
