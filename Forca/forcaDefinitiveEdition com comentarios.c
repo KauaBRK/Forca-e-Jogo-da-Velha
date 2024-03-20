@@ -192,12 +192,13 @@ int main(){
     			printf ( "\n\n###JOGO DA FORCA###\n\nBem vindo Jogador %d\n\nNúmero de letras da palavra: %lu\n\nA dica para a palavra é: %s\nPontos do Jogador n° %d: %d\n" , player , strlen ( secretWord ), tipWord, player, scoreSum[player][1]);
     			forca ( errors );
     			printf ( "\nPalavra: %s\nDigite uma letra ou a palavra inteira: " , screenWord );
-    			guessWord=getch();
-			
+    			
+    			
+    			guessWord=getch();/*Esta é a parte que faz o jogo ler apenas caracteres e faz o jogo att a palavra na tela*/
     			for ( i = 0; i < strlen ( screenWord ) ; i++){
 				
     				if (isalpha(guessWord)!=0 || guessWord==32 ){
-    					if ( guessWord  == secretWord [ i ] ){	
+    					if ( guessWord  == secretWord [ i ] ){/*Trecho que a letra da palavra da tela vai pro jogador */	
       					screenWord [ i ] = guessWord;
       					madeMistake = 0;
 						}
