@@ -59,7 +59,7 @@ int main(){
     			switch(lineChoose){
     			
 	    			case '1':
-	    				if(ticTacToe[0][0]=='1' && ticTacToe[0][0]!='\n'){
+	    				if(ticTacToe[0][0]=='1'){
 	    					fflush(stdin);
 	    					plays++;
 	    					printf("\nX ou O ?\n");
