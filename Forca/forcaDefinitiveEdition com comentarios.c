@@ -5,9 +5,9 @@
 #include <conio.h>
 #include<time.h>
 #include <ctype.h>
-#define MAX_WORD 216
-#define MAX_CATEGORY 10
-void forca(int errors){
+#define MAX_WORD 216/*DEFINI O MAXIMO DE PALAVRAS EM 216 QUE ESTOU USANDO NO MOMENTO*/
+#define MAX_CATEGORY 10/*NUMERO DE PALAVRAS DISTRIBUIDAS EM 10 CATEGORIAS*/
+void forca(int errors){/*DETERMINA O ESTADO ATUAL DA FORCA*/
   if(errors==0){
   	printf("\n|________________");
   	printf("\n|               |");
@@ -80,17 +80,17 @@ void forca(int errors){
   }
 }
 
-int forcaOption(){
+int forcaOption(){/*É UMA FUNCAO PARA DELIMITAR AS OPCOES DO USUARIO*/
 	int player = 1 , sortNumberWord , sortNumberCategory, i, correctOption=0, tryNumber=0;
 	int option, aux;
 	char letter;
-	do{
-		aux = scanf("%d", &option);
+	do{/*PRIMEIRO LOOP*/
+		aux = scanf("%d", &option);/*ESTA VARIAVEL AUXILIAR VAI VER SE ESTA DIGITANDO UM NUMERO, SE FOR LETRA NAO TERMINA A FUNCAO E REINICIA O LOOP*/
 		fflush(stdin);
-		while ( correctOption != 1 ){
+		while ( correctOption != 1 ){/*SEGUNDO LOOP PARA VER SE A OPCAO DIGITADA É VALIDA*/
     				fflush ( stdin );
   					for(i = 0; i <= 51; i++){
-  						if (option==1 || option==2 || option==3){
+  						if (option==1 || option==2 || option==3){/*CASO A OPCAO SEJA VALIDA O LOOP ACABA*/
   							fflush ( stdin );
   							correctOption = 1;
 			  			}
@@ -110,8 +110,8 @@ int forcaOption(){
 		  			}
 		  			system("cls");
 	  			}
-	}while(aux == 0 && option<=3);
-	return option;
+	}while(aux == 0 && option<=3);/*ESTA VARIAVEL AUXILIAR TEM DE SER = 1 POIS SO PODE SER NUMERO*/
+	return option;/*RETORNEI A OPCAO SELECIONADA*/
 	
 
 }
@@ -170,7 +170,7 @@ void forcaWordUser( char *secretWord, char* tipWord, char* screenWord){
     		strcpy ( secretWord, secretWordSystem [ sortNumberWord ] );
 			strcpy ( tipWord , tipWordSystem [ sortNumberCategory ] );
 		}
-		else if(option==3){
+		else if(option>2){
 			system("cls");
 			printf("\n\n\nResultados apagados :(\n\n");
 			abort();
@@ -183,7 +183,6 @@ void forcaWordUser( char *secretWord, char* tipWord, char* screenWord){
   		system ( "pause" );
   		system ( "cls" );
 }
-
 int main(){
   setlocale(LC_ALL,"portuguese");
   char secretWord [50] ,screenWord [50],tipWord [20],guessWord;
