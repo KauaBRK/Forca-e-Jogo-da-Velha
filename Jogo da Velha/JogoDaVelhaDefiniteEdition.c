@@ -52,7 +52,7 @@ int main(){
 			winner='n';
 			ticTacToeLoop(ticTacToe);
 			xOption=1;
-			plays==0;
+			plays=0;
 			while(winner=='n'){
 				system("cls");
 				ticTacToePrint(ticTacToe);

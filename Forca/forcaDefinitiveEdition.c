@@ -176,7 +176,7 @@ void forcaWordUser( char * secretWord, char * tipWord, char * screenWord){
 					break;
 				}
 				else if(option>2){
-					printf("\n\nOpção invalida\n");
+					printf("\n\nOpção inválida. Digite novamente\n");
 					option=forcaOption();
 				}
 			}
