@@ -39,16 +39,21 @@ void ticTacToePrint(char ticTacToe[3][3]){
 		
 }	
 
-
+int ticTacToe(char ticTacToe[3][3], int * plays){
+	
+}
 int main(){
-	int plays, lineChoose;
+	int plays, lineChoose, xOption, winnerX=0, winner0=0;
     char ticTacToe[3][3];
-    char continue_='s';
-    char  charChoose, winner;
+    char continue_='s', charChoose, winner;
+    
 		while(continue_=='s'){
 			system("cls");
 			winner='n';
 			ticTacToeLoop(ticTacToe);
+			xOption=1;
+			
+			
 			while(winner=='n'){
 				system("cls");
 				ticTacToePrint(ticTacToe);
@@ -61,17 +66,19 @@ int main(){
 	    				if(ticTacToe[0][0]=='1' && ticTacToe[0][0]!='\n'){
 	    					fflush(stdin);
 	    					plays++;
-	    					printf("\nX ou O ?\n");
-	    					do{
-	    						scanf("%c", &charChoose);
-	    						ticTacToe[0][0]=charChoose;
-						}while(charChoose=='\n');
-	    					
-	    					
+	    					if(xOption==1){
+	    						ticTacToe[0][0]='X';
+	    						xOption=0;
 	    						break;
+							}
+							if(xOption==0){
+	    						ticTacToe[0][0]='0';
+	    						xOption=1;
+	    						break;
+							}		
 						}
 	    				else{
-	    					printf("\nEste local ja foi jogado ou opÃ§Ã£o invalida\n");
+	    					printf("\nEste local ja foi jogado ou opção invalida\n");
 	    					system("pause");
 	    						break;
 						}
@@ -79,13 +86,17 @@ int main(){
 	    				if(ticTacToe[0][1]=='2'){
 	    					plays++;
 	    					fflush(stdin);
-	    					printf("\nX ou O ?\n");
-	    					do{
-	    						scanf("%c", &charChoose);
-	    						ticTacToe[0][1]=charChoose;
-						}while(charChoose=='\n');
 	    					
+	    					if(xOption==1){
+	    						ticTacToe[0][1]='X';
+	    						xOption=0;
 	    						break;
+							}
+							if(xOption==0){
+	    						ticTacToe[0][1]='0';
+	    						xOption=1;
+	    						break;
+							}			
 						}
 	    				else{
 	    					printf("\nEste local ja foi jogado\n");
@@ -96,13 +107,16 @@ int main(){
 	    				if(ticTacToe[0][2]=='3'){
 	    					plays++;
 	    					fflush(stdin);
-	    					printf("\nX ou O ?\n");
-	    					do{
-	    						scanf("%c", &charChoose);
-	    						ticTacToe[0][2]=charChoose;
-						}while(charChoose=='\n');
-	    					
+	    					if(xOption==1){
+	    						ticTacToe[0][2]='X';
+	    						xOption=0;
 	    						break;
+							}
+							if(xOption==0){
+	    						ticTacToe[0][2]='0';
+	    						xOption=1;
+	    						break;
+							}
 						}
 	    				else{
 	    					printf("\nEste local ja foi jogado\n");
@@ -113,14 +127,16 @@ int main(){
 	    					if(ticTacToe[1][0]=='4'){
 	    						plays++;
 	    					fflush(stdin);
-	    					printf("\nX ou O ?\n");
-	    					do{
-	    						scanf("%c", &charChoose);
-	    						ticTacToe[1][0]=charChoose;
-						}while(charChoose=='\n');
-	    					
-	    					
+	    					if(xOption==1){
+	    						ticTacToe[1][0]='X';
+	    						xOption=0;
 	    						break;
+							}
+							if(xOption==0){
+	    						ticTacToe[1][0]='0';
+	    						xOption=1;
+	    						break;
+							}
 						}
 	    				else{
 	    					printf("\nEste local ja foi jogado\n");
@@ -131,13 +147,16 @@ int main(){
 	    				if(ticTacToe[1][1]=='5'){
 	    					plays++;
 	    					fflush(stdin);
-	    					printf("\nX ou O ?\n");
-	    					do{
-	    						scanf("%c", &charChoose);
-	    						ticTacToe[1][1]=charChoose;
-						}while(charChoose=='\n');
-	    					
+	    					if(xOption==1){
+	    						ticTacToe[1][1]='X';
+	    						xOption=0;
 	    						break;
+							}
+							if(xOption==0){
+	    						ticTacToe[1][1]='0';
+	    						xOption=1;
+	    						break;
+							}
 						}
 	    				else{
 	    					printf("\nEste local ja foi jogado\n");
@@ -148,13 +167,16 @@ int main(){
 	    				if(ticTacToe[1][2]=='6'){
 	    					plays++;
 	    					fflush(stdin);
-	    					printf("\nX ou O ?\n");
-	    					do{
-	    						scanf("%c", &charChoose);
-	    						ticTacToe[1][2]=charChoose;
-						}while(charChoose=='\n');
-	    					
+	    					if(xOption==1){
+	    						ticTacToe[1][2]='X';
+	    						xOption=0;
 	    						break;
+							}
+							if(xOption==0){
+	    						ticTacToe[1][2]='0';
+	    						xOption=1;
+	    						break;
+							}
 						}
 	    				else{
 	    					printf("\nEste local ja foi jogado\n");
@@ -165,13 +187,16 @@ int main(){
 	    				if(ticTacToe[2][0]=='7'){
 	    					plays++;
 	    					fflush(stdin);
-	    					printf("\nX ou O ?\n");
-	    					do{
-	    						scanf("%c", &charChoose);
-	    						ticTacToe[2][0]=charChoose;
-						}while(charChoose=='\n');
-	    					
+	    					if(xOption==1){
+	    						ticTacToe[2][0]='X';
+	    						xOption=0;
 	    						break;
+							}
+							if(xOption==0){
+	    						ticTacToe[2][0]='0';
+	    						xOption=1;
+	    						break;
+							}
 						}
 	    				else{
 	    					printf("\nEste local ja foi jogado\n");
@@ -182,13 +207,16 @@ int main(){
 	    				if(ticTacToe[2][1]=='8'){
 	    					plays++;
 	    					fflush(stdin);
-	    					printf("\nX ou O ?\n");
-	    					do{
-	    						scanf("%c", &charChoose);
-	    						ticTacToe[2][1]=charChoose;
-						}while(charChoose=='\n');
-	    					
+	    					if(xOption==1){
+	    						ticTacToe[2][1]='X';
+	    						xOption=0;
 	    						break;
+							}
+							if(xOption==0){
+	    						ticTacToe[2][1]='0';
+	    						xOption=1;
+	    						break;
+							}
 						}
 	    				else{
 	    					printf("\nEste local ja foi jogado\n");
@@ -199,13 +227,16 @@ int main(){
 	    				if(ticTacToe[2][2]=='9'){
 	    					fflush(stdin);
 	    					plays++;
-	    					printf("\nX ou O ?\n");
-	    					do{
-	    						scanf("%c", &charChoose);
-	    						ticTacToe[2][2]=charChoose;
-						}while(charChoose=='\n');
-	    					
+	    					if(xOption==1){
+	    						ticTacToe[2][2]='X';
+	    						xOption=0;
 	    						break;
+							}
+							if(xOption==0){
+	    						ticTacToe[2][2]='0';
+	    						xOption=1;
+	    						break;
+							}
 						}
 	    				else{
 	    					printf("\nEste local ja foi jogado\n");
@@ -213,6 +244,7 @@ int main(){
 	    						break;
 	    				}						    					
 				}
+				
 				if(plays>8) break;
 				
 				if(ticTacToe[0][0]==ticTacToe[0][1] && ticTacToe[0][1]==ticTacToe[0][2]) winner=ticTacToe[0][0];
@@ -226,7 +258,12 @@ int main(){
 				if(ticTacToe[0][0]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][2]) winner=ticTacToe[0][0];
 					if(ticTacToe[0][2]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][0]) winner=ticTacToe[0][2];
 				
-				
+				if(winner=='X'){
+					winnerX++;
+				}
+				if(winner=='0'){
+					winner0++;
+				}
 			}
 			system("cls");
 			ticTacToePrint(ticTacToe);
@@ -243,7 +280,7 @@ int main(){
 				system("cls");
 			}
 		}
-		printf("\n\n\nObrigado por jogar :)\n");
+		printf("\n\n\nObrigado por jogar :)\n\n###PLACAR###\n\nPONTOS DO X: %d\nPONTOS DO 0: %d\n\n", winnerX, winner0);
 }
 	
 
