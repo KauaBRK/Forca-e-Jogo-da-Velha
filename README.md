@@ -1,8 +1,9 @@
 
-Repositorio do jogo da velha game
+Repositorio do jogo da velha e Repositorio do jogo da forca.
 =======
 
 
 	
-	jogo da velha terminado.
+	Jogo da velha terminado e comentado.
+	Jogo da forca terminado.
 
