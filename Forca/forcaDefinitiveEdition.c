@@ -126,7 +126,10 @@ void forcaWordUser( char * secretWord, char * tipWord, char * screenWord){
 	
 		printf("###JOGO DA FORCA###\nBem vindo jogador %d\nPara começar digite o numero para a opção que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n",player);
 		option=forcaOption();
-			if (option == 1 ){
+		while(1){
+			while(1){
+				printf("###JOGO DA FORCA###\nBem vindo jogador %d\nPara começar digite o numero para a opção que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n",player);
+				if (option == 1 ){
   			
   				fflush(stdin);
     			printf ( "\n\nBoa escolha!\nDigite qual vai ser a palavra secreta:" );
@@ -151,6 +154,7 @@ void forcaWordUser( char * secretWord, char * tipWord, char * screenWord){
 	  			fflush ( stdin );
    				printf ( "\n\nAgora digite a dica para esta palavra: " );
 				fgets ( tipWord , 20 , stdin );
+				break;
  		}
  		if(option==2){
 			fflush(stdin);
@@ -169,12 +173,17 @@ void forcaWordUser( char * secretWord, char * tipWord, char * screenWord){
 			strlwr(secretWordSystem[sortNumberWord]);
     		strcpy ( secretWord, secretWordSystem [ sortNumberWord ] );
 			strcpy ( tipWord , tipWordSystem [ sortNumberCategory ] );
+			break;
 		}
-		else if(option==3){
-			system("cls");
-			printf("\n\n\nResultados apagados :(\n\n");
-			abort();
+		else if(option>2){
+			printf("\n\nOpção invalida\n");
+			option=forcaOption();
 		}
+		}
+		break;
+		}
+			
+			
 		strcpy ( screenWord , secretWord );
 		for ( i = 0; i < strlen ( screenWord ) ; i++){
     		screenWord [ i ]  = '_';
