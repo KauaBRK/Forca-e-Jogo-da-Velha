@@ -39,7 +39,7 @@ void ticTacToePrint(char ticTacToe[3][3]){
 		
 }	
 
-int ticTacToe(char ticTacToe[3][3], int * plays){
+void ticTacToe(char ticTacToe[3][3], int * plays){
 	
 }
 int main(){
@@ -52,8 +52,7 @@ int main(){
 			winner='n';
 			ticTacToeLoop(ticTacToe);
 			xOption=1;
-			
-			
+			plays==0;
 			while(winner=='n'){
 				system("cls");
 				ticTacToePrint(ticTacToe);
@@ -245,7 +244,7 @@ int main(){
 	    				}						    					
 				}
 				
-				if(plays>8) break;
+				
 				
 				if(ticTacToe[0][0]==ticTacToe[0][1] && ticTacToe[0][1]==ticTacToe[0][2]) winner=ticTacToe[0][0];
 					if (ticTacToe[1][0]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[1][2]) winner=ticTacToe[1][0];
@@ -257,6 +256,8 @@ int main(){
 				
 				if(ticTacToe[0][0]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][2]) winner=ticTacToe[0][0];
 					if(ticTacToe[0][2]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][0]) winner=ticTacToe[0][2];
+				
+				if(plays==9 && winner=='n') break;
 				
 				if(winner=='X'){
 					winnerX++;
