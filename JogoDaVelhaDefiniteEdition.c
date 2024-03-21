@@ -283,6 +283,3 @@ int main(){
 		}
 		printf("\n\n\nObrigado por jogar :)\n\n###PLACAR###\n\nPONTOS DO X: %d\nPONTOS DO 0: %d\n\n", winnerX, winner0);
 }
-	
-
-
