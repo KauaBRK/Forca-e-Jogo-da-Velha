@@ -1,9 +1,10 @@
 
+Repositorio da forca game e
 Repositorio do jogo da velha game
 =======
-Repositorio da forca game 
 
-	forca terminado
- 	jogo da velha terminado
+
+	Forca terminado
+ 	Jogo da velha terminado
 	
 
