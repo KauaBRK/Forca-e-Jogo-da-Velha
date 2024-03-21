@@ -127,7 +127,7 @@ void forcaWordUser( char * secretWord, char * tipWord, char * screenWord){
 		printf("###JOGO DA FORCA###\nBem vindo jogador %d\nPara começar digite o numero para a opção que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n",player);
 		option=forcaOption();
 		while(1){
-			while(1){
+			while(2){
 				printf("###JOGO DA FORCA###\nBem vindo jogador %d\nPara começar digite o numero para a opção que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n",player);
 				if (option == 1 ){
   			
@@ -155,32 +155,32 @@ void forcaWordUser( char * secretWord, char * tipWord, char * screenWord){
    				printf ( "\n\nAgora digite a dica para esta palavra: " );
 				fgets ( tipWord , 20 , stdin );
 				break;
- 		}
- 		if(option==2){
-			fflush(stdin);
-			int player = 1 , madeMistake , errors=0 , option , sortNumberWord , sortNumberCategory, i, continue_=1, loops, streak=0, counter;
-			srand ( time ( NULL ) );
-    		sortNumberWord = rand () %186;
-    		
-				if ( sortNumberWord >= 0 && sortNumberWord <26 ) sortNumberCategory = 0 ;
-				else if ( sortNumberWord >= 26 && sortNumberWord < 50 ) sortNumberCategory = 1;
-				else if ( sortNumberWord >= 50 && sortNumberWord < 70 ) sortNumberCategory = 2;
-				else if ( sortNumberWord >= 70 && sortNumberWord < 120 ) sortNumberCategory = 3;
-				else if ( sortNumberWord >= 120 && sortNumberWord < 156 ) sortNumberCategory = 4;
-				else if ( sortNumberWord >= 120 && sortNumberWord < 156 ) sortNumberCategory = 4;
-				else if ( sortNumberWord >= 156 && sortNumberWord < 186 ) sortNumberCategory = 5;
-				else if ( sortNumberWord >= 186 && sortNumberWord < 216 ) sortNumberCategory = 6;
-			strlwr(secretWordSystem[sortNumberWord]);
-    		strcpy ( secretWord, secretWordSystem [ sortNumberWord ] );
-			strcpy ( tipWord , tipWordSystem [ sortNumberCategory ] );
+	 			}
+		 		if(option==2){
+					fflush(stdin);
+					int player = 1 , madeMistake , errors=0 , option , sortNumberWord , sortNumberCategory, i, continue_=1, loops, streak=0, counter;
+					srand ( time ( NULL ) );
+		    		sortNumberWord = rand () %186;
+		    		
+						if ( sortNumberWord >= 0 && sortNumberWord <26 ) sortNumberCategory = 0 ;
+						else if ( sortNumberWord >= 26 && sortNumberWord < 50 ) sortNumberCategory = 1;
+						else if ( sortNumberWord >= 50 && sortNumberWord < 70 ) sortNumberCategory = 2;
+						else if ( sortNumberWord >= 70 && sortNumberWord < 120 ) sortNumberCategory = 3;
+						else if ( sortNumberWord >= 120 && sortNumberWord < 156 ) sortNumberCategory = 4;
+						else if ( sortNumberWord >= 120 && sortNumberWord < 156 ) sortNumberCategory = 4;
+						else if ( sortNumberWord >= 156 && sortNumberWord < 186 ) sortNumberCategory = 5;
+						else if ( sortNumberWord >= 186 && sortNumberWord < 216 ) sortNumberCategory = 6;
+					strlwr(secretWordSystem[sortNumberWord]);
+		    		strcpy ( secretWord, secretWordSystem [ sortNumberWord ] );
+					strcpy ( tipWord , tipWordSystem [ sortNumberCategory ] );
+					break;
+				}
+				else if(option>2){
+					printf("\n\nOpção invalida\n");
+					option=forcaOption();
+				}
+			}
 			break;
-		}
-		else if(option>2){
-			printf("\n\nOpção invalida\n");
-			option=forcaOption();
-		}
-		}
-		break;
 		}
 			
 			
