@@ -41,24 +41,23 @@ void ticTacToePrint(char ticTacToe[3][3]){
 
 
 int main(){
-	int plays;
+	int plays, lineChoose;
     char ticTacToe[3][3];
     char continue_='s';
-    char lineChoose, charChoose, winner;
+    char  charChoose, winner;
 		while(continue_=='s'){
 			system("cls");
 			winner='n';
 			ticTacToeLoop(ticTacToe);
 			while(winner=='n'){
-				
 				system("cls");
 				ticTacToePrint(ticTacToe);
 				printf("\n\nDigite qual lugar vai jogar: ");
-    			scanf("%c", &lineChoose);	
+    			scanf("%d", &lineChoose);	
 				fflush(stdin);
     			switch(lineChoose){
     			
-	    			case '1':
+	    			case 1:
 	    				if(ticTacToe[0][0]=='1' && ticTacToe[0][0]!='\n'){
 	    					fflush(stdin);
 	    					plays++;
@@ -76,7 +75,7 @@ int main(){
 	    					system("pause");
 	    						break;
 						}
-	    			case '2':
+	    			case 2:
 	    				if(ticTacToe[0][1]=='2'){
 	    					plays++;
 	    					fflush(stdin);
@@ -93,7 +92,7 @@ int main(){
 	    					system("pause");
 	    						break;
 						}
-	    			case '3':
+	    			case 3:
 	    				if(ticTacToe[0][2]=='3'){
 	    					plays++;
 	    					fflush(stdin);
@@ -110,7 +109,7 @@ int main(){
 	    					system("pause");
 	    						break;
 						}
-	    			case '4':
+	    			case 4:
 	    					if(ticTacToe[1][0]=='4'){
 	    						plays++;
 	    					fflush(stdin);
@@ -128,7 +127,7 @@ int main(){
 	    					system("pause");
 	    						break;
 	    				}
-					case '5':
+					case 5:
 	    				if(ticTacToe[1][1]=='5'){
 	    					plays++;
 	    					fflush(stdin);
@@ -145,7 +144,7 @@ int main(){
 	    					system("pause");
 	    						break;
 	    				}
-					case '6':
+					case 6:
 	    				if(ticTacToe[1][2]=='6'){
 	    					plays++;
 	    					fflush(stdin);
@@ -162,7 +161,7 @@ int main(){
 	    					system("pause");
 	    						break;
 	    				}
-					case '7':
+					case 7:
 	    				if(ticTacToe[2][0]=='7'){
 	    					plays++;
 	    					fflush(stdin);
@@ -179,7 +178,7 @@ int main(){
 	    					system("pause");
 	    						break;
 	    				}
-					case '8':
+					case 8:
 	    				if(ticTacToe[2][1]=='8'){
 	    					plays++;
 	    					fflush(stdin);
@@ -196,7 +195,7 @@ int main(){
 	    					system("pause");
 	    						break;
 	    				}
-					case '9':
+					case 9:
 	    				if(ticTacToe[2][2]=='9'){
 	    					fflush(stdin);
 	    					plays++;
@@ -214,6 +213,7 @@ int main(){
 	    						break;
 	    				}						    					
 				}
+				if(plays>8) break;
 				
 				if(ticTacToe[0][0]==ticTacToe[0][1] && ticTacToe[0][1]==ticTacToe[0][2]) winner=ticTacToe[0][0];
 					if (ticTacToe[1][0]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[1][2]) winner=ticTacToe[1][0];
@@ -226,7 +226,7 @@ int main(){
 				if(ticTacToe[0][0]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][2]) winner=ticTacToe[0][0];
 					if(ticTacToe[0][2]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][0]) winner=ticTacToe[0][2];
 				
-				if(plays>8) break;
+				
 			}
 			system("cls");
 			ticTacToePrint(ticTacToe);
