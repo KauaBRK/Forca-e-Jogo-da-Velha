@@ -1,7 +1,8 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <locale.h>
-#include <string.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<locale.h>
+
 void ticTacToeLoop(char ticTacToe[3][3]){
 	/*essa primeira funcao serve apenas pra zerar todos os parametros caso o jogador queira jogar mais uma vez*/
 		ticTacToe[0][0]='1';
@@ -15,10 +16,11 @@ void ticTacToeLoop(char ticTacToe[3][3]){
 		ticTacToe[2][2]='9';
 		
 }
+
 void ticTacToePrint(char ticTacToe[3][3]){
 	/*essa segunda funcao serve pra imprimir o jogo da velha sempre que chamada*/
 	int line, column;
-			printf("\n\n\n   ###JOGO DA VELHA####\n\n\n");
+		printf("\n\n\n   ###JOGO DA VELHA####\n\n\n");
 			for(line = 0; line <3; line++){
 				for(column = 0; column <3; column++){
 					printf("    %c  ", ticTacToe[line][column]);         
@@ -37,25 +39,54 @@ void ticTacToePrint(char ticTacToe[3][3]){
 		
 }	
 
+int ticTacToeCheckWins(char ticTacToe[3][3], char winner){/*FUNCAO QUE CHECA SE HOUVE GANHADOR*/
+
+		/*VERIFICANDO GANHADOR POR LINHA*/
+		/*PARA POUPAR CODIGO É MELHOR USAR ESTA TATICA POIS NUM UNICO
+		 IF VERIFICA TRES DE VEZ E AO MESMO TEMPO FAZ COM QUE O GANHADOR RECEBA O CARACTERE CORRESPONDENTE*/
+		 
+		if(ticTacToe[0][0]==ticTacToe[0][1] && ticTacToe[0][1]==ticTacToe[0][2]) winner=ticTacToe[0][0];
+				
+		/*SE O GANHADOR DA PRIMEIRA LINHA	E ULTIMA LINHA TIVER O MESMO CARACTERE ENTAO ELE PELA LOGICA VENCEU,
+		ENTAO O CARACTERE DA PRIMEIRA LINHA SO PRECISA SER ADICIONADO AO VENCEDOR*/
+				
+		if (ticTacToe[1][0]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[1][2]) winner=ticTacToe[1][0];
+		if (ticTacToe[2][0]==ticTacToe[2][1] && ticTacToe[2][1]==ticTacToe[2][2]) winner=ticTacToe[2][0];
+		/*FIM DA VERIFICACAO POR LINHA*/
+				
+		/*VERIFICANDO GANHADOR POR COLUNA*/
+		if(ticTacToe[0][0]==ticTacToe[1][0] && ticTacToe[1][0]==ticTacToe[2][0]) winner=ticTacToe[0][0];
+		if(ticTacToe[0][1]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][1]) winner=ticTacToe[0][1];
+		if(ticTacToe[0][2]==ticTacToe[1][2] && ticTacToe[1][2]==ticTacToe[2][2]) winner=ticTacToe[0][2];
+		/*FIM DA VERIFICACAO POR COLUNA*/
+				
+		/*VERIFICANDO GANHADOR POR DIAGONAL*/
+		if(ticTacToe[0][0]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][2]) winner=ticTacToe[0][0];
+		if(ticTacToe[0][2]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][0]) winner=ticTacToe[0][2];
+		/*FIM DA VERIFICACAO POR DIAGONAL*/
+	return winner;
+}
+
 int main(){
+	setlocale(LC_ALL,"portuguese");
 	int plays, lineChoose, xOption, winnerX=0, winner0=0;
 	/*.CONTROLE DA QUANTIDADE DE JOGADAS FEITAS.
 	.ESCOLHA DA LINHA QUE VAI JOGAR, VAI DE 1 A 9.
-	.ESCOLHE SE O PROXIMO JOGADOR Ã‰ X OU 0.
+	.ESCOLHE SE O PROXIMO JOGADOR É X OU 0.
 	.PONTUACAO DO X.
 	.PONTUACAO DO 0.*/
     char ticTacToe[3][3];
     /*.JOGO DA VELHA.*/
     char continue_='s', winner;
-    /*.VÃŠ SE USUARIO QUER CONTINUAR.
+    /*.VÊ SE USUARIO QUER CONTINUAR.
     .VENDEDOR.*/
 		while(continue_=='s'){/*.ENQUANTO O JOGADOR QUER JOGAR O LOOP CONTINUA.*/
 			system("cls");
 			winner='n';/*.IGUALO VENCEDOR A N OU NONE.*/
 			ticTacToeLoop(ticTacToe);/*.ZERANDO O JOGO DA VELHA.*/
-			xOption=1;/*.JOGADOR EM X COMEÃ‡A PRIMEIRO SEMPRE.*/
+			xOption=1;/*.JOGADOR EM X COMEÇA PRIMEIRO SEMPRE.*/
 			plays=0;/*.ZERA O NUMERO DE JOGADAS.*/
-			/*. EM SUMA ESTA PRIMEIRA PARTE DO LOOP ANTES DO JOGO COMEÃ‡AR Ã‰ APENAS PARA ZERAR TODOS OS PARAMETROS EXISTENTES. */
+			/*. EM SUMA ESTA PRIMEIRA PARTE DO LOOP ANTES DO JOGO COMEÇAR É APENAS PARA ZERAR TODOS OS PARAMETROS EXISTENTES. */
 			while(winner=='n'){/*.ENQUANTO O VENCEDOR FOR N OU NONE O JOGO CONTINUA.*/
 				system("cls");
 				ticTacToePrint(ticTacToe);/*.PRINTEI NA TELA O JOGO DA VELHA SEGUIDO DAS OPCOES.*/
@@ -68,7 +99,7 @@ int main(){
 	    				if(ticTacToe[0][0]=='1' && ticTacToe[0][0]!='\n'){
 	    					fflush(stdin);
 	    					plays++;/*.CONTABILIZO UMA JOGADA.*/
-	    					if(xOption==1){/*VEJO SE O JOGADOR ATUAL Ã‰ X OU 0*/
+	    					if(xOption==1){/*VEJO SE O JOGADOR ATUAL É X OU 0*/
 	    						ticTacToe[0][0]='X';/*SE FOR X RECEBE X*/
 	    						xOption=0;/*ZERANDO PARA O PROXIMO SER ZERO*/
 	    						break;
@@ -80,7 +111,7 @@ int main(){
 							}		
 						}
 	    				else{/* CASO O LOCAL JA ESTEJA OCUPADO EXIBE A MENSAGEM */
-	    					printf("\nEste local ja foi jogado ou opÃ§Ã£o invalida\n");
+	    					printf("\nEste local ja foi jogado ou opção invalida\n");
 	    					system("pause");
 	    						break;
 						}
@@ -102,7 +133,7 @@ int main(){
 							}			
 						}
 	    				else{
-	    					printf("\nEste local ja foi jogado\n");
+	    					printf("\nEste local ja foi jogado ou opção invalida\n");
 	    					system("pause");
 	    						break;
 						}
@@ -122,7 +153,7 @@ int main(){
 							}
 						}
 	    				else{
-	    					printf("\nEste local ja foi jogado\n");
+	    					printf("\nEste local ja foi jogado ou opção invalida\n");
 	    					system("pause");
 	    						break;
 						}
@@ -142,7 +173,7 @@ int main(){
 							}
 						}
 	    				else{
-	    					printf("\nEste local ja foi jogado\n");
+	    					printf("\nEste local ja foi jogado ou opção invalida\n");
 	    					system("pause");
 	    						break;
 	    				}
@@ -162,7 +193,7 @@ int main(){
 							}
 						}
 	    				else{
-	    					printf("\nEste local ja foi jogado\n");
+	    					printf("\nEste local ja foi jogado ou opção invalida\n");
 	    					system("pause");
 	    						break;
 	    				}
@@ -182,7 +213,7 @@ int main(){
 							}
 						}
 	    				else{
-	    					printf("\nEste local ja foi jogado\n");
+	    					printf("\nEste local ja foi jogado ou opção invalida\n");
 	    					system("pause");
 	    						break;
 	    				}
@@ -202,7 +233,7 @@ int main(){
 							}
 						}
 	    				else{
-	    					printf("\nEste local ja foi jogado\n");
+	    					printf("\nEste local ja foi jogado ou opção invalida\n");
 	    					system("pause");
 	    						break;
 	    				}
@@ -222,7 +253,7 @@ int main(){
 							}
 						}
 	    				else{
-	    					printf("\nEste local ja foi jogado\n");
+	    					printf("\nEste local ja foi jogado ou opção invalida\n");
 	    					system("pause");
 	    						break;
 	    				}
@@ -242,48 +273,25 @@ int main(){
 							}
 						}
 	    				else{
-	    					printf("\nEste local ja foi jogado\n");
+	    					printf("\nEste local ja foi jogado ou opção invalida\n");
 	    					system("pause");
 	    						break;
 	    				}						    					
 				}
+				winner=ticTacToeCheckWins(ticTacToe, winner);/*DEFINO O VENCEDOR PELA FUNCAO QUE CHECA VENCEDOR*/
 				
+				if(plays==9 && winner=='n') break;/*SE O JOGO TIVER 9 JOGADAS OU SEJA TODOS ESPAÇOS OCUPADOS, O JOGO DEU VELHA*/
 				
-				/*VERIFICANDO GANHADOR POR LINHA*/
-				/*PARA POUPAR CODIGO Ã‰ MELHOR USAR ESTA TATICA POIS NUM UNICO
-				 IF VERIFICA TRES DE VEZ E AO MESMO TEMPO FAZ COM QUE O GANHADOR RECEBA O CARACTERE CORRESPONDENTE*/
-				 
-				if(ticTacToe[0][0]==ticTacToe[0][1] && ticTacToe[0][1]==ticTacToe[0][2]) winner=ticTacToe[0][0];
-				
-				/*SE O GANHADOR DA PRIMEIRA LINHA	E ULTIMA LINHA TIVER O MESMO CARACTERE ENTAO ELE PELA LOGICA VENCEU,
-				ENTAO O CARACTERE DA PRIMEIRA LINHA SO PRECISA SER ADICIONADO AO VENCEDOR*/
-				
-					if (ticTacToe[1][0]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[1][2]) winner=ticTacToe[1][0];
-						if (ticTacToe[2][0]==ticTacToe[2][1] && ticTacToe[2][1]==ticTacToe[2][2]) winner=ticTacToe[2][0];
-				/*FIM DA VERIFICACAO POR LINHA*/
-				
-				/*VERIFICANDO GANHADOR POR COLUNA*/
-				if(ticTacToe[0][0]==ticTacToe[1][0] && ticTacToe[1][0]==ticTacToe[2][0]) winner=ticTacToe[0][0];
-					if(ticTacToe[0][1]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][1]) winner=ticTacToe[0][1];
-						if(ticTacToe[0][2]==ticTacToe[1][2] && ticTacToe[1][2]==ticTacToe[2][2]) winner=ticTacToe[0][2];
-				/*FIM DA VERIFICACAO POR COLUNA*/
-				
-				/*VERIFICANDO GANHADOR POR DIAGONAL*/
-				if(ticTacToe[0][0]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][2]) winner=ticTacToe[0][0];
-					if(ticTacToe[0][2]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][0]) winner=ticTacToe[0][2];
-				/*FIM DA VERIFICACAO POR DIAGONAL*/
-				
-				if(plays==9 && winner=='n') break;/*SE O JOGO TIVER 9 JOGADAS OU SEJA TODOS ESPAÃ‡OS OCUPADOS, O JOGO DEU VELHA*/
-				
-				if(winner=='X'){/*ATRIBUINDO UM PONTO PRA X PARA O PLACAR*/
+			}
+			
+			system("cls");
+			ticTacToePrint(ticTacToe);/*PRINTO DENOVO PARA MOSTRAR COMO O JOGO FINALIZOU*/
+			if(winner=='X'){/*ATRIBUINDO UM PONTO PRA X PARA O PLACAR*/
 					winnerX++;
 				}
 				if(winner=='0'){/*ATRIBUINDO UM PONTO PRA 0 PARA O PLACAR*/
 					winner0++;
 				}
-			}
-			system("cls");
-			ticTacToePrint(ticTacToe);/*PRINTO DENOVO PARA MOSTRAR COMO O JOGO FINALIZOU*/
 			if(winner!='n'){/*SE WINNER NAO FOR MAIS NONE O GANHADOR RECEBE WINNER*/
 				printf("O Ganhador foi o jogador: ' %c '\nDeseja continuar a jogar? ", winner);/*MOSTRANDO QUEM GANHOU*/
 				fflush(stdin);
