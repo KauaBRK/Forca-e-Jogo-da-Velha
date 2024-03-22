@@ -175,7 +175,9 @@ void forcaWordUser( char * secretWord, char * tipWord, char * screenWord){
 					break;
 				}
 				else if(option>2){
-					printf("\n\nOpção invalida\n");
+					system("cls");
+					printf("###JOGO DA FORCA###\nBem vindo jogador %d\nPara começar digite o numero para a opção que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n",player);
+					printf ( "\nOpção inválida. Digite novamente.\n " );
 					option=forcaOption();
 				}
 			}

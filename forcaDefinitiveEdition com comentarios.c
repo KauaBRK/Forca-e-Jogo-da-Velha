@@ -2,7 +2,6 @@
 #include<stdlib.h>
 #include<string.h>
 #include<locale.h>
-#include <conio.h>
 #include<time.h>
 #include <ctype.h>
 #define MAX_WORD 216/*DEFINI O MAXIMO DE PALAVRAS EM 216 QUE ESTOU USANDO NO MOMENTO*/
@@ -202,7 +201,9 @@ void forcaWordUser( char * secretWord, char * tipWord, char * screenWord){/*ESTA
 				}
 				else if(option>2){/*ESTE ELSE IF SERVE PARA DETERMINAR QUE O USUARIO NAO VAI DIGITAR 3.
 				LEMBRA QUE EU DISSE QUE OPTION ACEITA ATE 3?*/
-					printf("\n\nOpção invalida\n");
+					system("cls");
+					printf("###JOGO DA FORCA###\nBem vindo jogador %d\nPara começar digite o numero para a opção que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n",player);
+					printf ( "\nOpção inválida. Digite novamente.\n " );
 					option=forcaOption();/*REINICIO O LOOP NAO DANDO FIM AO PRIMEIRO WHILE ENTAO CONTABILIZO A OPCAO DENOVO*/
 				}
 			}
