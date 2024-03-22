@@ -81,9 +81,8 @@ void forca(int errors){
 }
 
 int forcaOption(){
-	int player = 1 , sortNumberWord , sortNumberCategory, i, correctOption=0, tryNumber=0;
+	int i, correctOption=0, tryNumber=0;
 	int option, aux;
-	char letter;
 	do{
 		aux = scanf("%d", &option);
 		fflush(stdin);
@@ -293,5 +292,3 @@ int main(){
 		}
   	system ( "pause" );
 }
-
-
