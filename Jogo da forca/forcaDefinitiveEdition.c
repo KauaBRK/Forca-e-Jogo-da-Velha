@@ -127,7 +127,7 @@ void forcaWordUser( char * secretWord, char * tipWord, char * screenWord){
 		option=forcaOption();
 		while(1){
 			while(2){
-				printf("###JOGO DA FORCA###\nBem vindo jogador %d\nPara começar digite o numero para a opção que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n",player);
+				system("cls");
 				if (option == 1 ){
   			
   				fflush(stdin);
