@@ -3,6 +3,8 @@
 #include<string.h>
 #include<locale.h>
 
+int *pointer;/*Ponteiro global para somar jogadas*/
+
 void ticTacToeLoop(char ticTacToe[3][3]){
 	/*essa primeira funcao serve apenas pra zerar todos os parametros caso o jogador queira jogar mais uma vez*/
 		ticTacToe[0][0]='1';
@@ -16,7 +18,6 @@ void ticTacToeLoop(char ticTacToe[3][3]){
 		ticTacToe[2][2]='9';
 		
 }
-
 void ticTacToePrint(char ticTacToe[3][3]){
 	/*essa segunda funcao serve pra imprimir o jogo da velha sempre que chamada*/
 	int line, column;
@@ -38,7 +39,6 @@ void ticTacToePrint(char ticTacToe[3][3]){
 		printf("\n\n\n");
 		
 }	
-
 int ticTacToeCheckWins(char ticTacToe[3][3], char winner){/*FUNCAO QUE CHECA SE HOUVE GANHADOR*/
 
 		/*VERIFICANDO GANHADOR POR LINHA*/
@@ -66,28 +66,8 @@ int ticTacToeCheckWins(char ticTacToe[3][3], char winner){/*FUNCAO QUE CHECA SE 
 		/*FIM DA VERIFICACAO POR DIAGONAL*/
 	return winner;
 }
-
-int main(){
-	setlocale(LC_ALL,"portuguese");
-	int plays, lineChoose, xOption, winnerX=0, winner0=0;
-	/*.CONTROLE DA QUANTIDADE DE JOGADAS FEITAS.
-	.ESCOLHA DA LINHA QUE VAI JOGAR, VAI DE 1 A 9.
-	.ESCOLHE SE O PROXIMO JOGADOR É X OU 0.
-	.PONTUACAO DO X.
-	.PONTUACAO DO 0.*/
-    char ticTacToe[3][3];
-    /*.JOGO DA VELHA.*/
-    char continue_='s', winner;
-    /*.VÊ SE USUARIO QUER CONTINUAR.
-    .VENDEDOR.*/
-		while(continue_=='s'){/*.ENQUANTO O JOGADOR QUER JOGAR O LOOP CONTINUA.*/
-			system("cls");
-			winner='n';/*.IGUALO VENCEDOR A N OU NONE.*/
-			ticTacToeLoop(ticTacToe);/*.ZERANDO O JOGO DA VELHA.*/
-			xOption=1;/*.JOGADOR EM X COMEÇA PRIMEIRO SEMPRE.*/
-			plays=0;/*.ZERA O NUMERO DE JOGADAS.*/
-			/*. EM SUMA ESTA PRIMEIRA PARTE DO LOOP ANTES DO JOGO COMEÇAR É APENAS PARA ZERAR TODOS OS PARAMETROS EXISTENTES. */
-			while(winner=='n'){/*.ENQUANTO O VENCEDOR FOR N OU NONE O JOGO CONTINUA.*/
+int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê se X ja jogou*/){
+	int lineChoose;/*Variavel que escolhe a linha*/
 				system("cls");
 				ticTacToePrint(ticTacToe);/*.PRINTEI NA TELA O JOGO DA VELHA SEGUIDO DAS OPCOES.*/
 				printf("\n\nDigite qual lugar vai jogar: ");
@@ -98,7 +78,7 @@ int main(){
 	    			case 1:
 	    				if(ticTacToe[0][0]=='1' && ticTacToe[0][0]!='\n'){
 	    					fflush(stdin);
-	    					plays++;/*.CONTABILIZO UMA JOGADA.*/
+	    					pointUpdate(pointer);/*.CONTABILIZO UMA JOGADA POR MEIO DO PONTEIRO.*/
 	    					if(xOption==1){/*VEJO SE O JOGADOR ATUAL É X OU 0*/
 	    						ticTacToe[0][0]='X';/*SE FOR X RECEBE X*/
 	    						xOption=0;/*ZERANDO PARA O PROXIMO SER ZERO*/
@@ -118,7 +98,7 @@ int main(){
 						/*REPETE O MESMO PROCESSO PRO RESTO DO CASE*/
 	    			case 2:
 	    				if(ticTacToe[0][1]=='2'){
-	    					plays++;
+	    					pointUpdate(pointer);
 	    					fflush(stdin);
 	    					
 	    					if(xOption==1){
@@ -139,7 +119,7 @@ int main(){
 						}
 	    			case 3:
 	    				if(ticTacToe[0][2]=='3'){
-	    					plays++;
+	    					pointUpdate(pointer);
 	    					fflush(stdin);
 	    					if(xOption==1){
 	    						ticTacToe[0][2]='X';
@@ -159,7 +139,7 @@ int main(){
 						}
 	    			case 4:
 	    					if(ticTacToe[1][0]=='4'){
-	    						plays++;
+	    						pointUpdate(pointer);
 	    					fflush(stdin);
 	    					if(xOption==1){
 	    						ticTacToe[1][0]='X';
@@ -179,7 +159,7 @@ int main(){
 	    				}
 					case 5:
 	    				if(ticTacToe[1][1]=='5'){
-	    					plays++;
+	    					pointUpdate(pointer);
 	    					fflush(stdin);
 	    					if(xOption==1){
 	    						ticTacToe[1][1]='X';
@@ -199,7 +179,7 @@ int main(){
 	    				}
 					case 6:
 	    				if(ticTacToe[1][2]=='6'){
-	    					plays++;
+	    					pointUpdate(pointer);
 	    					fflush(stdin);
 	    					if(xOption==1){
 	    						ticTacToe[1][2]='X';
@@ -219,7 +199,7 @@ int main(){
 	    				}
 					case 7:
 	    				if(ticTacToe[2][0]=='7'){
-	    					plays++;
+	    					pointUpdate(pointer);
 	    					fflush(stdin);
 	    					if(xOption==1){
 	    						ticTacToe[2][0]='X';
@@ -239,7 +219,7 @@ int main(){
 	    				}
 					case 8:
 	    				if(ticTacToe[2][1]=='8'){
-	    					plays++;
+	    					pointUpdate(pointer);
 	    					fflush(stdin);
 	    					if(xOption==1){
 	    						ticTacToe[2][1]='X';
@@ -260,7 +240,7 @@ int main(){
 					case 9:
 	    				if(ticTacToe[2][2]=='9'){
 	    					fflush(stdin);
-	    					plays++;
+	    					pointUpdate(pointer);
 	    					if(xOption==1){
 	    						ticTacToe[2][2]='X';
 	    						xOption=0;
@@ -278,6 +258,39 @@ int main(){
 	    						break;
 	    				}						    					
 				}
+				return xOption;
+}
+int pointUpdate(int *ptr){/*FUNCAO QUE TORNA O PONTEIRO GLOBAL CAPAZ DE SOMAR JOGADAS*/
+	*ptr=*ptr+=1;
+}
+
+int main(){
+	setlocale(LC_ALL,"portuguese");
+	int plays, lineChoose, xOption, winnerX=0, winner0=0;
+	/*.CONTROLE DA QUANTIDADE DE JOGADAS FEITAS.
+	.ESCOLHA DA LINHA QUE VAI JOGAR, VAI DE 1 A 9.
+	.ESCOLHE SE O PROXIMO JOGADOR É X OU 0.
+	.PONTUACAO DO X.
+	.PONTUACAO DO 0.*/
+    char ticTacToe[3][3];
+    /*.JOGO DA VELHA.*/
+    char continue_='s', winner;
+    /*.VÊ SE USUARIO QUER CONTINUAR.
+    .VENDEDOR.*/
+		while(continue_=='s'){/*.ENQUANTO O JOGADOR QUER JOGAR O LOOP CONTINUA.
+		//ESTA PRIMEIRA PARTE SERVE APENAS PARA EU ZERAR TODOS OS PARAMETROS ANTERIORES*/
+			system("cls");
+			plays=0;/*ZERO A QUANTIDADE DE JOGADAS FEITAS*/
+			pointer = &plays;/*IGUALO O VALOR APONTADO AO VALOR DE JOGADAS QUE É 0*/
+			winner='n';/*.IGUALO VENCEDOR A N OU NONE.*/
+			ticTacToeLoop(ticTacToe);/*.ZERANDO O JOGO DA VELHA.*/
+			xOption=1;/*.JOGADOR EM X COMEÇA PRIMEIRO SEMPRE.*/
+			plays=0;/*.ZERA O NUMERO DE JOGADAS.*/
+			/*. EM SUMA ESTA PRIMEIRA PARTE DO LOOP ANTES DO JOGO COMEÇAR É APENAS PARA ZERAR TODOS OS PARAMETROS EXISTENTES. */
+			while(winner=='n'){/*.ENQUANTO O VENCEDOR FOR N OU NONE O JOGO CONTINUA.*/
+			
+				xOption=ticTacToeSwitchCase(ticTacToe, xOption);/*DECLARO A VARIAVEL XOPTION AO MESMO TEMPO QUE CHAMO O SWITCHCASE
+				ESTA DECLARACAO NAO ZERA POIS XOPTION ESTA ARMAZENANDO SEMPRE O ULTIMO VALOR :)*/
 				winner=ticTacToeCheckWins(ticTacToe, winner);/*DEFINO O VENCEDOR PELA FUNCAO QUE CHECA VENCEDOR*/
 				
 				if(plays==9 && winner=='n') break;/*SE O JOGO TIVER 9 JOGADAS OU SEJA TODOS ESPAÇOS OCUPADOS, O JOGO DEU VELHA*/
@@ -299,7 +312,7 @@ int main(){
 				system("cls");
 			}
 			else{
-				printf("Nao houve vencedor.\nDeseja continuar a jogar? ");/*CASO DE VELHA*/
+				printf("Nao houve vencedor.\nDeseja continuar a jogar? ");/*CASO DÊ VELHA*/
 				fflush(stdin);
 				scanf(" %c", &continue_);/*VENDO SE QUER CONTINUAR*/
 				system("cls");

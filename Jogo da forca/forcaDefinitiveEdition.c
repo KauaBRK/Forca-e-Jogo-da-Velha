@@ -2,7 +2,6 @@
 #include<stdlib.h>
 #include<string.h>
 #include<locale.h>
-#include <conio.h>
 #include<time.h>
 #include <ctype.h>
 #define MAX_WORD 216
