@@ -6,6 +6,7 @@
 #include <ctype.h>
 #define MAX_WORD 216
 #define MAX_CATEGORY 10
+
 void forca(int errors);
 int forcaOption();
 void forcaWordUser( char * secretWord, char * tipWord, char * screenWord);
