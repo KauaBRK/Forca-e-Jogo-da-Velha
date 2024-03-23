@@ -2,16 +2,9 @@
 #include<stdlib.h>
 #include<string.h>
 #include<locale.h>
-
 void ticTacToeLoop(char ticTacToe[3][3]);
-
 void ticTacToePrint(char ticTacToe[3][3]);
-
 int ticTacToeCheckWins(char ticTacToe[3][3], char winner);
-
-void ticTacToeUpdate(int *plays);
-
-int ticTacToeSwitchCase();
 
 int main(){
 	setlocale(LC_ALL,"portuguese");
@@ -291,8 +284,4 @@ int ticTacToeCheckWins(char ticTacToe[3][3], char winner){
 				
 	return winner;
 }
-int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption){
-	int lineChoose;
-	
-				return xOption;
-}
+
