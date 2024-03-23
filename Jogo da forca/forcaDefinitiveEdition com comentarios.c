@@ -225,10 +225,10 @@ void forcaWordUser( char * secretWord, char * tipWord, char * screenWord){/*ESTA
 int main(){
   setlocale(LC_ALL,"portuguese");/*PORTUGUES DO BR*/
   char secretWord [50] ,screenWord [50],tipWord [20],guessWord;
-  /*PALAVRA SECRETA
-  PALAVRA DO USUARIO
-  DICA
-  CHUTE DO USUARIO*/
+  /*//PALAVRA SECRETA//
+  //PALAVRA DO USUARIO//
+  //DICA//
+  //CHUTE DO USUARIO*/
   int player = 1 , madeMistake , errors=0 ,i, continue_=1, loops=0, streak=0, counter;
   /*JOGADOR ATUAL
   VERIFICADOR DE ERROS
