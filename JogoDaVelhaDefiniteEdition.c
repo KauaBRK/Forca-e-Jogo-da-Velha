@@ -2,15 +2,58 @@
 #include<stdlib.h>
 #include<string.h>
 #include<locale.h>
-void ticTacToeLoop(char ticTacToe[3][3]);
 
-void ticTacToePrint(char ticTacToe[3][3]);
 
-int ticTacToeCheckWins(char ticTacToe[3][3], char winner);
 
-void ticTacToeUpdate(int *plays);
+void ticTacToeLoop(char ticTacToe[3][3]){
+		ticTacToe[0][0]='1';
+		ticTacToe[0][1]='2';
+		ticTacToe[0][2]='3';
+		ticTacToe[1][0]='4';
+		ticTacToe[1][1]='5';
+		ticTacToe[1][2]='6';
+		ticTacToe[2][0]='7';
+		ticTacToe[2][1]='8';
+		ticTacToe[2][2]='9';
+		
+}
 
-int ticTacToeSwitchCase();
+void ticTacToePrint(char ticTacToe[3][3]){
+	int line, column;
+		printf("\n\n\n   ###JOGO DA VELHA####\n\n\n");
+			for(line = 0; line <3; line++){
+				for(column = 0; column <3; column++){
+					printf("    %c  ", ticTacToe[line][column]);         
+					if(column < 2){
+						printf("|");
+					}
+					if(column == 0){
+						printf("");
+					}
+				}
+				if(line < 2){
+					printf("\n  ---------------------\n");
+				}
+			}
+		printf("\n\n\n");
+		
+}	
+
+int ticTacToeCheckWins(char ticTacToe[3][3], char winner){
+
+	if(ticTacToe[0][0]==ticTacToe[0][1] && ticTacToe[0][1]==ticTacToe[0][2]) winner=ticTacToe[0][0];
+					if (ticTacToe[1][0]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[1][2]) winner=ticTacToe[1][0];
+						if (ticTacToe[2][0]==ticTacToe[2][1] && ticTacToe[2][1]==ticTacToe[2][2]) winner=ticTacToe[2][0];
+				
+				if(ticTacToe[0][0]==ticTacToe[1][0] && ticTacToe[1][0]==ticTacToe[2][0]) winner=ticTacToe[0][0];
+					if(ticTacToe[0][1]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][1]) winner=ticTacToe[0][1];
+						if(ticTacToe[0][2]==ticTacToe[1][2] && ticTacToe[1][2]==ticTacToe[2][2]) winner=ticTacToe[0][2];
+				
+				if(ticTacToe[0][0]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][2]) winner=ticTacToe[0][0];
+					if(ticTacToe[0][2]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][0]) winner=ticTacToe[0][2];
+				
+	return winner;
+}
 
 int main(){
 	setlocale(LC_ALL,"portuguese");
@@ -25,7 +68,6 @@ int main(){
 			xOption=1;
 			plays=0;
 			while(winner=='n'){
-				
 				system("cls");
 				ticTacToePrint(ticTacToe);
 				printf("\n\nDigite qual lugar vai jogar: ");
@@ -49,7 +91,7 @@ int main(){
 							}		
 						}
 	    				else{
-	    					printf("\nEste local ja foi jogado ou opï¿½ï¿½o invalida\n");
+	    					printf("\nEste local ja foi jogado ou opção invalida\n");
 	    					system("pause");
 	    						break;
 						}
@@ -70,7 +112,7 @@ int main(){
 							}			
 						}
 	    				else{
-	    					printf("\nEste local ja foi jogado ou opï¿½ï¿½o invalida\n");
+	    					printf("\nEste local ja foi jogado ou opção invalida\n");
 	    					system("pause");
 	    						break;
 						}
@@ -90,7 +132,7 @@ int main(){
 							}
 						}
 	    				else{
-	    					printf("\nEste local ja foi jogado ou opï¿½ï¿½o invalida\n");
+	    					printf("\nEste local ja foi jogado ou opção invalida\n");
 	    					system("pause");
 	    						break;
 						}
@@ -110,7 +152,7 @@ int main(){
 							}
 						}
 	    				else{
-	    					printf("\nEste local ja foi jogado ou opï¿½ï¿½o invalida\n");
+	    					printf("\nEste local ja foi jogado ou opção invalida\n");
 	    					system("pause");
 	    						break;
 	    				}
@@ -130,7 +172,7 @@ int main(){
 							}
 						}
 	    				else{
-	    					printf("\nEste local ja foi jogado ou opï¿½ï¿½o invalida\n");
+	    					printf("\nEste local ja foi jogado ou opção invalida\n");
 	    					system("pause");
 	    						break;
 	    				}
@@ -150,7 +192,7 @@ int main(){
 							}
 						}
 	    				else{
-	    					printf("\nEste local ja foi jogado ou opï¿½ï¿½o invalida\n");
+	    					printf("\nEste local ja foi jogado ou opção invalida\n");
 	    					system("pause");
 	    						break;
 	    				}
@@ -170,7 +212,7 @@ int main(){
 							}
 						}
 	    				else{
-	    					printf("\nEste local ja foi jogado ou opï¿½ï¿½o invalida\n");
+	    					printf("\nEste local ja foi jogado ou opção invalida\n");
 	    					system("pause");
 	    						break;
 	    				}
@@ -190,7 +232,7 @@ int main(){
 							}
 						}
 	    				else{
-	    					printf("\nEste local ja foi jogado ou opï¿½ï¿½o invalida\n");
+	    					printf("\nEste local ja foi jogado ou opção invalida\n");
 	    					system("pause");
 	    						break;
 	    				}
@@ -210,7 +252,7 @@ int main(){
 							}
 						}
 	    				else{
-	    					printf("\nEste local ja foi jogado ou opï¿½ï¿½o invalida\n");
+	    					printf("\nEste local ja foi jogado ou opção invalida\n");
 	    					system("pause");
 	    						break;
 	    				}						    					
@@ -246,54 +288,4 @@ int main(){
 			}
 		}
 		printf("\n\n\nObrigado por jogar :)\n\n###PLACAR###\n\nPONTOS DO X: %d\nPONTOS DO 0: %d\n\n", winnerX, winner0);
-}
-void ticTacToeLoop(char ticTacToe[3][3]){
-		ticTacToe[0][0]='1';
-		ticTacToe[0][1]='2';
-		ticTacToe[0][2]='3';
-		ticTacToe[1][0]='4';
-		ticTacToe[1][1]='5';
-		ticTacToe[1][2]='6';
-		ticTacToe[2][0]='7';
-		ticTacToe[2][1]='8';
-		ticTacToe[2][2]='9';
-		
-}
-void ticTacToePrint(char ticTacToe[3][3]){
-	int line, column;
-		printf("\n\n\n   ###JOGO DA VELHA####\n\n\n");
-			for(line = 0; line <3; line++){
-				for(column = 0; column <3; column++){
-					printf("    %c  ", ticTacToe[line][column]);         
-					if(column < 2){
-						printf("|");
-					}
-					if(column == 0){
-						printf("");
-					}
-				}
-				if(line < 2){
-					printf("\n  ---------------------\n");
-				}
-			}
-		printf("\n\n\n");
-		
-}
-int ticTacToeCheckWins(char ticTacToe[3][3], char winner){
-
-	if(ticTacToe[0][0]==ticTacToe[0][1] && ticTacToe[0][1]==ticTacToe[0][2]) winner=ticTacToe[0][0];
-					if (ticTacToe[1][0]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[1][2]) winner=ticTacToe[1][0];
-						if (ticTacToe[2][0]==ticTacToe[2][1] && ticTacToe[2][1]==ticTacToe[2][2]) winner=ticTacToe[2][0];
-				
-				if(ticTacToe[0][0]==ticTacToe[1][0] && ticTacToe[1][0]==ticTacToe[2][0]) winner=ticTacToe[0][0];
-					if(ticTacToe[0][1]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][1]) winner=ticTacToe[0][1];
-						if(ticTacToe[0][2]==ticTacToe[1][2] && ticTacToe[1][2]==ticTacToe[2][2]) winner=ticTacToe[0][2];
-				
-				if(ticTacToe[0][0]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][2]) winner=ticTacToe[0][0];
-					if(ticTacToe[0][2]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][0]) winner=ticTacToe[0][2];
-				
-	return winner;
-}
-void ticTacToeUpdate(int *pointer){
-	*pointer=+1;
 }
