@@ -147,7 +147,7 @@ void forcaWordUser( char * secretWord, char * tipWord, char * screenWord){/*ESTA
 		option=forcaOption();/*AO MESMO TEMPO QUE ATRIBUO A VARIAVEL "OPCAO" COM A FUNCAO "OPCAO" EU CHAMO A FUNCAO DENTRO DA VARIAVEL*/
 		while(1){/*INICIO PRIMEIRO LOOP*/
 			while(2){/*INICIO SEGUNDO LOOP*/
-				printf("###JOGO DA FORCA###\nBem vindo jogador %d\nPara começar digite o numero para a opção que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n",player);
+			system("cls");
   				/*CASO O LOOP REINICIE POR OPCAO INVALIDA EU PRECISO DE UM PRINT RESERVA */
   				fflush(stdin);
   			if(option==1){/*CASO O JOGADOR ESCOLHA DIGITAR A PALAVRA ELE ESTÁ QUERENDO DESAFIAR OUTRA PESSOA*/
