@@ -93,28 +93,28 @@ int hangManOption(){/*É UMA FUNCAO PARA DELIMITAR AS OPCOES DO USUARIO*/
 		aux = scanf("%d", &option);/*ESTA VARIAVEL AUXILIAR VAI VER SE ESTA DIGITANDO UM NUMERO, SE FOR LETRA NAO TERMINA A FUNCAO E REINICIA O LOOP*/
 		fflush(stdin);
 		while ( correctOption != 1 ){/*SEGUNDO LOOP PARA VER SE A OPCAO DIGITADA É VALIDA*/
-    				fflush ( stdin );
-  					for(i = 0; i <= 51; i++){/*ESTE FOR VAI DE 0 A 51 QUE É O NUMERO DE TENTATIVAS MAXIMAS*/
-  						if (option==1 || option==2 || option==3){/*CASO A OPCAO SEJA VALIDA O LOOP ACABA*/
-  							fflush ( stdin );
-  							correctOption = 1;/*CASO ESTEJA CERTO VIRA 1 E TERMINA O 2DO LOOP*/
-			  			}
-			  			else{
-			  				
-			  				fflush ( stdin );
-			  				printf ( "\nOpção inválida. Digite novamente.\n " );/*CASO O LOOP DO FOR REINICIE APARECE ESTA MENSAGEM*/
-			  				correctOption = 0;
-			  				aux = scanf("%d", &option);
-							fflush(stdin);
-			  				tryNumber++;/*ACUMULANDO TENTATIVAS*/
-			  			}
-			  			if(tryNumber == 51){/*CASO AS TENTATIVAS EXCEDAM 51 O PROGRAMA ENCERRA.*/
-			  				printf("\nNumero de tentativas excedidas. Encerrando programa");
-			  				abort();
-						  }
-		  			}
-		  			system("cls");
-	  			}
+    			fflush ( stdin );
+  				for(i = 0; i <= 51; i++){/*ESTE FOR VAI DE 0 A 51 QUE É O NUMERO DE TENTATIVAS MAXIMAS*/
+  					if (option==1 || option==2 || option==3){/*CASO A OPCAO SEJA VALIDA O LOOP ACABA*/
+  						fflush ( stdin );
+  						correctOption = 1;/*CASO ESTEJA CERTO VIRA 1 E TERMINA O 2DO LOOP*/
+			  		}
+			  		else{
+			  			
+			  			fflush ( stdin );
+			  			printf ( "\nOpção inválida. Digite novamente.\n " );/*CASO O LOOP DO FOR REINICIE APARECE ESTA MENSAGEM*/
+			  			correctOption = 0;
+			  			aux = scanf("%d", &option);
+						fflush(stdin);
+			  			tryNumber++;/*ACUMULANDO TENTATIVAS*/
+			  		}
+			  		if(tryNumber == 51){/*CASO AS TENTATIVAS EXCEDAM 51 O PROGRAMA ENCERRA.*/
+			  			printf("\nNumero de tentativas excedidas. Encerrando programa");
+			  			abort();
+					}
+		  		}
+		  		system("cls");
+	  	}
 	}while(aux == 0 && option<=3);/*ESTA VARIAVEL AUXILIAR TEM DE SER = 1 POIS SO PODE SER NUMERO
 	FIM DO 1RO LOOP*/
 	return option;/*RETORNEI A OPCAO SELECIONADA*/
@@ -150,7 +150,7 @@ void hangManWordUser( char * secretWord, char * tipWord, char * screenWord){/*ES
 			while(2){/*INICIO SEGUNDO LOOP*/
 			system("cls");
   				/*CASO O LOOP REINICIE POR OPCAO INVALIDA EU PRECISO DE UM PRINT RESERVA */
-  				fflush(stdin);
+  			fflush(stdin);
   			if(option==1){/*CASO O JOGADOR ESCOLHA DIGITAR A PALAVRA ELE ESTÁ QUERENDO DESAFIAR OUTRA PESSOA*/
     			printf ( "\n\nBoa escolha!\nDigite qual vai ser a palavra secreta:" );
     			scanf (" %s", secretWord);/*RECOLHO A PALAVRA*/
@@ -175,7 +175,7 @@ void hangManWordUser( char * secretWord, char * tipWord, char * screenWord){/*ES
 	  			fflush ( stdin );
    				printf ( "\n\nAgora digite a dica para esta palavra: " );/*RECOLHO A DICA, A DICA PODE SER QUALQUER COISA ENTAO NAO LIMITEI NADA
 				   APENAS NUMERO DE CARACTERES*/
-				fgets ( tipWord , 20 , stdin );/*RECOLHO A DICA*/
+				scanf("%s", tipWord);/*RECOLHO A DICA*/
 				break;/*FIM DO SEGUNDO LOOP DETERMINADO PELO BREAK*/
 	 			}
 		 		if(option==2){/*CASO O JOGADOR QUEIRA O BANCO DE DADOS*/
@@ -185,14 +185,14 @@ void hangManWordUser( char * secretWord, char * tipWord, char * screenWord){/*ES
 		    		sortNumberWord = rand () %186;/*SORTEIO UM NUMERO ALEATORIO DE 0 A 186 E ATRIBUO NO NUMERO SORTEADO PARA PALAVRAS*/
 		    		
 		    		/*ESTES IF SERVEM PARA DEFINIR A CATEGORIA DA PALAVRA*/
-						if ( sortNumberWord >= 0 && sortNumberWord <26 ) sortNumberCategory = 0 ;
-						else if ( sortNumberWord >= 26 && sortNumberWord < 50 ) sortNumberCategory = 1;
-						else if ( sortNumberWord >= 50 && sortNumberWord < 70 ) sortNumberCategory = 2;
-						else if ( sortNumberWord >= 70 && sortNumberWord < 120 ) sortNumberCategory = 3;
-						else if ( sortNumberWord >= 120 && sortNumberWord < 156 ) sortNumberCategory = 4;
-						else if ( sortNumberWord >= 120 && sortNumberWord < 156 ) sortNumberCategory = 4;
-						else if ( sortNumberWord >= 156 && sortNumberWord < 186 ) sortNumberCategory = 5;
-						else if ( sortNumberWord >= 186 && sortNumberWord < 216 ) sortNumberCategory = 6;		
+					if ( sortNumberWord >= 0 && sortNumberWord <26 ) sortNumberCategory = 0 ;
+					else if ( sortNumberWord >= 26 && sortNumberWord < 50 ) sortNumberCategory = 1;
+					else if ( sortNumberWord >= 50 && sortNumberWord < 70 ) sortNumberCategory = 2;
+					else if ( sortNumberWord >= 70 && sortNumberWord < 120 ) sortNumberCategory = 3;
+					else if ( sortNumberWord >= 120 && sortNumberWord < 156 ) sortNumberCategory = 4;
+					else if ( sortNumberWord >= 120 && sortNumberWord < 156 ) sortNumberCategory = 4;
+					else if ( sortNumberWord >= 156 && sortNumberWord < 186 ) sortNumberCategory = 5;
+					else if ( sortNumberWord >= 186 && sortNumberWord < 216 ) sortNumberCategory = 6;		
 				/*FIM DEFINICAO*/
 				
 					strlwr(secretWordSystem[sortNumberWord]);/*DEIXO TUDO EM MINUSCULO MENOS A DICA*/
@@ -207,10 +207,9 @@ void hangManWordUser( char * secretWord, char * tipWord, char * screenWord){/*ES
 					printf ( "\nOpção inválida. Digite novamente.\n " );
 					option=hangManOption();/*REINICIO O LOOP NAO DANDO FIM AO PRIMEIRO WHILE ENTAO CONTABILIZO A OPCAO DENOVO*/
 				}
-			}
-			/*FIM DO SEGUNDO LOOP*/
-			break;/*FIM DO PRIMEIRO LOOP*/
-		}
+			}/*FIM DO SEGUNDO LOOP*/
+			break;
+		}/*FIM DO PRIMEIRO LOOP*/
 			
 			
 		strcpy ( screenWord , secretWord );/*ESTOU COPIANDO A PALAVRA SECRETA PARA A PALAVRA QUE VAI PRO USUARIO*/
@@ -250,7 +249,6 @@ int main(){
 		VARIAVEIS ATUAIS POR MEIO DE PONTEIRO*/
     	
     		while ( 1 ) {/*SEGUNDO LOOP*/
-    	
     			fflush(stdin);
     			madeMistake = 1;/*IGUALO SEMPRE O MADEMISTAKE A 1, POIS SE EU NAO CONSIDERO O JOGADOR ERRAR SEMPRE FICA MAIS DIFICIL DIZER SE ELE VAI ACERTAR*/
     			printf ( "\n\n###JOGO DA FORCA###\n\nBem vindo Jogador %d\n\nNúmero de letras da palavra: %lu\n\nA dica para a palavra é: %s\nPontos do Jogador n° %d: %d\n" , player , strlen ( secretWord ), tipWord, player, scoreSum[player][1]);
@@ -259,15 +257,15 @@ int main(){
     			
     			guessWord=getch();/*DOU UM GETCH PARA CAPTURAR TUDO OQ O USUARIO DIGITA E FICANDO MAIS DINAMICO*/
     			for ( i = 0; i < strlen ( screenWord ) ; i++){/*ESTE FOR DETERMINA SE O JOGADOR ACERTOU A LETRA.
-												    CASO SIM O JOGADOR NAO COMETEU ERRO
-												    CASO NAO O JOGADO COMETEU ERRO*/
+															    CASO SIM O JOGADOR NAO COMETEU ERRO
+															    CASO NAO O JOGADO COMETEU ERRO*/
 				
     				if (isalpha(guessWord)!=0 || guessWord==32 ){/*VEJO SE O QUE ESTA SENDO DIGITADO É LETRA E OU ESPAÇOS EM BRANCO*/
     					if ( guessWord  == secretWord [ i ] ){/*SE MEU CHUTE ATUAL FOR IGUAL A MINHA PALAVRA SECRETA NO CONTADOR I*/	
       					screenWord [ i ] = guessWord;/*MINHA PALAVRA CODIFICADA RECEBE O CONTADOR I*/
       					madeMistake = 0;/*ERRO NAO CONTABILIZADO*/
 						}
-    					}
+    				}
       			}	
     			if ( madeMistake == 1 ) errors++;/*SE O MADEMISTAKE NAO FOR ZERADO OS ERROS SAO ADMITIDOS*/
       			
