@@ -24,7 +24,6 @@ int main(){
 		hangManWordUser(secretWord, tipWord, screenWord);
     	
     		while ( 1 ) {
-    	
     			fflush(stdin);
     			madeMistake = 1;
     			printf ( "\n\n###JOGO DA FORCA###\n\nBem vindo Jogador %d\n\nNúmero de letras da palavra: %lu\n\nA dica para a palavra é: %s\nPontos do Jogador n° %d: %d\n" , player , strlen ( secretWord ), tipWord, player, scoreSum[player][1]);
@@ -33,7 +32,7 @@ int main(){
     			guessWord=getch();
 			
     			for ( i = 0; i < strlen ( screenWord ) ; i++){
-				
+			
     				if (isalpha(guessWord)!=0 || guessWord==32 ){
     					if ( guessWord  == secretWord [ i ] ){	
       					screenWord [ i ] = guessWord;
