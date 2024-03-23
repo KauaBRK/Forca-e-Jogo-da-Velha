@@ -6,7 +6,8 @@
 #include <ctype.h>
 #define MAX_WORD 216/*DEFINI O MAXIMO DE PALAVRAS EM 216 QUE ESTOU USANDO NO MOMENTO*/
 #define MAX_CATEGORY 10/*NUMERO DE PALAVRAS DISTRIBUIDAS EM 10 CATEGORIAS*/
-void forca(int errors){/*DETERMINA O ESTADO ATUAL DA FORCA*/
+
+void hangMan(int errors){/*DETERMINA O ESTADO ATUAL DA FORCA*/
   if(errors==0){
   	printf("\n|________________");
   	printf("\n|               |");
@@ -79,7 +80,7 @@ void forca(int errors){/*DETERMINA O ESTADO ATUAL DA FORCA*/
   }
 }
 
-int forcaOption(){/*É UMA FUNCAO PARA DELIMITAR AS OPCOES DO USUARIO*/
+int hangManOption(){/*É UMA FUNCAO PARA DELIMITAR AS OPCOES DO USUARIO*/
 	int i, correctOption=0, tryNumber=0;
 	/*INTEIRO QUALQUER PARA CONTADOR
 	OPCAO CORRETA CASO HAJA
@@ -119,7 +120,7 @@ int forcaOption(){/*É UMA FUNCAO PARA DELIMITAR AS OPCOES DO USUARIO*/
 	return option;/*RETORNEI A OPCAO SELECIONADA*/
 }
 
-void forcaWordUser( char * secretWord, char * tipWord, char * screenWord){/*ESTA É A FUNCAO QUE DA VIDA A FORCA
+void hangManWordUser( char * secretWord, char * tipWord, char * screenWord){/*ESTA É A FUNCAO QUE DA VIDA A FORCA
 	A PRIMEIRA VARIAVEL É UM PONTEIRO, O QUE VAI POSSIBILITAR A FORCA FUNCIONAR RETORNANDO UMA STRING, ESTA VARIAVEL É A PALAVRA SECRETA
 	A SEGUNDA VARIAVEL TAMBEM PONTEIRO, É A DICA
 	A TERCEIRA VARIAVEL TAMBEM PONTEIRO, É A PALAVRA QUE O USUARIO TEM ACESSO EM QUE SO É MOSTRADO OS CARACTERES "----" */
@@ -142,9 +143,9 @@ void forcaWordUser( char * secretWord, char * tipWord, char * screenWord){/*ESTA
 	char correctSecretWord;
 	/*VE SE ESTA SENDO DIGITADO APENAS PALAVRAS*/
 	
-		printf("###JOGO DA FORCA###\nBem vindo jogador %d\nPara começar digite o numero para a opção que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n",player);
+		printf("###JOGO DA hangMan###\nBem vindo jogador %d\nPara começar digite o numero para a opção que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n",player);
 		/*PRINTANDO AS OPCOES DO JOGADOR*/
-		option=forcaOption();/*AO MESMO TEMPO QUE ATRIBUO A VARIAVEL "OPCAO" COM A FUNCAO "OPCAO" EU CHAMO A FUNCAO DENTRO DA VARIAVEL*/
+		option=hangManOption();/*AO MESMO TEMPO QUE ATRIBUO A VARIAVEL "OPCAO" COM A FUNCAO "OPCAO" EU CHAMO A FUNCAO DENTRO DA VARIAVEL*/
 		while(1){/*INICIO PRIMEIRO LOOP*/
 			while(2){/*INICIO SEGUNDO LOOP*/
 			system("cls");
@@ -204,7 +205,7 @@ void forcaWordUser( char * secretWord, char * tipWord, char * screenWord){/*ESTA
 					system("cls");
 					printf("###JOGO DA FORCA###\nBem vindo jogador %d\nPara começar digite o numero para a opção que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n",player);
 					printf ( "\nOpção inválida. Digite novamente.\n " );
-					option=forcaOption();/*REINICIO O LOOP NAO DANDO FIM AO PRIMEIRO WHILE ENTAO CONTABILIZO A OPCAO DENOVO*/
+					option=hangManOption();/*REINICIO O LOOP NAO DANDO FIM AO PRIMEIRO WHILE ENTAO CONTABILIZO A OPCAO DENOVO*/
 				}
 			}
 			/*FIM DO SEGUNDO LOOP*/
@@ -245,7 +246,7 @@ int main(){
 		loops+=1;/*ADICIONA UM AO LOOP DE GAMEPLAY*/
   		system ("cls");
   		errors = 0;/*ZERA OS ERROS*/
-		forcaWordUser(secretWord, tipWord, screenWord);/*CHAMANDO A FUNCAO PARA DIZER A PALAVRA SECRETA, DICA E AFINS ATRIBUINDO ÀS MINHAS
+		hangManWordUser(secretWord, tipWord, screenWord);/*CHAMANDO A FUNCAO PARA DIZER A PALAVRA SECRETA, DICA E AFINS ATRIBUINDO ÀS MINHAS
 		VARIAVEIS ATUAIS POR MEIO DE PONTEIRO*/
     	
     		while ( 1 ) {/*SEGUNDO LOOP*/
@@ -253,7 +254,7 @@ int main(){
     			fflush(stdin);
     			madeMistake = 1;/*IGUALO SEMPRE O MADEMISTAKE A 1, POIS SE EU NAO CONSIDERO O JOGADOR ERRAR SEMPRE FICA MAIS DIFICIL DIZER SE ELE VAI ACERTAR*/
     			printf ( "\n\n###JOGO DA FORCA###\n\nBem vindo Jogador %d\n\nNúmero de letras da palavra: %lu\n\nA dica para a palavra é: %s\nPontos do Jogador n° %d: %d\n" , player , strlen ( secretWord ), tipWord, player, scoreSum[player][1]);
-    			forca ( errors );/*MOSTRO A FORCA BASEADA NOS ERROS*/
+    			hangMan ( errors );/*MOSTRO A FORCA BASEADA NOS ERROS*/
     			printf ( "\nPalavra: %s\nDigite uma letra ou a palavra inteira: " , screenWord );/*PEÇO O CHUTE AO MESMO TEMPO QUE MOSTRO A PALAVRA CODIFICADA*/
     			
     			guessWord=getch();/*DOU UM GETCH PARA CAPTURAR TUDO OQ O USUARIO DIGITA E FICANDO MAIS DINAMICO*/
@@ -278,12 +279,12 @@ int main(){
 						playersScore[player][1]+=2;/*ADICIONANDO 2 PONTOS PRA CONTA DO PAI :)*/
 						
 					}
-      				forca ( errors );/*MOSTRA A FORCA FINAL E FINALIZA O JOGO*/
+      				hangMan ( errors );/*MOSTRA A FORCA FINAL E FINALIZA O JOGO*/
       				printf ( "\nVoce acertou a palavra: %s\n\nVOCE VENCEU PARABENS!!!!\n\nDeseja continuar a jogar no mesmo jogador, deseja trocar de jogador ou deseja sair?\n1-Jogar no mesmo\n2-Trocar de jogador\n3-Sair\n" , secretWord );
       				fflush(stdin);
       				playersScore[player][1]++;/*ADICIONANDO UM ACERTO PARA O SCORE DO JOGADOR*/
       				scoreSum[player][1]=playersScore[player][1]-playersScore[player][2];/*SUBTRAINDO OS ACERTOS PELOS ERROS PARA O PLACAR FINAL*/
-      				continue_=forcaOption();/*VENDO SE QUER CONTINUAR COM BASE NA FORCA, QUE DESTA VEZ REALMENTE TEM 3 OPCOES*/
+      				continue_=hangManOption();/*VENDO SE QUER CONTINUAR COM BASE NA hangMan, QUE DESTA VEZ REALMENTE TEM 3 OPCOES*/
 				
       				if ( continue_ == 2 ){/*SE O JOGADOR QUER TROCAR DE PLAYER ADICIONO UM PLAYER E ZERO AS STREAKS*/
       					
@@ -300,7 +301,7 @@ int main(){
     		
     				streak=0;/*AS STREAKS SAO ZERADAS*/
     				system ( "cls" );
-      				forca ( errors );/*MOSTRANDO FORCA FINAL*/
+      				hangMan ( errors );/*MOSTRANDO FORCA FINAL*/
       				printf ( "\nVoce errou a palavra: %s\n\nDeseja continuar a jogar no mesmo jogador, deseja trocar de jogador ou deseja sair?\n1-Jogar no mesmo\n2-Trocar de jogador\n3-Sair\n", secretWord );
       				fflush ( stdin );
       				playersScore[player][2]++;/*ADICIONANDO ERROS*/
@@ -310,7 +311,7 @@ int main(){
 						scoreSum[player][1]=0;/*ZERO O PLACAR CASO ELE CHEGUE A -1*/
 						playersScore[player][2]=0;
 					}
-      				continue_=forcaOption();/*NOVAMENTE CHAMO A FUNCAO DE OPCOES*/
+      				continue_=hangManOption();/*NOVAMENTE CHAMO A FUNCAO DE OPCOES*/
 				
       				if ( continue_ == 2 ){/*NOVAMENTE VEJO SE QUER ADICIONAR UM PLAYER*/
       					player++;
