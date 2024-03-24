@@ -306,13 +306,13 @@ int main(){
 					winner0++;
 				}
 			if(winner!='n'){/*SE WINNER NAO FOR MAIS NONE O GANHADOR RECEBE WINNER*/
-				printf("O Ganhador foi o jogador: ' %c '\nDeseja continuar a jogar? ", winner);/*MOSTRANDO QUEM GANHOU*/
+				printf("O Ganhador foi o jogador: ' %c '\nDeseja continuar a jogar?\nSim\nNão", winner);/*MOSTRANDO QUEM GANHOU*/
 				fflush(stdin);
 				scanf("%c", &continue_);/*VENDO SE QUER CONTINUAR*/
 				system("cls");
 			}
 			else{
-				printf("Nao houve vencedor.\nDeseja continuar a jogar? ");/*CASO DÊ VELHA*/
+				printf("Nao houve vencedor.\nDeseja continuar a jogar?\nSim\nNão");/*CASO DÊ VELHA*/
 				fflush(stdin);
 				scanf(" %c", &continue_);/*VENDO SE QUER CONTINUAR*/
 				system("cls");
