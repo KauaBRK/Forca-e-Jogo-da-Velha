@@ -3,7 +3,6 @@
 #include<string.h>
 #include<locale.h>
 
-int *pointer;/*Ponteiro global para somar jogadas*/
 
 void ticTacToeLoop(char ticTacToe[3][3]){
 	/*essa primeira funcao serve apenas pra zerar todos os parametros caso o jogador queira jogar mais uma vez*/
@@ -67,7 +66,9 @@ int ticTacToeCheckWins(char ticTacToe[3][3], char winner){/*FUNCAO QUE CHECA SE 
 	return winner;
 }
 int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê se X ja jogou*/){
-	int lineChoose;/*Variavel que escolhe a linha*/
+	int lineChoose;/*
+	Variavel que escolhe a linha
+	
 				system("cls");
 				ticTacToePrint(ticTacToe);/*.PRINTEI NA TELA O JOGO DA VELHA SEGUIDO DAS OPCOES.*/
 				printf("\n\nDigite qual lugar vai jogar: ");
@@ -78,7 +79,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 	    			case 1:
 	    				if(ticTacToe[0][0]=='1' && ticTacToe[0][0]!='\n'){
 	    					fflush(stdin);
-	    					pointUpdate(pointer);/*.CONTABILIZO UMA JOGADA POR MEIO DO PONTEIRO.*/
+	    					
 	    					if(xOption==1){/*VEJO SE O JOGADOR ATUAL É X OU 0*/
 	    						ticTacToe[0][0]='X';/*SE FOR X RECEBE X*/
 	    						xOption=0;/*ZERANDO PARA O PROXIMO SER ZERO*/
@@ -98,9 +99,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 						/*REPETE O MESMO PROCESSO PRO RESTO DO CASE*/
 	    			case 2:
 	    				if(ticTacToe[0][1]=='2'){
-	    					pointUpdate(pointer);
 	    					fflush(stdin);
-	    					
 	    					if(xOption==1){
 	    						ticTacToe[0][1]='X';
 	    						xOption=0;
@@ -119,7 +118,6 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 						}
 	    			case 3:
 	    				if(ticTacToe[0][2]=='3'){
-	    					pointUpdate(pointer);
 	    					fflush(stdin);
 	    					if(xOption==1){
 	    						ticTacToe[0][2]='X';
@@ -139,7 +137,6 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 						}
 	    			case 4:
 	    					if(ticTacToe[1][0]=='4'){
-	    						pointUpdate(pointer);
 	    					fflush(stdin);
 	    					if(xOption==1){
 	    						ticTacToe[1][0]='X';
@@ -159,7 +156,6 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 	    				}
 					case 5:
 	    				if(ticTacToe[1][1]=='5'){
-	    					pointUpdate(pointer);
 	    					fflush(stdin);
 	    					if(xOption==1){
 	    						ticTacToe[1][1]='X';
@@ -179,7 +175,6 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 	    				}
 					case 6:
 	    				if(ticTacToe[1][2]=='6'){
-	    					pointUpdate(pointer);
 	    					fflush(stdin);
 	    					if(xOption==1){
 	    						ticTacToe[1][2]='X';
@@ -199,7 +194,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 	    				}
 					case 7:
 	    				if(ticTacToe[2][0]=='7'){
-	    					pointUpdate(pointer);
+						
 	    					fflush(stdin);
 	    					if(xOption==1){
 	    						ticTacToe[2][0]='X';
@@ -219,7 +214,6 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 	    				}
 					case 8:
 	    				if(ticTacToe[2][1]=='8'){
-	    					pointUpdate(pointer);
 	    					fflush(stdin);
 	    					if(xOption==1){
 	    						ticTacToe[2][1]='X';
@@ -240,7 +234,6 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 					case 9:
 	    				if(ticTacToe[2][2]=='9'){
 	    					fflush(stdin);
-	    					pointUpdate(pointer);
 	    					if(xOption==1){
 	    						ticTacToe[2][2]='X';
 	    						xOption=0;
@@ -260,9 +253,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 				}
 				return xOption;
 }
-int pointUpdate(int *ptr){/*FUNCAO QUE TORNA O PONTEIRO GLOBAL CAPAZ DE SOMAR JOGADAS*/
-	*ptr=*ptr+=1;
-}
+
 
 int main(){
 	setlocale(LC_ALL,"portuguese");
@@ -281,7 +272,6 @@ int main(){
 		//ESTA PRIMEIRA PARTE SERVE APENAS PARA EU ZERAR TODOS OS PARAMETROS ANTERIORES*/
 			system("cls");
 			plays=0;/*ZERO A QUANTIDADE DE JOGADAS FEITAS*/
-			pointer = &plays;/*IGUALO O VALOR APONTADO AO VALOR DE JOGADAS QUE É 0*/
 			winner='n';/*.IGUALO VENCEDOR A N OU NONE.*/
 			ticTacToeLoop(ticTacToe);/*.ZERANDO O JOGO DA VELHA.*/
 			xOption=1;/*.JOGADOR EM X COMEÇA PRIMEIRO SEMPRE.*/
@@ -291,6 +281,9 @@ int main(){
 			
 				xOption=ticTacToeSwitchCase(ticTacToe, xOption);/*DECLARO A VARIAVEL XOPTION AO MESMO TEMPO QUE CHAMO O SWITCHCASE
 				ESTA DECLARACAO NAO ZERA POIS XOPTION ESTA ARMAZENANDO SEMPRE O ULTIMO VALOR :)*/
+				if(xOption==1 || xOption==0){/*MONITORANDO A MUDANCA DE XOPTION E ADICIONANDO JOGADAS POR MEIO DELE*/
+					plays++;
+				}
 				winner=ticTacToeCheckWins(ticTacToe, winner);/*DEFINO O VENCEDOR PELA FUNCAO QUE CHECA VENCEDOR*/
 				
 				if(plays==9 && winner=='n') break;/*SE O JOGO TIVER 9 JOGADAS OU SEJA TODOS ESPAÇOS OCUPADOS, O JOGO DEU VELHA*/
@@ -306,7 +299,7 @@ int main(){
 					winner0++;
 				}
 			if(winner!='n'){/*SE WINNER NAO FOR MAIS NONE O GANHADOR RECEBE WINNER*/
-				printf("O Ganhador foi o jogador: ' %c '\nDeseja continuar a jogar?\nSim\nNão", winner);/*MOSTRANDO QUEM GANHOU*/
+				printf("O Ganhador foi o jogador: ' %c '\nDeseja continuar a jogar?\nSim\nNão\n", winner);/*MOSTRANDO QUEM GANHOU*/
 				fflush(stdin);
 				scanf("%c", &continue_);/*VENDO SE QUER CONTINUAR*/
 				system("cls");
