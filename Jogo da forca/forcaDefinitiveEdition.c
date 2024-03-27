@@ -30,7 +30,7 @@ int main(){
   		system ("cls");
   		errors = 0;
   		if(playerAux==player){
-  			printf("\n   ##################\n   # JOGO DA FORCA  #\n   ##################\n\n Boas vindas!\n Digite o nome do jogador atual: ");
+  			printf("\n   ##################\n   # JOGO DA FORCA  #\n   ##################\n\n Boas vindas! Digite o nome do jogador atual: ");
     		gets(players[player].playerName);
 		  }
     	system("cls");
@@ -91,11 +91,11 @@ int main(){
       				printf ( "\nVoce errou a palavra: %s\n\nDeseja continuar a jogar no mesmo jogador, deseja trocar de jogador ou deseja sair?\n1-Jogar no mesmo\n2-Trocar de jogador\n3-Sair\n", secretWord );
       				fflush ( stdin );
       				playersScore[player][2]++;
+      				
       				scoreSum[player][1]=playersScore[player][1]-playersScore[player][2];
       				players[player].scoreSum[player][1]=scoreSum[player][1];
       				if(players[player].scoreSum[player][1]<0){
 						players[player].scoreSum[player][1]=0;
-						playersScore[player][2]=0;
 					}
       				playerAux=player;
       				playerAux+=1;
