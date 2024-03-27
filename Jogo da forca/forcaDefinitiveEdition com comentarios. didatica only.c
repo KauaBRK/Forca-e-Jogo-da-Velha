@@ -322,6 +322,7 @@ int main(){
       				players[player].scoreSum[player][1]=scoreSum[player][1];/*ATRIBUINDO O SCORE AO STRUCT*/
       				if(players[player].scoreSum[player][1]<0){/*CASO O SALDO DO SCORE ESTEJA NEGATIVO O SCORE É AUTOMATICAMENTE 0*/
 						players[player].scoreSum[player][1]=0;
+						playersScore[player][2]=0;
 					}
       				playerAux=player;/*VARIAVEL PARA TORNAR POSSIVEL PERCEBER SE O USUARIO TROCOU OU NAO*/
       				playerAux+=1;/*DIFERE O PLAYERAUX DO PLAYER E SENDO ASSIM NAO FOI CONTABILIZADO A TROCA DE USUARIO*/
