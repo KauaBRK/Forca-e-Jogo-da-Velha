@@ -113,7 +113,7 @@ int main(){
     		}
   	}
   	system ( "cls" );
-  	printf ("\n\n\nOBRIGADO POR JOGAR %d VEZES MEU JOGO DA FORCA!\n\n####Placar####\n\n", loops );
+  	printf ("\n\n\nOBRIGADO POR JOGAR %d VEZES O JOGO DA FORCA!\n\n ##########\n # Placar #\n ##########\n\n", loops );
   	playerAux=player;
   	player=1;
   	
@@ -123,14 +123,15 @@ int main(){
 				players[player].scoreSum[player][1]=0;
 			}
 			
-			printf ("\n%s\nPontos: %d\n", players[player].playerName, players[player].scoreSum[player][1] );
+			printf ("\n #################\n # %s \n # Pontos: %d \n #################\n\n", players[player].playerName, players[player].scoreSum[player][1] );
 			player ++;
 		}
   	system ( "pause" );
 }
-void hangManWordUser( char  * secretWord, char * tipWord, char * screenWord){
+void hangManWordUser( char  secretWord[50], char * tipWord, char * screenWord){
 	char secretWordSystem [MAX_WORD] [50] = {"aguia", "alpaca", "beluga", "cagado", "chinchila", "dromedario", "escaravelho", "gnu", "hamster", "lemure", "lhama", "lince", "marreco", "ornitorrinco", "ourico", "pelicano", "percevejo", "pirilampo", "quati", "kiwi", "rouxinol", "sanguessuga", "surucucu", "tapir", "texugo", "zebu", "apicultor", "auditor", "bartender", "cerimonialista", "chef", "desembargador", "despachante", "endocrinologista", "embaixador", "gerente", "hepatologista", "interprete", "juiz", "nanotecnologo", "nutrologo", "pizzaiolo", "perito", "quiromante", "quiroprata", "roteirizador", "silvicultor", "trader", "taquigrafo", "turismologo", "UVA", "FIGO", "MAMAO", "AMORA","CAJU", "LARANJA","CUPUACU","MORANGO","CEREJA", "ABACAXI" , "MARMELO" , "JACA", "BANANA" , "FRAMBOESA" , "ACAI", "PERA" , "PITANGA" , "COCO" , "ACEROLA" , "MANGA", "Afrodite","Apolo","Ares","Artemis","Atena","Demeter","Dionisio","Eos","Eros","Hades","Helios","Hermes","Hera","Hestia","Horas","Mnemosine","Persefone","Poseidon","Selene","Temis","Zeus","Belerofonte","Perseu","Teseu","Heracles","Prometeu","Orfeu","Ulisses","Aquiles","Hercules","Eolo","Cronos","Atlas","Pan","Narciso","Tantalo","Euridice","Icaro","Medeia","Pandora","Tritao","Cerbero","Minos","Nemesis","Nix","Tique","Quiron","Clio","Euterpe","Talia","Melpomene","Terpsicore","Erato","Polimnia","Urania","Caliope","Mickey Mouse", "Pato Donald", "Pateta", "Pluto", "Minnie Mouse", "Margarida", "Tom", "Jerry", "Scooby Doo", "Fred Flintstone", "Barney Rubble", "George Jetson", "Elroy Jetson", "Pernalonga", "Patolino", "Popeye", "Olivia Palito", "Brutus", "Papa-Leguas", "Coelho Ricochete", "Frajola", "Piu-Piu", "Ze Colmeia", "Catatau", "Guarda Smith", "Bart Simpson", "Homer Simpson", "Marge Simpson", "Lisa Simpson", "Maggie Simpson","Abecasia","Afeganistao","Africa do Sul","Albania","Alemanha","Andorra","Angola","Antigua","Arabia Saudita","Argelia","Argentina","Armenia","Australia","Austria","Azerbaijao","Bahamas","Bahrein","Bangladesh","Barbados","Belgica","Belize","Benim","Bielorrussia","Bolivia","Bosnia","Botswana","Brasil","Brunei","Bulgaria","Burkina","Feijoada","Pao de Queijo","Coxinha","Pastel","Moqueca","Bobo de Camarão","Tapioca","Baiao de Dois","Vatapa","Carne de Sol","Acai","Tutu de Feijao","Canjica","Cuscuz Paulista","Pamonha","Quindim","Pacoca","Escondidinho","Torta de Frango","Caldinho de Feijao","Bolo de Fuba","Cocada","Rabada","Bolo de Rolo","Casquinha de Siri","Empadao","Buchada de Bode","Camarao na Moranga","Bolo de Milho Verde","Canjiquinha"};
   	char tipWordSystem [MAX_CATEGORY] [25] = {"Animal","Profissão","Fruta","Seres mitólogicos","Personagens de Cartoon","Países","Comidas"};
+	char secretWordAux;
 	int player = 1 , sortNumberWord , sortNumberCategory, i, correctOption=0, tryNumber=0, option=0;
 	char correctSecretWord;
 	
@@ -141,24 +142,19 @@ void hangManWordUser( char  * secretWord, char * tipWord, char * screenWord){
 				system("cls");
 				if (option == 1 ){
   				fflush(stdin);
-    			printf ( "\n\nBoa escolha!\nDigite qual vai ser a palavra secreta:" );
-    			gets(secretWord);
-    			do{
-    				fflush ( stdin );
-  					for(i = 0; i < strlen(secretWord); i++){
-  						if (isalpha(secretWord[i])!=0 || secretWord[i]==32){
-  							correctSecretWord='c';
-			  			}
-			  			else{
-			  				system ( "cls" );
-			  				fflush ( stdin );
-			  				printf ( "\nCaracter incorreto detectado. Digite novamente: " );
-			  				correctSecretWord = 'w';
-			  				gets(secretWord);
-			  			}
-		  			}
-		  			system("cls");
-	  			}while ( correctSecretWord != 'c');
+    			printf ( "\n\nBoa escolha!\nDigite qual vai ser a palavra secreta(lembre-se de usar apenas letras e espaços):" );
+
+    			for(i=0; i<50; i++){
+    				
+    				scanf("%c", &secretWordAux);
+    				if (isalpha(secretWordAux)!=0 || secretWordAux==32 ){
+    						secretWord[i]=secretWordAux;
+    				}
+    				if(secretWordAux=='\n'){
+    					break;
+					}
+				}
+				secretWord[i-0]='\0';
 	  			fflush ( stdin );
    				printf ( "\n\nAgora digite a dica para esta palavra: " );
 				gets(tipWord);
