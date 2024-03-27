@@ -20,7 +20,7 @@ int main(){
   setlocale(LC_ALL,"portuguese");
   struct Players players[10];
   char secretWord [50] ,screenWord [50],tipWord [20],guessWord;
-  int player = 1 , playerAux = 1, madeMistake ,option, errors=0 ,i, continue_=1, loops=0, streak=0, counter;
+  int player = 1 , playerAux = 1, madeMistake ,option, errors=0 ,i, continue_=1, loops=0, streak=0;
   int playersScore[10][2]={0,0}, scoreSum[10][1]={0};
   
   	while (continue_ == 1 || continue_ == 2){
@@ -28,7 +28,7 @@ int main(){
   		system ("cls");
   		errors = 0;
   		if(playerAux==player){
-  			printf("\n\nDigite o nome do jogador atual: ");
+  			printf("\n\n###JOGO DA FORCA###\n\n\nBoas vindas! Digite o nome do jogador atual: ");
     		gets(players[player].playerName);
 		  }
     	system("cls");
@@ -40,7 +40,7 @@ int main(){
     		while ( 1 ) {
     			fflush(stdin);
     			madeMistake = 1;
-    			printf ( "\n\n###JOGO DA FORCA###\n\nBem vindo Jogador %d\n\nNúmero de letras da palavra: %lu\n\nA dica para a palavra é: %s\nPontos do Jogador %s: %d\n" , player , strlen ( secretWord ), tipWord, players[player].playerName, players[player].scoreSum[player][1]);
+    			printf ( "\n\n###JOGO DA FORCA###\n\nBem vindo Jogador %s\n\nNúmero de letras da palavra: %lu\n\nA dica para a palavra é: %s\nPontos do Jogador %s: %d\n" , players[player].playerName , strlen ( secretWord ), tipWord, players[player].playerName, players[player].scoreSum[player][1]);
 				hangMan ( errors );
     			printf ( "\nPalavra: %s\nDigite uma letra ou a palavra inteira: " , screenWord );
     			guessWord=getch();
@@ -114,10 +114,10 @@ int main(){
   	}
   	system ( "cls" );
   	printf ("\n\n\nOBRIGADO POR JOGAR %d VEZES MEU JOGO DA FORCA!\n\n####Placar####\n\n", loops );
-  	counter=player;
+  	playerAux=player;
   	player=1;
   	
-		for( i = 0 ; i < counter; i++){
+		for( i = 0 ; i < playerAux; i++){
 			
 			if(players[player].scoreSum[player][1]<0){
 				players[player].scoreSum[player][1]=0;
@@ -184,7 +184,7 @@ void hangManWordUser( char  * secretWord, char * tipWord, char * screenWord){
 				}
 				else if(option>2){
 					system("cls");
-					printf("###JOGO DA hangMan###\nPara começar digite o numero para a opção que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n");
+					printf("###JOGO DA FORCA###\nPara começar digite o numero para a opção que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n");
 					printf ( "\nOpção inválida. Digite novamente.\n " );
 					option=hangManOption();
 				}
