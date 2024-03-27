@@ -162,18 +162,13 @@ void hangManWordUser(char  secretWord[MAX_NUMBER_OF_CHAR], char  tipWord[20], ch
     			for(i=0; i<MAX_NUMBER_OF_CHAR; i++){
     				
     				scanf("%c", &secretWordAux);/*RECOLHO A PALAVRA*/
-    				if (isalpha(secretWordAux)!=0 || isalpha(secretWordAux)==0 || secretWordAux==32 ){/*COLOCA A PALAVRA NA STRING SEGUINDO OS PARAMETROS
-																										É LETRA, É NUMERO, É ESPAÇO.*/
     						secretWord[i]=secretWordAux;/*PALAVRA SECRETA RECEBE A AUXILIAR*/
-    				}
-    				else{
-    					printf("\nCaracter incorreto detectado digite novamente");/*CASO DETECTE UM CARACTER INCORRETO*/
-    					i=0;/*ZERA A CONTAGEM*/
-					}
+    				
     				if(secretWordAux=='\n'){/*CASO HAJA QUEBRA LINHA OU SEJA, ENTER, O FOR ACABA*/
     					break;
 					}
 				}
+				
 				secretWord[i-0]='\0';/*IGUALO A PALAVRA EM NULO PARA QUE NAO HAJA ESPAÇOS SOBRESSALENTES*/
 	  			fflush ( stdin );
    				printf ( "\n\nAgora digite a dica para esta palavra: " );/*RECOLHO A DICA*/
@@ -270,12 +265,10 @@ int main(){
     			for ( i = 0; i < strlen ( screenWord ) ; i++){/*ESTE FOR DETERMINA SE O JOGADOR ACERTOU A LETRA.
 															    CASO SIM O JOGADOR NAO COMETEU ERRO
 															    CASO NAO O JOGADO COMETEU ERRO*/
-			
-    				if (isalpha(guessWord)==0 || isalpha(guessWord)!=0 || guessWord==32 ){/*VEJO SE O QUE ESTA SENDO DIGITADO É LETRA, NUMERO E OU ESPAÇOS EM BRANCO*/
+															    
     					if ( guessWord  == secretWord [ i ] ){/*SE MEU CHUTE ATUAL FOR IGUAL A MINHA PALAVRA SECRETA NO CONTADOR I*/	
       					screenWord [ i ] = guessWord;/*MINHA PALAVRA CODIFICADA RECEBE O CONTADOR I*/
       					madeMistake = 0;/*ERRO NAO CONTABILIZADO*/
-						}
     				}
       			}	
     			if ( madeMistake == 1 ) errors++;/*SE O MADEMISTAKE NAO FOR ZERADO OS ERROS SAO ADMITIDOS*/
@@ -322,6 +315,7 @@ int main(){
       				players[player].scoreSum[player][1]=scoreSum[player][1];/*ATRIBUINDO O SCORE AO STRUCT*/
       				if(players[player].scoreSum[player][1]<0){/*CASO O SALDO DO SCORE ESTEJA NEGATIVO O SCORE É AUTOMATICAMENTE 0*/
 						players[player].scoreSum[player][1]=0;
+						playersScore[player][2]=0;
 					}
       				playerAux=player;/*VARIAVEL PARA TORNAR POSSIVEL PERCEBER SE O USUARIO TROCOU OU NAO*/
       				playerAux+=1;/*DIFERE O PLAYERAUX DO PLAYER E SENDO ASSIM NAO FOI CONTABILIZADO A TROCA DE USUARIO*/
