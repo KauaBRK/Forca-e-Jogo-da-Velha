@@ -31,19 +31,16 @@ int main(){
   		system ("cls");
   		errors = 0;
   		if(playerAux==player){
-  			printf("\n\n###JOGO DA FORCA###\n\n\nBoas vindas! Digite o nome do jogador atual: ");
+  			printf("\n   ##################\n   # JOGO DA FORCA  #\n   ##################\n\n Boas vindas! Digite o nome do jogador atual: ");
     		gets(players[player].playerName);
 		  }
-    	system("cls");
-    	printf("\n\nTudo pronto pra %s começar a jogar\n\n", players[player].playerName);
-    	system("pause");
     	system("cls");
 		hangManWordUser(secretWord, tipWord, screenWord);
     	
     		while ( 1 ) {
     			fflush(stdin);
     			madeMistake = 1;
-    			printf ( "\n\n###JOGO DA FORCA###\n\nBem vindo Jogador %s\n\nNúmero de letras da palavra: %lu\n\nA dica para a palavra é: %s\nPontos do Jogador %s: %d\n" , players[player].playerName , strlen ( secretWord ), tipWord, players[player].playerName, players[player].scoreSum[player][1]);
+    			printf ( "\n   ##################\n   # JOGO DA FORCA  #\n   ##################\n\n Bem vindo Jogador %s\n\n Número de letras da palavra: %lu\n\n A dica para a palavra é: %s\n\n Pontos do Jogador %s: %d\n\n" , players[player].playerName , strlen ( secretWord ), tipWord, players[player].playerName, players[player].scoreSum[player][1]);
 				hangMan ( errors );
     			printf ( "\nPalavra: %s\nDigite uma letra ou a palavra inteira: " , screenWord );
     			guessWord=getch();
@@ -138,7 +135,7 @@ void hangManWordUser( char  secretWord[50], char  tipWord[20], char  screenWord[
 	int player = 1 , sortNumberWord , sortNumberCategory, i, correctOption=0, tryNumber=0, option=0;
 	char correctSecretWord;
 	
-		printf("###JOGO DA FORCA###\nPara começar digite o numero para a opção que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n");
+		printf("\n   ##################\n   # JOGO DA FORCA  #\n   ##################\n\nPara começar digite o numero para a opção que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n");
 		option=hangManOption();
 		while(1){
 			while(2){
@@ -196,7 +193,7 @@ void hangManWordUser( char  secretWord[50], char  tipWord[20], char  screenWord[
 		for ( i = 0; i < strlen ( screenWord ) ; i++){
     		screenWord [ i ]  = '_';
   		}
-  		printf ( "\n\nTudo pronto pro Jogador começar a jogar\n");
+  		printf ( "\n #########################################\n  Tudo pronto pro jogador começar a jogar \n #########################################\n\n");
   		system ( "pause" );
   		system ( "cls" );
 }
