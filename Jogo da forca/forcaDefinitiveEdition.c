@@ -46,7 +46,7 @@ int main(){
     			guessWord=getch();
     			for ( i = 0; i < strlen ( screenWord ) ; i++){
 			
-    				if (isalpha(guessWord)!=0 || guessWord==32 ){
+    				if (isalpha(guessWord)==0 || isalpha(guessWord)!=0 || guessWord==32 ){
     					if ( guessWord  == secretWord [ i ] ){	
       					screenWord [ i ] = guessWord;
       					madeMistake = 0;
@@ -142,12 +142,12 @@ void hangManWordUser( char  secretWord[50], char * tipWord, char * screenWord){
 				system("cls");
 				if (option == 1 ){
   				fflush(stdin);
-    			printf ( "\n\nBoa escolha!\nDigite qual vai ser a palavra secreta(lembre-se de usar apenas letras e espaços):" );
+    			printf ( "\n\nBoa escolha!\nDigite qual vai ser a palavra secreta:" );
 
     			for(i=0; i<50; i++){
     				
     				scanf("%c", &secretWordAux);
-    				if (isalpha(secretWordAux)!=0 || secretWordAux==32 ){
+    				if (isalpha(secretWordAux)!=0 || isalpha(secretWordAux)==0 || secretWordAux==32 ){
     						secretWord[i]=secretWordAux;
     				}
     				if(secretWordAux=='\n'){
