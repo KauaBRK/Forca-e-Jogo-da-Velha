@@ -4,8 +4,16 @@
 #include<locale.h>
 #include<time.h>
 #include <ctype.h>
-#define MAX_WORD 216/*DEFINI O MAXIMO DE PALAVRAS EM 216 QUE ESTOU USANDO NO MOMENTO*/
-#define MAX_CATEGORY 10/*NUMERO DE PALAVRAS DISTRIBUIDAS EM 10 CATEGORIAS*/
+#include<conio.h>
+
+#define MAX_NUMBER_OF_CHAR 70/*DEFINI O MAXIMO DE CARACTERES*/
+#define MAX_NUMBER_OF_WORDS 216/*DEFINI O MAXIMO DE PALAVRAS EM 216 QUE ESTOU USANDO NO MOMENTO*/
+#define MAX_NUMBER_OF_CATEGORY 10/*NUMERO DE PALAVRAS DISTRIBUIDAS EM 10 CATEGORIAS*/
+
+typedef struct {/*STRUCT GLOBAL*/
+	int scoreSum[10][1];
+	char playerName[50];	
+}Player;
 
 void hangMan(int errors){/*DETERMINA O ESTADO ATUAL DA FORCA*/
   if(errors==0){
@@ -79,7 +87,6 @@ void hangMan(int errors){/*DETERMINA O ESTADO ATUAL DA FORCA*/
   	printf("\n|VOCE PEREDEU!!");
   }
 }
-
 int hangManOption(){/*É UMA FUNCAO PARA DELIMITAR AS OPCOES DO USUARIO*/
 	int i, correctOption=0, tryNumber=0;
 	/*INTEIRO QUALQUER PARA CONTADOR
@@ -119,64 +126,59 @@ int hangManOption(){/*É UMA FUNCAO PARA DELIMITAR AS OPCOES DO USUARIO*/
 	FIM DO 1RO LOOP*/
 	return option;/*RETORNEI A OPCAO SELECIONADA*/
 }
-
-void hangManWordUser( char * secretWord, char * tipWord, char * screenWord){/*ESTA É A FUNCAO QUE DA VIDA A FORCA
-	A PRIMEIRA VARIAVEL É UM PONTEIRO, O QUE VAI POSSIBILITAR A FORCA FUNCIONAR RETORNANDO UMA STRING, ESTA VARIAVEL É A PALAVRA SECRETA
-	A SEGUNDA VARIAVEL TAMBEM PONTEIRO, É A DICA
-	A TERCEIRA VARIAVEL TAMBEM PONTEIRO, É A PALAVRA QUE O USUARIO TEM ACESSO EM QUE SO É MOSTRADO OS CARACTERES "----" */
+void hangManWordUser(char  secretWord[MAX_NUMBER_OF_CHAR], char  tipWord[20], char  screenWord[MAX_NUMBER_OF_CHAR]){
+	/*ESTA É A FUNCAO QUE DA VIDA A FORCA
+	A PRIMEIRA VARIAVEL É O QUE VAI POSSIBILITAR A FORCA FUNCIONAR RETORNANDO UMA STRING, ESTA VARIAVEL É A PALAVRA SECRETA
+	A SEGUNDA VARIAVEL DETERMINA A DICA
+	A TERCEIRA VARIAVEL  DETERMINA A PALAVRA QUE O USUARIO TEM ACESSO EM QUE SO É MOSTRADO OS CARACTERES "----" */
 	
-	/*ESTA STRING DETERMINA O BANCO DE DADO DE PALAVRAS*/
-	char secretWordSystem [MAX_WORD] [50] = {"aguia", "alpaca", "beluga", "cagado", "chinchila", "dromedario", "escaravelho", "gnu", "hamster", "lemure", "lhama", "lince", "marreco", "ornitorrinco", "ourico", "pelicano", "percevejo", "pirilampo", "quati", "kiwi", "rouxinol", "sanguessuga", "surucucu", "tapir", "texugo", "zebu", "apicultor", "auditor", "bartender", "cerimonialista", "chef", "desembargador", "despachante", "endocrinologista", "embaixador", "gerente", "hepatologista", "interprete", "juiz", "nanotecnologo", "nutrologo", "pizzaiolo", "perito", "quiromante", "quiroprata", "roteirizador", "silvicultor", "trader", "taquigrafo", "turismologo", "UVA", "FIGO", "MAMAO", "AMORA","CAJU", "LARANJA","CUPUACU","MORANGO","CEREJA", "ABACAXI" , "MARMELO" , "JACA", "BANANA" , "FRAMBOESA" , "ACAI", "PERA" , "PITANGA" , "COCO" , "ACEROLA" , "MANGA", "Afrodite","Apolo","Ares","Artemis","Atena","Demeter","Dionisio","Eos","Eros","Hades","Helios","Hermes","Hera","Hestia","Horas","Mnemosine","Persefone","Poseidon","Selene","Temis","Zeus","Belerofonte","Perseu","Teseu","Heracles","Prometeu","Orfeu","Ulisses","Aquiles","Hercules","Eolo","Cronos","Atlas","Pan","Narciso","Tantalo","Euridice","Icaro","Medeia","Pandora","Tritao","Cerbero","Minos","Nemesis","Nix","Tique","Quiron","Clio","Euterpe","Talia","Melpomene","Terpsicore","Erato","Polimnia","Urania","Caliope","Mickey Mouse", "Pato Donald", "Pateta", "Pluto", "Minnie Mouse", "Margarida", "Tom", "Jerry", "Scooby Doo", "Fred Flintstone", "Barney Rubble", "George Jetson", "Elroy Jetson", "Pernalonga", "Patolino", "Popeye", "Olivia Palito", "Brutus", "Papa-Leguas", "Coelho Ricochete", "Frajola", "Piu-Piu", "Ze Colmeia", "Catatau", "Guarda Smith", "Bart Simpson", "Homer Simpson", "Marge Simpson", "Lisa Simpson", "Maggie Simpson","Abecasia","Afeganistao","Africa do Sul","Albania","Alemanha","Andorra","Angola","Antigua","Arabia Saudita","Argelia","Argentina","Armenia","Australia","Austria","Azerbaijao","Bahamas","Bahrein","Bangladesh","Barbados","Belgica","Belize","Benim","Bielorrussia","Bolivia","Bosnia","Botswana","Brasil","Brunei","Bulgaria","Burkina","Feijoada","Pao de Queijo","Coxinha","Pastel","Moqueca","Bobo de Camarão","Tapioca","Baiao de Dois","Vatapa","Carne de Sol","Acai","Tutu de Feijao","Canjica","Cuscuz Paulista","Pamonha","Quindim","Pacoca","Escondidinho","Torta de Frango","Caldinho de Feijao","Bolo de Fuba","Cocada","Rabada","Bolo de Rolo","Casquinha de Siri","Empadao","Buchada de Bode","Camarao na Moranga","Bolo de Milho Verde","Canjiquinha"};
-  	/*FIM DEFINICAO*/
+	char secretWordSystem [MAX_NUMBER_OF_WORDS] [50] = {"aguia", "alpaca", "beluga", "cagado", "chinchila", "dromedario", "escaravelho", "gnu", "hamster", "lemure", "lhama", "lince", "marreco", "ornitorrinco", "ourico", "pelicano", "percevejo", "pirilampo", "quati", "kiwi", "rouxinol", "sanguessuga", "surucucu", "tapir", "texugo", "zebu", "apicultor", "auditor", "bartender", "cerimonialista", "chef", "desembargador", "despachante", "endocrinologista", "embaixador", "gerente", "hepatologista", "interprete", "juiz", "nanotecnologo", "nutrologo", "pizzaiolo", "perito", "quiromante", "quiroprata", "roteirizador", "silvicultor", "trader", "taquigrafo", "turismologo", "UVA", "FIGO", "MAMAO", "AMORA","CAJU", "LARANJA","CUPUACU","MORANGO","CEREJA", "ABACAXI" , "MARMELO" , "JACA", "BANANA" , "FRAMBOESA" , "ACAI", "PERA" , "PITANGA" , "COCO" , "ACEROLA" , "MANGA", "Afrodite","Apolo","Ares","Artemis","Atena","Demeter","Dionisio","Eos","Eros","Hades","Helios","Hermes","Hera","Hestia","Horas","Mnemosine","Persefone","Poseidon","Selene","Temis","Zeus","Belerofonte","Perseu","Teseu","Heracles","Prometeu","Orfeu","Ulisses","Aquiles","Hercules","Eolo","Cronos","Atlas","Pan","Narciso","Tantalo","Euridice","Icaro","Medeia","Pandora","Tritao","Cerbero","Minos","Nemesis","Nix","Tique","Quiron","Clio","Euterpe","Talia","Melpomene","Terpsicore","Erato","Polimnia","Urania","Caliope","Mickey Mouse", "Pato Donald", "Pateta", "Pluto", "Minnie Mouse", "Margarida", "Tom", "Jerry", "Scooby Doo", "Fred Flintstone", "Barney Rubble", "George Jetson", "Elroy Jetson", "Pernalonga", "Patolino", "Popeye", "Olivia Palito", "Brutus", "Papa-Leguas", "Coelho Ricochete", "Frajola", "Piu-Piu", "Ze Colmeia", "Catatau", "Guarda Smith", "Bart Simpson", "Homer Simpson", "Marge Simpson", "Lisa Simpson", "Maggie Simpson","Abecasia","Afeganistao","Africa do Sul","Albania","Alemanha","Andorra","Angola","Antigua","Arabia Saudita","Argelia","Argentina","Armenia","Australia","Austria","Azerbaijao","Bahamas","Bahrein","Bangladesh","Barbados","Belgica","Belize","Benim","Bielorrussia","Bolivia","Bosnia","Botswana","Brasil","Brunei","Bulgaria","Burkina","Feijoada","Pao de Queijo","Coxinha","Pastel","Moqueca","Bobo de Camarão","Tapioca","Baiao de Dois","Vatapa","Carne de Sol","Acai","Tutu de Feijao","Canjica","Cuscuz Paulista","Pamonha","Quindim","Pacoca","Escondidinho","Torta de Frango","Caldinho de Feijao","Bolo de Fuba","Cocada","Rabada","Bolo de Rolo","Casquinha de Siri","Empadao","Buchada de Bode","Camarao na Moranga","Bolo de Milho Verde","Canjiquinha"};
+  	/*ESTA STRING DETERMINA O BANCO DE DADO DE PALAVRAS*/
   	
-  	/*ESTA STRING DETERMINA A CATEGORIA OU DICA QUE VAI CONFORME O BANCO DE PALAVRAS*/
-	char tipWordSystem [MAX_CATEGORY] [25] = {"Animal","Profissão","Fruta","Seres mitólogicos","Personagens de Cartoon","Países","Comidas"};
-	/*FIM DEFINICAO*/
+	char tipWordSystem [MAX_NUMBER_OF_CATEGORY] [25] = {"Animal","Profissão","Fruta","Seres mitólogicos","Personagens de Cartoon","Países","Comidas"};
+	/*ESTA STRING DETERMINA A CATEGORIA OU DICA QUE VAI CONFORME O BANCO DE PALAVRAS*/
 	
-	int player = 1 , sortNumberWord , sortNumberCategory, i, correctOption=0, option=0;
+	char secretWordAux;
+	int player = 1 , sortNumberWord , sortNumberCategory, i,option=0;
 	/*JOGADOR ATUAL
 	NUMERO SORTEADO PARA SORTEAR A PALAVRA
 	NUMERO BASEADO NA PALAVRA PARA DETERMINAR A CATEGORIA EX: CATEGORIA ANIMAIS VAI ATE 26 ENTAO DO NUMERO 1 AO 26 É DICA NUMERO 1 ANIMAIS
 	INTEIRO QUALQUER PARA CONTADOR
-	OPCAO CORRETA CASO HAJA
 	OPCAO*/
-	char correctSecretWord;
-	/*VE SE ESTA SENDO DIGITADO APENAS PALAVRAS*/
 	
-		printf("###JOGO DA hangMan###\nBem vindo jogador %d\nPara começar digite o numero para a opção que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n",player);
+	
+		printf("\n   ##################\n   # JOGO DA FORCA  #\n   ##################\n\nPara começar digite o numero para a opção que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n");
 		/*PRINTANDO AS OPCOES DO JOGADOR*/
+		
 		option=hangManOption();/*AO MESMO TEMPO QUE ATRIBUO A VARIAVEL "OPCAO" COM A FUNCAO "OPCAO" EU CHAMO A FUNCAO DENTRO DA VARIAVEL*/
 		while(1){/*INICIO PRIMEIRO LOOP*/
 			while(2){/*INICIO SEGUNDO LOOP*/
-			system("cls");
-  				/*CASO O LOOP REINICIE POR OPCAO INVALIDA EU PRECISO DE UM PRINT RESERVA */
-  			fflush(stdin);
-  			if(option==1){/*CASO O JOGADOR ESCOLHA DIGITAR A PALAVRA ELE ESTÁ QUERENDO DESAFIAR OUTRA PESSOA*/
+				system("cls");
+				
+				if (option == 1 ){/*CASO O JOGADOR ESCOLHA DIGITAR A PALAVRA ELE ESTÁ QUERENDO DESAFIAR OUTRA PESSOA*/
+  				fflush(stdin);
     			printf ( "\n\nBoa escolha!\nDigite qual vai ser a palavra secreta:" );
-    			scanf (" %s", secretWord);/*RECOLHO A PALAVRA*/
-	
-    			while ( correctSecretWord != 'c'){/*VEJO SE ESTA PALAVRA CONTEM NUMEROS OU CARACTERES DIFERENTES. NOTA: ELA ACEITA ESPAÇOS TAMBEM,
-			    COMO É VISTO PELO 32 DA TABELA ASCII*/
-    				fflush ( stdin );
-  					for(i = 0; i < strlen(secretWord); i++){
-  						if (isalpha(secretWord[i])!=0 || secretWord[i]==32 ){
-  							correctSecretWord='c';
-			  			}
-			  			else{
-			  				system ( "cls" );
-			  				fflush ( stdin );
-			  				printf ( "\nCaracter incorreto. Digite novamente: " );
-			  				correctSecretWord = 'w';
-			  				scanf (" %s", secretWord);
-			  			}
-		  			}
-		  			system("cls");
-	  			}/*FIM DA VERIFICACAO*/
+
+    			for(i=0; i<MAX_NUMBER_OF_CHAR; i++){
+    				
+    				scanf("%c", &secretWordAux);/*RECOLHO A PALAVRA*/
+    				if (isalpha(secretWordAux)!=0 || isalpha(secretWordAux)==0 || secretWordAux==32 ){/*COLOCA A PALAVRA NA STRING SEGUINDO OS PARAMETROS
+																										É LETRA, É NUMERO, É ESPAÇO.*/
+    						secretWord[i]=secretWordAux;/*PALAVRA SECRETA RECEBE A AUXILIAR*/
+    				}
+    				else{
+    					printf("\nCaracter incorreto detectado digite novamente");/*CASO DETECTE UM CARACTER INCORRETO*/
+    					i=0;/*ZERA A CONTAGEM*/
+					}
+    				if(secretWordAux=='\n'){/*CASO HAJA QUEBRA LINHA OU SEJA, ENTER, O FOR ACABA*/
+    					break;
+					}
+				}
+				secretWord[i-0]='\0';/*IGUALO A PALAVRA EM NULO PARA QUE NAO HAJA ESPAÇOS SOBRESSALENTES*/
 	  			fflush ( stdin );
-   				printf ( "\n\nAgora digite a dica para esta palavra: " );/*RECOLHO A DICA, A DICA PODE SER QUALQUER COISA ENTAO NAO LIMITEI NADA
-				   APENAS NUMERO DE CARACTERES*/
-				scanf("%s", tipWord);/*RECOLHO A DICA*/
-				break;/*FIM DO SEGUNDO LOOP DETERMINADO PELO BREAK*/
+   				printf ( "\n\nAgora digite a dica para esta palavra: " );/*RECOLHO A DICA*/
+				gets(tipWord);
+				break;/*FIM LOOP 2*/
 	 			}
 		 		if(option==2){/*CASO O JOGADOR QUEIRA O BANCO DE DADOS*/
 					fflush(stdin);
@@ -211,56 +213,65 @@ void hangManWordUser( char * secretWord, char * tipWord, char * screenWord){/*ES
 			break;
 		}/*FIM DO PRIMEIRO LOOP*/
 			
-			
+		strlwr(secretWord);/*ESTOU DEIXANDO A PALAVRA SECRETA EM MINUSCULO*/
 		strcpy ( screenWord , secretWord );/*ESTOU COPIANDO A PALAVRA SECRETA PARA A PALAVRA QUE VAI PRO USUARIO*/
 		for ( i = 0; i < strlen ( screenWord ) ; i++){/*ESTE FOR SERVE PARA CODIFICAR A PALAVRA EM "----"*/
     		screenWord [ i ]  = '_';
   		}
-  		printf ( "\n\nTudo pronto pro Jogador %d começar a jogar\n" , player );
+  		printf ( "\n #########################################\n  Tudo pronto pro jogador começar a jogar \n #########################################\n\n");
   		system ( "pause" );
   		system ( "cls" );
-  		/*FIM DA FUNCAO*/
-}
+}/*FIM FUNCAO*/
 
 int main(){
-  setlocale(LC_ALL,"portuguese");/*PORTUGUES DO BR*/
-  char secretWord [50] ,screenWord [50],tipWord [20],guessWord;
+  setlocale(LC_ALL,"portuguese");
+  Player
+   players[10];
+  /*STRUCT PRA ARMAZENAR OS DADOS DE ATE 10 PLAYERS*/
+  char secretWord [MAX_NUMBER_OF_CHAR ] ,tipWord [20], screenWord [MAX_NUMBER_OF_CHAR ],guessWord;
   /*//PALAVRA SECRETA//
-  //PALAVRA DO USUARIO//
   //DICA//
+  //PALAVRA QUE USUARIO TEM ACESSO (CODIFICADA)//
   //CHUTE DO USUARIO*/
-  int player = 1 , madeMistake , errors=0 ,i, continue_=1, loops=0, streak=0, counter;
+  int player = 1 , playerAux = 1, madeMistake , errors=0 ,i, continue_=1, loops=0, streak=0;
   /*JOGADOR ATUAL
+  AUXILIAR PARA O PLAYER
   VERIFICADOR DE ERROS
   ERROS
   INTEIRO QUALQUER
   CONTINUAR A JOGAR
   LOOPS DE GAMEPLAY
-  MECANICA DE STREAK
-  AUXILIAR PARA O PLAYER*/
+  MECANICA DE STREAK*/
   int playersScore[10][2]={0,0}, scoreSum[10][1]={0};
-  /*QUANTIDADE DE PONTOS QUE CADA JOGADOR TEM
-  SOMA DESSES PONTOS*/
+  /*QUANTIDADE DE PONTOS QUE CADA JOGADOR TEM EM ERROS E ACERTOS
+  SOMA OU SUBTRACAO DESSES PONTOS*/
   	while (continue_ == 1 || continue_ == 2){/*PRIMEIRO LOOP ENQUANTO O JOGADOR CONTINUE QUERENDO JOGAR*/
 		loops+=1;/*ADICIONA UM AO LOOP DE GAMEPLAY*/
   		system ("cls");
   		errors = 0;/*ZERA OS ERROS*/
+  		if(playerAux==player){/*VEJO QUAL PLAYER ATUAL*/
+  			printf("\n   ##################\n   # JOGO DA FORCA  #\n   ##################\n\n Boas vindas! Digite o nome do jogador atual: ");
+    		gets(players[player].playerName);
+		  }
+    	system("cls");
 		hangManWordUser(secretWord, tipWord, screenWord);/*CHAMANDO A FUNCAO PARA DIZER A PALAVRA SECRETA, DICA E AFINS ATRIBUINDO ÀS MINHAS
-		VARIAVEIS ATUAIS POR MEIO DE PONTEIRO*/
+		VARIAVEIS ATUAIS*/
+		
+    	/*ESTA PRIMEIRA PARTE SERVE APENAS PRA ZERAR TODOS OS PARAMETROS*/
     	
     		while ( 1 ) {/*SEGUNDO LOOP*/
     			fflush(stdin);
     			madeMistake = 1;/*IGUALO SEMPRE O MADEMISTAKE A 1, POIS SE EU NAO CONSIDERO O JOGADOR ERRAR SEMPRE FICA MAIS DIFICIL DIZER SE ELE VAI ACERTAR*/
-    			printf ( "\n\n###JOGO DA FORCA###\n\nBem vindo Jogador %d\n\nNúmero de letras da palavra: %lu\n\nA dica para a palavra é: %s\nPontos do Jogador n° %d: %d\n" , player , strlen ( secretWord ), tipWord, player, scoreSum[player][1]);
-    			hangMan ( errors );/*MOSTRO A FORCA BASEADA NOS ERROS*/
-    			printf ( "\nPalavra: %s\nDigite uma letra ou a palavra inteira: " , screenWord );/*PEÇO O CHUTE AO MESMO TEMPO QUE MOSTRO A PALAVRA CODIFICADA*/
+    			printf ( "\n   ##################\n   # JOGO DA FORCA  #\n   ##################\n\n Bem vindo Jogador %s\n\n Número de letras da palavra: %lu\n\n A dica para a palavra é: %s\n\n Pontos do Jogador %s: %d\n\n" , players[player].playerName , strlen ( secretWord ), tipWord, players[player].playerName, players[player].scoreSum[player][1]);
+				hangMan ( errors );/*MOSTRO A FORCA BASEADA NOS ERROS*/
+    			printf ( "\nPalavra: %s\nDigite uma letra ou a palavra inteira: " , screenWord );
     			
     			guessWord=getch();/*DOU UM GETCH PARA CAPTURAR TUDO OQ O USUARIO DIGITA E FICANDO MAIS DINAMICO*/
     			for ( i = 0; i < strlen ( screenWord ) ; i++){/*ESTE FOR DETERMINA SE O JOGADOR ACERTOU A LETRA.
 															    CASO SIM O JOGADOR NAO COMETEU ERRO
 															    CASO NAO O JOGADO COMETEU ERRO*/
-				
-    				if (isalpha(guessWord)!=0 || guessWord==32 ){/*VEJO SE O QUE ESTA SENDO DIGITADO É LETRA E OU ESPAÇOS EM BRANCO*/
+			
+    				if (isalpha(guessWord)==0 || isalpha(guessWord)!=0 || guessWord==32 ){/*VEJO SE O QUE ESTA SENDO DIGITADO É LETRA, NUMERO E OU ESPAÇOS EM BRANCO*/
     					if ( guessWord  == secretWord [ i ] ){/*SE MEU CHUTE ATUAL FOR IGUAL A MINHA PALAVRA SECRETA NO CONTADOR I*/	
       					screenWord [ i ] = guessWord;/*MINHA PALAVRA CODIFICADA RECEBE O CONTADOR I*/
       					madeMistake = 0;/*ERRO NAO CONTABILIZADO*/
@@ -268,27 +279,31 @@ int main(){
     				}
       			}	
     			if ( madeMistake == 1 ) errors++;/*SE O MADEMISTAKE NAO FOR ZERADO OS ERROS SAO ADMITIDOS*/
-      			
+    			
     			if ( strcmp ( secretWord , screenWord ) == 0){/*VERIFICANDO QUE O GANHADOR GANHOU*/
-    				streak ++;/*GANHA UMA STREAK*/
+    				
+    				streak ++;/*GANHA UMA STREAK DE VITORIA CONSECUTIVA*/
       				system ( "cls" );
+      				
       				if(streak>4){/*SE O JOGADOR GANHOU 5 PARTIDAS SEGUIDAS ELE RECEBE +2 PONTOS A CADA ACERTO SUBSEQUENTE*/
 						printf("\n\nO Jogador %d está numa streak de %d acertos!! +2 pontos pra você\n\n",player,streak);
 						playersScore[player][1]+=2;/*ADICIONANDO 2 PONTOS PRA CONTA DO PAI :)*/
-						
 					}
+					
       				hangMan ( errors );/*MOSTRA A FORCA FINAL E FINALIZA O JOGO*/
       				printf ( "\nVoce acertou a palavra: %s\n\nVOCE VENCEU PARABENS!!!!\n\nDeseja continuar a jogar no mesmo jogador, deseja trocar de jogador ou deseja sair?\n1-Jogar no mesmo\n2-Trocar de jogador\n3-Sair\n" , secretWord );
       				fflush(stdin);
       				playersScore[player][1]++;/*ADICIONANDO UM ACERTO PARA O SCORE DO JOGADOR*/
       				scoreSum[player][1]=playersScore[player][1]-playersScore[player][2];/*SUBTRAINDO OS ACERTOS PELOS ERROS PARA O PLACAR FINAL*/
-      				continue_=hangManOption();/*VENDO SE QUER CONTINUAR COM BASE NA hangMan, QUE DESTA VEZ REALMENTE TEM 3 OPCOES*/
-				
-      				if ( continue_ == 2 ){/*SE O JOGADOR QUER TROCAR DE PLAYER ADICIONO UM PLAYER E ZERO AS STREAKS*/
-      					
-      					player++;
-      					counter++;
-      					streak=0;
+      				players[player].scoreSum[player][1]=scoreSum[player][1];/*ATRIBUINDO O SCORE DO PLAYER ATUAL AO MEUS STRUCT*/
+      				playerAux=player;/*VARIAVEL PARA TORNAR POSSIVEL PERCEBER SE O USUARIO TROCOU OU NAO*/
+      				playerAux+=1;/*DIFERE O PLAYERAUX DO PLAYER E SENDO ASSIM NAO FOI CONTABILIZADO A TROCA DE USUARIO*/
+      				continue_=hangManOption();/*CHAMO A FUNCAO DE OPCOES*/
+      				
+      				if ( continue_ == 2 ){/*SE O JOGADOR QUER TROCAR*/
+      					player++;/*ADICIONO UM PLAYER*/
+      					playerAux=player;/*O PLAYERAUX É A MESMA COISA DO PLAYER*/
+      					streak=0;/*ZERO AS STREAKS DE VITORIAS */
       					break;
       					
 			  		}
@@ -297,40 +312,42 @@ int main(){
     			}
     			else if ( strcmp ( secretWord , screenWord) != 0 && errors == 6 ){/*CASO O JOGADOR PERCA*/
     		
-    				streak=0;/*AS STREAKS SAO ZERADAS*/
+    				streak=0;/*AS STREAKS DE VITORIA SAO ZERADAS*/
     				system ( "cls" );
       				hangMan ( errors );/*MOSTRANDO FORCA FINAL*/
       				printf ( "\nVoce errou a palavra: %s\n\nDeseja continuar a jogar no mesmo jogador, deseja trocar de jogador ou deseja sair?\n1-Jogar no mesmo\n2-Trocar de jogador\n3-Sair\n", secretWord );
       				fflush ( stdin );
       				playersScore[player][2]++;/*ADICIONANDO ERROS*/
       				scoreSum[player][1]=playersScore[player][1]-playersScore[player][2];/*SUBTRAINDO ERROS POR ACERTOS PARA O PLACAR FINAL*/
-      				
-      				if(scoreSum[player][1]<0){/*NAO DEIXO O PLACAR FINAL PASSAR DE 0, POIS NAO É AESTETHIC DEIXAR ISTO NO JOGO FINAL :)*/
-						scoreSum[player][1]=0;/*ZERO O PLACAR CASO ELE CHEGUE A -1*/
-						playersScore[player][2]=0;
+      				players[player].scoreSum[player][1]=scoreSum[player][1];/*ATRIBUINDO O SCORE AO STRUCT*/
+      				if(players[player].scoreSum[player][1]<0){/*CASO O SALDO DO SCORE ESTEJA NEGATIVO O SCORE É AUTOMATICAMENTE 0*/
+						players[player].scoreSum[player][1]=0;
 					}
+      				playerAux=player;/*VARIAVEL PARA TORNAR POSSIVEL PERCEBER SE O USUARIO TROCOU OU NAO*/
+      				playerAux+=1;/*DIFERE O PLAYERAUX DO PLAYER E SENDO ASSIM NAO FOI CONTABILIZADO A TROCA DE USUARIO*/
+      				
       				continue_=hangManOption();/*NOVAMENTE CHAMO A FUNCAO DE OPCOES*/
-				
-      				if ( continue_ == 2 ){/*NOVAMENTE VEJO SE QUER ADICIONAR UM PLAYER*/
-      					player++;
-      					streak=0;
+      				if ( continue_ == 2 ){/*SE O JOGADOR QUER TROCAR*/
+      					player++;/*ADICIONO UM PLAYER*/
+      					playerAux=player;/*O PLAYERAUX É A MESMA COISA DO PLAYER*/
+      					streak=0;/*ZERO AS STREAKS DE VITORIAS */
       					break;
+      					
 			  		}
-      				break;/*CASO NAO DESEJE MUDAR DE PLAYER
-					 	LEMBRANDO QUE O LOOP SO CONTINUA SE O CONTINUE FOR IGUAL A SIM*/
+      				break;/*CASO NAO QUEIRA MUDAR DE PLAYER SO REINICIA O LOOP
+					 	LEMBRANDO QUE O LOOP SO CONTINUA SE CONTINUE FOR IGUAL A SIM*/
     			}
-    				/*FIM DO SEGUNDO LOOP*/
     				system ( "cls" );
     		}
-  	}/*FIM DO PRIMEIRO LOOP*/
+  	}
   	system ( "cls" );
-  	printf ("\n\n\nOBRIGADO POR JOGAR %d VEZES MEU JOGO DA FORCA!\n\nA seguir o placar: ", loops );/*DIGO QUANTAS PARTIDAS O CABRA JOGOU */
-  	counter=player;/*IGUALO O CONTADOR AUXILIAR AO NUMERO DE PLAYERS*/
+  	printf ("\n\n\nOBRIGADO POR JOGAR %d VEZES O JOGO DA FORCA!\n\n ##########\n # Placar #\n ##########\n\n", loops );
+  	playerAux=player;/*IGUALO O CONTADOR AUXILIAR AO NUMERO DE PLAYERS*/
   	player=1;/*IGUALO OS PLAYERS EM 1*/
   	
-		for( i = 0 ; i < counter; i++){/*ESTE FOR VAI DE 0 ATE O NUMERO DE PLAYERS QUE É COUNTER*/
-			printf ("\nJogador n° %d\nPontos: %d\n", player, scoreSum [ player ] [ 1 ] );
-			player ++;/*ADICIONANDO PLAYER A CADA LOOP E QUE NAO É VARIAVEL JA QUE O CONTADOR SO VAI ATE O NUMERO ATUAL DE PLAYERS*/
+		for( i = 0 ; i < playerAux; i++){
+			printf ("\n XXXXXXXXXXXXXXXXX\n X %s \n X Pontos: %d \n XXXXXXXXXXXXXXXXX\n\n", players[player].playerName, players[player].scoreSum[player][1] );
+			player ++;
 		}
   	system ( "pause" );
-}/*FIM :)*/
+}

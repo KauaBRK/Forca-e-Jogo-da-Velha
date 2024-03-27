@@ -10,10 +10,10 @@
 #define MAX_NUMBER_OF_WORDS 216
 #define MAX_NUMBER_OF_CATEGORY 10
 
-struct Players{
+typedef struct {
 	int scoreSum[10][1];
 	char playerName[50];	
-};
+}Player;
 
 void hangMan(int errors);
 int hangManOption();
@@ -21,11 +21,10 @@ void hangManWordUser( char  secretWord[MAX_NUMBER_OF_CHAR ], char  tipWord[20], 
 
 int main(){
   setlocale(LC_ALL,"portuguese");
-  struct Players players[10];
-  char secretWord [MAX_NUMBER_OF_CHAR ] ,tipWord [20], screenWord [MAX_NUMBER_OF_CHAR ],guessWord;
+  Player players[10];
   int player = 1 , playerAux = 1, madeMistake ,option, errors=0 ,i, continue_=1, loops=0, streak=0;
   int playersScore[10][2]={0,0}, scoreSum[10][1]={0};
-  
+  char secretWord [MAX_NUMBER_OF_CHAR ] ,tipWord [20], screenWord [MAX_NUMBER_OF_CHAR ],guessWord;
   	while (continue_ == 1 || continue_ == 2){
 		loops+=1;
   		system ("cls");
@@ -46,7 +45,7 @@ int main(){
     			guessWord=getch();
     			for ( i = 0; i < strlen ( screenWord ) ; i++){
 			
-    				if (isalpha(guessWord)==0 || isalpha(guessWord)!=0 || guessWord==32 || guessWord==45){
+    				if (isalpha(guessWord)==0 || isalpha(guessWord)!=0 || guessWord==32 ){
     					if ( guessWord  == secretWord [ i ] ){	
       					screenWord [ i ] = guessWord;
       					madeMistake = 0;
@@ -92,14 +91,15 @@ int main(){
       				printf ( "\nVoce errou a palavra: %s\n\nDeseja continuar a jogar no mesmo jogador, deseja trocar de jogador ou deseja sair?\n1-Jogar no mesmo\n2-Trocar de jogador\n3-Sair\n", secretWord );
       				fflush ( stdin );
       				playersScore[player][2]++;
+      				
       				scoreSum[player][1]=playersScore[player][1]-playersScore[player][2];
       				players[player].scoreSum[player][1]=scoreSum[player][1];
-      				playerAux=player;
-      				playerAux+=1;
       				if(players[player].scoreSum[player][1]<0){
 						players[player].scoreSum[player][1]=0;
-						players[player].scoreSum[player][2]=0;
 					}
+      				playerAux=player;
+      				playerAux+=1;
+      				
       				continue_=hangManOption();
       				if ( continue_ == 2 ){
       					player++;
@@ -118,22 +118,16 @@ int main(){
   	player=1;
   	
 		for( i = 0 ; i < playerAux; i++){
-			
-			if(players[player].scoreSum[player][1]<0){
-				players[player].scoreSum[player][1]=0;
-			}
-			
 			printf ("\n XXXXXXXXXXXXXXXXX\n X %s \n X Pontos: %d \n XXXXXXXXXXXXXXXXX\n\n", players[player].playerName, players[player].scoreSum[player][1] );
 			player ++;
 		}
   	system ( "pause" );
 }
-void hangManWordUser( char  secretWord[50], char  tipWord[20], char  screenWord[50]){
+void hangManWordUser( char  secretWord[MAX_NUMBER_OF_CHAR], char  tipWord[20], char  screenWord[MAX_NUMBER_OF_CHAR]){
 	char secretWordSystem [MAX_NUMBER_OF_WORDS] [50] = {"aguia", "alpaca", "beluga", "cagado", "chinchila", "dromedario", "escaravelho", "gnu", "hamster", "lemure", "lhama", "lince", "marreco", "ornitorrinco", "ourico", "pelicano", "percevejo", "pirilampo", "quati", "kiwi", "rouxinol", "sanguessuga", "surucucu", "tapir", "texugo", "zebu", "apicultor", "auditor", "bartender", "cerimonialista", "chef", "desembargador", "despachante", "endocrinologista", "embaixador", "gerente", "hepatologista", "interprete", "juiz", "nanotecnologo", "nutrologo", "pizzaiolo", "perito", "quiromante", "quiroprata", "roteirizador", "silvicultor", "trader", "taquigrafo", "turismologo", "UVA", "FIGO", "MAMAO", "AMORA","CAJU", "LARANJA","CUPUACU","MORANGO","CEREJA", "ABACAXI" , "MARMELO" , "JACA", "BANANA" , "FRAMBOESA" , "ACAI", "PERA" , "PITANGA" , "COCO" , "ACEROLA" , "MANGA", "Afrodite","Apolo","Ares","Artemis","Atena","Demeter","Dionisio","Eos","Eros","Hades","Helios","Hermes","Hera","Hestia","Horas","Mnemosine","Persefone","Poseidon","Selene","Temis","Zeus","Belerofonte","Perseu","Teseu","Heracles","Prometeu","Orfeu","Ulisses","Aquiles","Hercules","Eolo","Cronos","Atlas","Pan","Narciso","Tantalo","Euridice","Icaro","Medeia","Pandora","Tritao","Cerbero","Minos","Nemesis","Nix","Tique","Quiron","Clio","Euterpe","Talia","Melpomene","Terpsicore","Erato","Polimnia","Urania","Caliope","Mickey Mouse", "Pato Donald", "Pateta", "Pluto", "Minnie Mouse", "Margarida", "Tom", "Jerry", "Scooby Doo", "Fred Flintstone", "Barney Rubble", "George Jetson", "Elroy Jetson", "Pernalonga", "Patolino", "Popeye", "Olivia Palito", "Brutus", "Papa-Leguas", "Coelho Ricochete", "Frajola", "Piu-Piu", "Ze Colmeia", "Catatau", "Guarda Smith", "Bart Simpson", "Homer Simpson", "Marge Simpson", "Lisa Simpson", "Maggie Simpson","Abecasia","Afeganistao","Africa do Sul","Albania","Alemanha","Andorra","Angola","Antigua","Arabia Saudita","Argelia","Argentina","Armenia","Australia","Austria","Azerbaijao","Bahamas","Bahrein","Bangladesh","Barbados","Belgica","Belize","Benim","Bielorrussia","Bolivia","Bosnia","Botswana","Brasil","Brunei","Bulgaria","Burkina","Feijoada","Pao de Queijo","Coxinha","Pastel","Moqueca","Bobo de Camarão","Tapioca","Baiao de Dois","Vatapa","Carne de Sol","Acai","Tutu de Feijao","Canjica","Cuscuz Paulista","Pamonha","Quindim","Pacoca","Escondidinho","Torta de Frango","Caldinho de Feijao","Bolo de Fuba","Cocada","Rabada","Bolo de Rolo","Casquinha de Siri","Empadao","Buchada de Bode","Camarao na Moranga","Bolo de Milho Verde","Canjiquinha"};
   	char tipWordSystem [MAX_NUMBER_OF_CATEGORY] [25] = {"Animal","Profissão","Fruta","Seres mitólogicos","Personagens de Cartoon","Países","Comidas"};
 	char secretWordAux;
-	int player = 1 , sortNumberWord , sortNumberCategory, i, correctOption=0, tryNumber=0, option=0;
-	char correctSecretWord;
+	int player = 1 , sortNumberWord , sortNumberCategory, i, option=0;
 	
 		printf("\n   ##################\n   # JOGO DA FORCA  #\n   ##################\n\nPara começar digite o numero para a opção que voce quer: \n1- Digitar a palavra secreta.\n2- Sortear uma das palavras do banco de dados.\n");
 		option=hangManOption();
@@ -147,9 +141,13 @@ void hangManWordUser( char  secretWord[50], char  tipWord[20], char  screenWord[
     			for(i=0; i<50; i++){
     				
     				scanf("%c", &secretWordAux);
-    				if (isalpha(secretWordAux)!=0 || isalpha(secretWordAux)==0 || secretWordAux==32 || secretWordAux==45){
+    				if (isalpha(secretWordAux)!=0 || isalpha(secretWordAux)==0 || secretWordAux==32 ){
     						secretWord[i]=secretWordAux;
     				}
+    				else{
+    					printf("\nCaracter incorreto detectado digite novamente");
+    					i=0;
+					}
     				if(secretWordAux=='\n'){
     					break;
 					}
