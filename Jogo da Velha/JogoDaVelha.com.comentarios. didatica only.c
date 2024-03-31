@@ -24,7 +24,7 @@ void ticTacToeLoop(char ticTacToe[3][3]){
 void ticTacToePrint(char ticTacToe[3][3]){
 	/*essa segunda funcao serve pra imprimir o jogo da velha sempre que chamada*/
 	int line, column;
-		printf("\n\n\n   ###JOGO DA VELHA####\n\n\n");
+		printf("\n\n   ####################\n   ###JOGO DA VELHA####\n   ####################\n\n");
 			for(line = 0; line <3; line++){
 				for(column = 0; column <3; column++){
 					printf("    %c  ", ticTacToe[line][column]);         
