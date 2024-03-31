@@ -3,6 +3,11 @@
 #include<string.h>
 #include<locale.h>
 
+typedef struct{/*definindo struct*/
+	int winnerX, winner0, counter;
+}player;
+
+int plays;/*variavel pra contar as plays*/
 
 void ticTacToeLoop(char ticTacToe[3][3]){
 	/*essa primeira funcao serve apenas pra zerar todos os parametros caso o jogador queira jogar mais uma vez*/
@@ -67,7 +72,7 @@ int ticTacToeCheckWins(char ticTacToe[3][3], char winner){/*FUNCAO QUE CHECA SE 
 int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê se X ja jogou*/){
 	int lineChoose;/*
 	Variavel que escolhe a linha*/
-		system("cls");
+		
 		ticTacToePrint(ticTacToe);/*.PRINTEI NA TELA O JOGO DA VELHA SEGUIDO DAS OPCOES.*/
 		printf("\n\nDigite qual lugar vai jogar: ");
     	scanf("%d", &lineChoose);/*.VERIFICA A LINHA QUE O JOGADOR JOGOU.*/	
@@ -77,6 +82,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 	    	case 1:
 	    		if(ticTacToe[0][0]=='1' && ticTacToe[0][0]!='\n'){
 	    			fflush(stdin);
+	    			plays++;/*CONTABILIZANDO A PLAY*/
 	    			if(xOption==1){/*VEJO SE O JOGADOR ATUAL É X OU 0*/
 	    				ticTacToe[0][0]='X';/*SE FOR X RECEBE X*/
 	    				xOption=0;/*ZERANDO PARA O PROXIMO SER ZERO*/
@@ -97,6 +103,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 	    	case 2:
 	    		if(ticTacToe[0][1]=='2'){
 	    			fflush(stdin);
+	    			plays++;
 	    			if(xOption==1){
 	    				ticTacToe[0][1]='X';
 	    				xOption=0;
@@ -116,6 +123,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 	    	case 3:
 	    		if(ticTacToe[0][2]=='3'){
 	    			fflush(stdin);
+	    			plays++;
 	    			if(xOption==1){
 	    				ticTacToe[0][2]='X';
 	    				xOption=0;
@@ -135,6 +143,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 	    	case 4:
 	    		if(ticTacToe[1][0]=='4'){
 	    			fflush(stdin);
+	    			plays++;
 	    			if(xOption==1){
 	    				ticTacToe[1][0]='X';
 	    				xOption=0;
@@ -154,6 +163,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 			case 5:
 	    		if(ticTacToe[1][1]=='5'){
 	    			fflush(stdin);
+	    			plays++;
 	    			if(xOption==1){
 	    				ticTacToe[1][1]='X';
 	   					xOption=0;
@@ -173,6 +183,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 			case 6:
 	    		if(ticTacToe[1][2]=='6'){
 	    			fflush(stdin);
+	    			plays++;
 	    			if(xOption==1){
 	    				ticTacToe[1][2]='X';
 	    				xOption=0;
@@ -192,6 +203,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 			case 7:
 	    		if(ticTacToe[2][0]=='7'){						
 	    			fflush(stdin);
+	    			plays++;
 	    			if(xOption==1){
 	    				ticTacToe[2][0]='X';
 	    				xOption=0;
@@ -211,6 +223,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 			case 8:
 	    		if(ticTacToe[2][1]=='8'){
 	    			fflush(stdin);
+	    			plays++;
 	    			if(xOption==1){
 	    				ticTacToe[2][1]='X';
 	    				xOption=0;
@@ -230,6 +243,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 			case 9:
 	    		if(ticTacToe[2][2]=='9'){
 	    			fflush(stdin);
+	    			plays++;
 	    			if(xOption==1){
 	    				ticTacToe[2][2]='X';
 	    				xOption=0;
@@ -252,21 +266,28 @@ int ticTacToeSwitchCase(char ticTacToe[3][3]/*Jogo da velha*/, int xOption/*Vê s
 
 int main(){
 	setlocale(LC_ALL,"portuguese");
-	int plays, lineChoose, xOption, winnerX=0, winner0=0;
+	player players[10];
+	/*DEFININDO STRUCT NA VARIAVEL PLAYERS*/
+	int lineChoose, xOption, winnerX=0, winner0=0, plays=0, pair=1, i,continue_=1;
 	/*.CONTROLE DA QUANTIDADE DE JOGADAS FEITAS.
 	.ESCOLHA DA LINHA QUE VAI JOGAR, VAI DE 1 A 9.
 	.ESCOLHE SE O PROXIMO JOGADOR É X OU 0.
 	.PONTUACAO DO X.
-	.PONTUACAO DO 0.*/
+	.PONTUACAO DO 0.
+	JOGADAS
+	DUPLA
+	CONTADOR COMUM
+	VÊ SE O JOGADOR QUER CONTINUAR*/
     char ticTacToe[3][3];
     /*.JOGO DA VELHA.*/
-    char continue_='s', winner;
-    /*.VÊ SE USUARIO QUER CONTINUAR.
-    .VENDEDOR.*/
-		while(continue_=='s'){/*.ENQUANTO O JOGADOR QUER JOGAR O LOOP CONTINUA.
+    char winner;
+    /*VENDEDOR.*/
+    	for(i=1; i<10; i++){/*ZERANDO O STRUCT TODO PARA MANIPULAR SE O VETOR ESTA OCUPADO OU NAO*/
+   			players[i].winner0=0;
+   			players[i].winnerX=0;
+		}
+		while(continue_==1 ||continue_==2 && pair<10){/*.ENQUANTO O JOGADOR QUER JOGAR O LOOP CONTINUA OU ATE O PAR FOR MENOR QUE 10.
 		//ESTA PRIMEIRA PARTE SERVE APENAS PARA EU ZERAR TODOS OS PARAMETROS ANTERIORES*/
-			system("cls");
-			plays=0;/*ZERO A QUANTIDADE DE JOGADAS FEITAS*/
 			winner='n';/*.IGUALO VENCEDOR A N OU NONE.*/
 			ticTacToeLoop(ticTacToe);/*.ZERANDO O JOGO DA VELHA.*/
 			xOption=1;/*.JOGADOR EM X COMEÇA PRIMEIRO SEMPRE.*/
@@ -274,40 +295,53 @@ int main(){
 			/*. EM SUMA ESTA PRIMEIRA PARTE DO LOOP ANTES DO JOGO COMEÇAR É APENAS PARA ZERAR TODOS OS PARAMETROS EXISTENTES. */
 			while(winner=='n'){/*.ENQUANTO O VENCEDOR FOR N OU NONE O JOGO CONTINUA.*/
 			
+				printf("\n\n\tDupla %d\n", pair);/*MOSTRANDO A DUPLA ATUAL*/
 				xOption=ticTacToeSwitchCase(ticTacToe, xOption);/*DECLARO A VARIAVEL XOPTION AO MESMO TEMPO QUE CHAMO O SWITCHCASE
 				ESTA DECLARACAO NAO ZERA POIS XOPTION ESTA ARMAZENANDO SEMPRE O ULTIMO VALOR :)*/
-				if(xOption==1 || xOption==0){/*MONITORANDO A MUDANCA DE XOPTION E ADICIONANDO JOGADAS POR MEIO DELE*/
-					plays++;
-				}
 				winner=ticTacToeCheckWins(ticTacToe, winner);/*DEFINO O VENCEDOR PELA FUNCAO QUE CHECA VENCEDOR*/
-				
+				system("cls");
 				if(plays==9 && winner=='n') break;/*SE O JOGO TIVER 9 JOGADAS OU SEJA TODOS ESPAÇOS OCUPADOS, O JOGO DEU VELHA*/
-				
 			}
 			
 			system("cls");
+			printf("\n\n    Dupla %d Resultados\n", pair);/*MOSTRANDO RESULTADOS DA DUPLA*/
 			ticTacToePrint(ticTacToe);/*PRINTO DENOVO PARA MOSTRAR COMO O JOGO FINALIZOU*/
-			if(winner=='X'){/*ATRIBUINDO UM PONTO PRA X PARA O PLACAR*/
-					winnerX++;
+			
+			if(winner=='X'){
+				players[pair].winnerX++;/*ATRIBUINDO UM PONTO PRA X PARA O PLACAR*/
+				players[pair].counter=1;/*ATRIBUO 1 AO CONTADOR POR FINS DE CONTROLE*/
 				}
-				if(winner=='0'){/*ATRIBUINDO UM PONTO PRA 0 PARA O PLACAR*/
-					winner0++;
+			if(winner=='0'){
+					players[pair].winner0++;/*ATRIBUINDO UM PONTO PRA 0 PARA O PLACAR*/
+					players[pair].counter=1;/*ATRIBUO 1 AO CONTADOR POR FINS DE CONTROLE*/
 				}
 			if(winner!='n'){/*SE WINNER NAO FOR MAIS NONE O GANHADOR RECEBE WINNER*/
-				printf("O Ganhador foi o jogador: ' %c '\nDeseja continuar a jogar?\nSim\nNão\n", winner);/*MOSTRANDO QUEM GANHOU*/
+				printf("O Ganhador foi o jogador: ' %c '\n\nSelecione uma opção:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n", winner);
 				fflush(stdin);
-				scanf("%c", &continue_);/*VENDO SE QUER CONTINUAR*/
+				scanf("%d", &continue_);/*VENDO SE QUER CONTINUAR*/
+				if(continue_==2){/*SE QUER TROCAR DE DUPLA ADICIONO UMA DUPLA NO VETOR*/
+					pair+=1;
+				}
 				system("cls");
 			}
 			else{
-				printf("Nao houve vencedor.\nDeseja continuar a jogar?\nSim\nNão");/*CASO DÊ VELHA*/
+				printf("Nao houve vencedor.\n\nSelecione uma opção:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n");
 				fflush(stdin);
-				scanf(" %c", &continue_);/*VENDO SE QUER CONTINUAR*/
+				scanf("%d", &continue_);/*VENDO SE QUER CONTINUAR*/
+				if(continue_==2){/*SE QUER TROCAR DE DUPLA ADICIONO UMA DUPLA NO VETOR*/
+					pair+=1;
+				}
 				system("cls");
 			}
-			/*CASO O CONTINUE FOR NAO, MOSTRO O PLACAR COM O NUMERO DE PONTOS DE CADA SIMBOLO X E 0.*/
-		}
-		printf("\n\n\nObrigado por jogar :)\n\n###PLACAR###\n\nPONTOS DO X: %d\nPONTOS DO 0: %d\n\n", winnerX, winner0);
-		
+			
+		}/*CASO O CONTINUE FOR NAO, MOSTRO O PLACAR COM O NUMERO DE PONTOS DE CADA SIMBOLO X E 0.*/
+		printf("\n\tObrigado por jogar :)\n\n\n\t############\n\t###PLACAR###\n\t############\n\n");
+		for( i=1; i < 10; i++){/*ESTE FOR VAI AO MESMO TEMPO IMPRIMIR RESULTADOS E VER SE O VETOR ESTA VAZIO*/
+			if(players[i].counter==0){/*SE O VETOR COUNTER ESTIVER ZERADO SIGNIFICA QUE ELE ESTA VAZIO ENTAO PARA O FOR*/
+				break;
+			}
+			printf("\n\t#################\n\t# DUPLA %d\n\t#\n\t# PONTOS DO X: %d\n\t# PONTOS DO 0: %d\n\t#################\n\n",i, players[i].winnerX, players[i].winner0);	
+			pair++;
+		}		
 		/*FIM :)*/
 }

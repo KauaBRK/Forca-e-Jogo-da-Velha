@@ -17,14 +17,13 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption);
 int main(){
 	setlocale(LC_ALL,"portuguese");
 	player players[10];
-	int lineChoose, xOption, winnerX=0, winner0=0, plays=0, counter, pair=1, i,continue_=1;
+	int lineChoose, xOption, winnerX=0, winner0=0, plays=0, pair=1, i,continue_=1;
     char ticTacToe[3][3];
     char winner;
    		for(i=1; i<10; i++){
    			players[i].winner0=0;
    			players[i].winnerX=0;
 		   }
-    
 		while(continue_==1 ||continue_==2 && pair<10){
 			ticTacToeLoop(ticTacToe);
 			winner='n';
@@ -62,6 +61,7 @@ int main(){
 			else{
 				printf("Nao houve vencedor.\n\nSelecione uma opção:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n");
 				fflush(stdin);
+				scanf("%d", &continue_);
 				if(continue_==2){
 					pair+=1;
 				}
