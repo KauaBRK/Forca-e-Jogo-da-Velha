@@ -14,6 +14,8 @@ typedef struct {/*STRUCT GLOBAL*/
 	int scoreSum[10][1];
 	char playerName[50];	
 }Player;
+Player players[10];
+/*STRUCT PRA ARMAZENAR OS DADOS DE ATE 10 PLAYERS*/
 
 void hangMan(int errors){/*DETERMINA O ESTADO ATUAL DA FORCA*/
   if(errors==0){
@@ -220,9 +222,6 @@ void hangManWordUser(char  secretWord[MAX_NUMBER_OF_CHAR], char  tipWord[MAX_NUM
 
 int main(){
   setlocale(LC_ALL,"portuguese");
-  Player
-   players[10];
-  /*STRUCT PRA ARMAZENAR OS DADOS DE ATE 10 PLAYERS*/
   char secretWord [MAX_NUMBER_OF_CHAR ] ,tipWord [MAX_NUMBER_OF_CHAR], screenWord [MAX_NUMBER_OF_CHAR ],guessWord;
   /*//PALAVRA SECRETA//
   //DICA//
@@ -241,98 +240,105 @@ int main(){
   /*QUANTIDADE DE PONTOS QUE CADA JOGADOR TEM EM ERROS E ACERTOS
   SOMA OU SUBTRACAO DESSES PONTOS*/
   	while (continue_ == 1 || continue_ == 2){/*PRIMEIRO LOOP ENQUANTO O JOGADOR CONTINUE QUERENDO JOGAR*/
-		loops+=1;/*ADICIONA UM AO LOOP DE GAMEPLAY*/
-  		system ("cls");
-  		errors = 0;/*ZERA OS ERROS*/
-  		if(playerAux==player){/*VEJO QUAL PLAYER ATUAL*/
-  			printf("\n   ##################\n   # JOGO DA FORCA  #\n   ##################\n\n Boas vindas! Digite o nome do jogador atual: ");
-    		gets(players[player].playerName);
-		  }
-    	system("cls");
-		hangManWordUser(secretWord, tipWord, screenWord);/*CHAMANDO A FUNCAO PARA DIZER A PALAVRA SECRETA, DICA E AFINS ATRIBUINDO ÀS MINHAS
-		VARIAVEIS ATUAIS*/
-		
-    	/*ESTA PRIMEIRA PARTE SERVE APENAS PRA ZERAR TODOS OS PARAMETROS*/
-    	
-    		while ( 1 ) {/*SEGUNDO LOOP*/
-    			fflush(stdin);
-    			madeMistake = 1;/*IGUALO SEMPRE O MADEMISTAKE A 1, POIS SE EU NAO CONSIDERO O JOGADOR ERRAR SEMPRE FICA MAIS DIFICIL DIZER SE ELE VAI ACERTAR*/
-    			printf ( "\n   ##################\n   # JOGO DA FORCA  #\n   ##################\n\n Bem vindo Jogador %s\n\n Número de letras da palavra: %lu\n\n A dica para a palavra é: %s\n\n Pontos do Jogador %s: %d\n\n" , players[player].playerName , strlen ( secretWord ), tipWord, players[player].playerName, players[player].scoreSum[player][1]);
-				hangMan ( errors );/*MOSTRO A FORCA BASEADA NOS ERROS*/
-    			printf ( "\nPalavra: %s\nDigite uma letra ou a palavra inteira: " , screenWord );
-    			
-    			guessWord=getch();/*DOU UM GETCH PARA CAPTURAR TUDO OQ O USUARIO DIGITA E FICANDO MAIS DINAMICO*/
-    			for ( i = 0; i < strlen ( screenWord ) ; i++){/*ESTE FOR DETERMINA SE O JOGADOR ACERTOU A LETRA.
-															    CASO SIM O JOGADOR NAO COMETEU ERRO
-															    CASO NAO O JOGADO COMETEU ERRO*/
-															    
-    					if ( guessWord  == secretWord [ i ] ){/*SE MEU CHUTE ATUAL FOR IGUAL A MINHA PALAVRA SECRETA NO CONTADOR I*/	
-      					screenWord [ i ] = guessWord;/*MINHA PALAVRA CODIFICADA RECEBE O CONTADOR I*/
-      					madeMistake = 0;/*ERRO NAO CONTABILIZADO*/
-    				}
-      			}	
-    			if ( madeMistake == 1 ) errors++;/*SE O MADEMISTAKE NAO FOR ZERADO OS ERROS SAO ADMITIDOS*/
-    			
-    			if ( strcmp ( secretWord , screenWord ) == 0){/*VERIFICANDO QUE O GANHADOR GANHOU*/
-    				
-    				streak ++;/*GANHA UMA STREAK DE VITORIA CONSECUTIVA*/
-      				system ( "cls" );
-      				
-      				if(streak>4){/*SE O JOGADOR GANHOU 5 PARTIDAS SEGUIDAS ELE RECEBE +2 PONTOS A CADA ACERTO SUBSEQUENTE*/
-						printf("\n\nO Jogador %d está numa streak de %d acertos!! +2 pontos pra você\n\n",player,streak);
-						playersScore[player][1]+=2;/*ADICIONANDO 2 PONTOS PRA CONTA DO PAI :)*/
-					}
-					
-      				hangMan ( errors );/*MOSTRA A FORCA FINAL E FINALIZA O JOGO*/
-      				printf ( "\nVoce acertou a palavra: %s\n\nVOCE VENCEU PARABENS!!!!\n\nDeseja continuar a jogar no mesmo jogador, deseja trocar de jogador ou deseja sair?\n1-Jogar no mesmo\n2-Trocar de jogador\n3-Sair\n" , secretWord );
-      				fflush(stdin);
-      				playersScore[player][1]++;/*ADICIONANDO UM ACERTO PARA O SCORE DO JOGADOR*/
-      				scoreSum[player][1]=playersScore[player][1]-playersScore[player][2];/*SUBTRAINDO OS ACERTOS PELOS ERROS PARA O PLACAR FINAL*/
-      				players[player].scoreSum[player][1]=scoreSum[player][1];/*ATRIBUINDO O SCORE DO PLAYER ATUAL AO MEUS STRUCT*/
-      				playerAux=player;/*VARIAVEL PARA TORNAR POSSIVEL PERCEBER SE O USUARIO TROCOU OU NAO*/
-      				playerAux+=1;/*DIFERE O PLAYERAUX DO PLAYER E SENDO ASSIM NAO FOI CONTABILIZADO A TROCA DE USUARIO*/
-      				continue_=hangManOption();/*CHAMO A FUNCAO DE OPCOES*/
-      				
-      				if ( continue_ == 2 ){/*SE O JOGADOR QUER TROCAR*/
-      					player++;/*ADICIONO UM PLAYER*/
-      					playerAux=player;/*O PLAYERAUX É A MESMA COISA DO PLAYER*/
-      					streak=0;/*ZERO AS STREAKS DE VITORIAS */
-      					break;
-      					
-			  		}
-      				break;/*CASO NAO QUEIRA MUDAR DE PLAYER SO REINICIA O LOOP
-					 	LEMBRANDO QUE O LOOP SO CONTINUA SE CONTINUE FOR IGUAL A SIM*/
-    			}
-    			else if ( strcmp ( secretWord , screenWord) != 0 && errors == 6 ){/*CASO O JOGADOR PERCA*/
-    		
-    				streak=0;/*AS STREAKS DE VITORIA SAO ZERADAS*/
-    				system ( "cls" );
-      				hangMan ( errors );/*MOSTRANDO FORCA FINAL*/
-      				printf ( "\nVoce errou a palavra: %s\n\nDeseja continuar a jogar no mesmo jogador, deseja trocar de jogador ou deseja sair?\n1-Jogar no mesmo\n2-Trocar de jogador\n3-Sair\n", secretWord );
-      				fflush ( stdin );
-      				playersScore[player][2]++;/*ADICIONANDO ERROS*/
-      				scoreSum[player][1]=playersScore[player][1]-playersScore[player][2];/*SUBTRAINDO ERROS POR ACERTOS PARA O PLACAR FINAL*/
-      				players[player].scoreSum[player][1]=scoreSum[player][1];/*ATRIBUINDO O SCORE AO STRUCT*/
-      				if(players[player].scoreSum[player][1]<0){/*CASO O SALDO DO SCORE ESTEJA NEGATIVO O SCORE É AUTOMATICAMENTE 0*/
-						players[player].scoreSum[player][1]=0;
-						playersScore[player][2]=0;
-					}
-      				playerAux=player;/*VARIAVEL PARA TORNAR POSSIVEL PERCEBER SE O USUARIO TROCOU OU NAO*/
-      				playerAux+=1;/*DIFERE O PLAYERAUX DO PLAYER E SENDO ASSIM NAO FOI CONTABILIZADO A TROCA DE USUARIO*/
-      				
-      				continue_=hangManOption();/*NOVAMENTE CHAMO A FUNCAO DE OPCOES*/
-      				if ( continue_ == 2 ){/*SE O JOGADOR QUER TROCAR*/
-      					player++;/*ADICIONO UM PLAYER*/
-      					playerAux=player;/*O PLAYERAUX É A MESMA COISA DO PLAYER*/
-      					streak=0;/*ZERO AS STREAKS DE VITORIAS */
-      					break;
-      					
-			  		}
-      				break;/*CASO NAO QUEIRA MUDAR DE PLAYER SO REINICIA O LOOP
-					 	LEMBRANDO QUE O LOOP SO CONTINUA SE CONTINUE FOR IGUAL A SIM*/
-    			}
-    				system ( "cls" );
-    		}
+		if(player<10){
+			loops+=1;/*ADICIONA UM AO LOOP DE GAMEPLAY*/
+	  		system ("cls");
+	  		errors = 0;/*ZERA OS ERROS*/
+	  		if(playerAux==player){/*VEJO QUAL PLAYER ATUAL*/
+	  			printf("\n   ##################\n   # JOGO DA FORCA  #\n   ##################\n\n Boas vindas! Digite o nome do jogador atual: ");
+	    		gets(players[player].playerName);
+			  }
+	    	system("cls");
+			hangManWordUser(secretWord, tipWord, screenWord);/*CHAMANDO A FUNCAO PARA DIZER A PALAVRA SECRETA, DICA E AFINS ATRIBUINDO ÀS MINHAS
+			VARIAVEIS ATUAIS*/
+			
+	    	/*ESTA PRIMEIRA PARTE SERVE APENAS PRA ZERAR TODOS OS PARAMETROS*/
+	    	
+	    		while ( 1 ) {/*SEGUNDO LOOP*/
+	    			fflush(stdin);
+	    			madeMistake = 1;/*IGUALO SEMPRE O MADEMISTAKE A 1, POIS SE EU NAO CONSIDERO O JOGADOR ERRAR SEMPRE FICA MAIS DIFICIL DIZER SE ELE VAI ACERTAR*/
+	    			printf ( "\n   ##################\n   # JOGO DA FORCA  #\n   ##################\n\n Bem vindo Jogador %s\n\n Número de letras da palavra: %lu\n\n A dica para a palavra é: %s\n\n Pontos do Jogador %s: %d\n\n" , players[player].playerName , strlen ( secretWord ), tipWord, players[player].playerName, players[player].scoreSum[player][1]);
+					hangMan ( errors );/*MOSTRO A FORCA BASEADA NOS ERROS*/
+	    			printf ( "\nPalavra: %s\nDigite uma letra ou a palavra inteira: " , screenWord );
+	    			
+	    			guessWord=getch();/*DOU UM GETCH PARA CAPTURAR TUDO OQ O USUARIO DIGITA E FICANDO MAIS DINAMICO*/
+	    			for ( i = 0; i < strlen ( screenWord ) ; i++){/*ESTE FOR DETERMINA SE O JOGADOR ACERTOU A LETRA.
+																    CASO SIM O JOGADOR NAO COMETEU ERRO
+																    CASO NAO O JOGADO COMETEU ERRO*/
+																    
+	    					if ( guessWord  == secretWord [ i ] ){/*SE MEU CHUTE ATUAL FOR IGUAL A MINHA PALAVRA SECRETA NO CONTADOR I*/	
+	      					screenWord [ i ] = guessWord;/*MINHA PALAVRA CODIFICADA RECEBE O CONTADOR I*/
+	      					madeMistake = 0;/*ERRO NAO CONTABILIZADO*/
+	    				}
+	      			}	
+	    			if ( madeMistake == 1 ) errors++;/*SE O MADEMISTAKE NAO FOR ZERADO OS ERROS SAO ADMITIDOS*/
+	    			
+	    			if ( strcmp ( secretWord , screenWord ) == 0){/*VERIFICANDO QUE O GANHADOR GANHOU*/
+	    				
+	    				streak ++;/*GANHA UMA STREAK DE VITORIA CONSECUTIVA*/
+	      				system ( "cls" );
+	      				
+	      				if(streak>4){/*SE O JOGADOR GANHOU 5 PARTIDAS SEGUIDAS ELE RECEBE +2 PONTOS A CADA ACERTO SUBSEQUENTE*/
+							printf("\n\nO Jogador %d está numa streak de %d acertos!! +2 pontos pra você\n\n",player,streak);
+							playersScore[player][1]+=2;/*ADICIONANDO 2 PONTOS PRA CONTA DO PAI :)*/
+						}
+						
+	      				hangMan ( errors );/*MOSTRA A FORCA FINAL E FINALIZA O JOGO*/
+	      				printf ( "\nVoce acertou a palavra: %s\n\nVOCE VENCEU PARABENS!!!!\n\nDeseja continuar a jogar no mesmo jogador, deseja trocar de jogador ou deseja sair?\n1-Jogar no mesmo\n2-Trocar de jogador\n3-Sair\n" , secretWord );
+	      				fflush(stdin);
+	      				playersScore[player][1]++;/*ADICIONANDO UM ACERTO PARA O SCORE DO JOGADOR*/
+	      				scoreSum[player][1]=playersScore[player][1]-playersScore[player][2];/*SUBTRAINDO OS ACERTOS PELOS ERROS PARA O PLACAR FINAL*/
+	      				players[player].scoreSum[player][1]=scoreSum[player][1];/*ATRIBUINDO O SCORE DO PLAYER ATUAL AO MEUS STRUCT*/
+	      				playerAux=player;/*VARIAVEL PARA TORNAR POSSIVEL PERCEBER SE O USUARIO TROCOU OU NAO*/
+	      				playerAux+=1;/*DIFERE O PLAYERAUX DO PLAYER E SENDO ASSIM NAO FOI CONTABILIZADO A TROCA DE USUARIO*/
+	      				continue_=hangManOption();/*CHAMO A FUNCAO DE OPCOES*/
+	      				
+	      				if ( continue_ == 2 ){/*SE O JOGADOR QUER TROCAR*/
+	      					player++;/*ADICIONO UM PLAYER*/
+	      					playerAux=player;/*O PLAYERAUX É A MESMA COISA DO PLAYER*/
+	      					streak=0;/*ZERO AS STREAKS DE VITORIAS */
+	      					break;
+	      					
+				  		}
+	      				break;/*CASO NAO QUEIRA MUDAR DE PLAYER SO REINICIA O LOOP
+						 	LEMBRANDO QUE O LOOP SO CONTINUA SE CONTINUE FOR IGUAL A SIM*/
+	    			}
+	    			else if ( strcmp ( secretWord , screenWord) != 0 && errors == 6 ){/*CASO O JOGADOR PERCA*/
+	    		
+	    				streak=0;/*AS STREAKS DE VITORIA SAO ZERADAS*/
+	    				system ( "cls" );
+	      				hangMan ( errors );/*MOSTRANDO FORCA FINAL*/
+	      				printf ( "\nVoce errou a palavra: %s\n\nDeseja continuar a jogar no mesmo jogador, deseja trocar de jogador ou deseja sair?\n1-Jogar no mesmo\n2-Trocar de jogador\n3-Sair\n", secretWord );
+	      				fflush ( stdin );
+	      				playersScore[player][2]++;/*ADICIONANDO ERROS*/
+	      				scoreSum[player][1]=playersScore[player][1]-playersScore[player][2];/*SUBTRAINDO ERROS POR ACERTOS PARA O PLACAR FINAL*/
+	      				players[player].scoreSum[player][1]=scoreSum[player][1];/*ATRIBUINDO O SCORE AO STRUCT*/
+	      				if(players[player].scoreSum[player][1]<0){/*CASO O SALDO DO SCORE ESTEJA NEGATIVO O SCORE É AUTOMATICAMENTE 0*/
+							players[player].scoreSum[player][1]=0;
+							playersScore[player][2]=0;
+						}
+	      				playerAux=player;/*VARIAVEL PARA TORNAR POSSIVEL PERCEBER SE O USUARIO TROCOU OU NAO*/
+	      				playerAux+=1;/*DIFERE O PLAYERAUX DO PLAYER E SENDO ASSIM NAO FOI CONTABILIZADO A TROCA DE USUARIO*/
+	      				
+	      				continue_=hangManOption();/*NOVAMENTE CHAMO A FUNCAO DE OPCOES*/
+	      				if ( continue_ == 2 ){/*SE O JOGADOR QUER TROCAR*/
+	      					player++;/*ADICIONO UM PLAYER*/
+	      					playerAux=player;/*O PLAYERAUX É A MESMA COISA DO PLAYER*/
+	      					streak=0;/*ZERO AS STREAKS DE VITORIAS */
+	      					break;
+	      					
+				  		}
+	      				break;/*CASO NAO QUEIRA MUDAR DE PLAYER SO REINICIA O LOOP
+						 	LEMBRANDO QUE O LOOP SO CONTINUA SE CONTINUE FOR IGUAL A SIM*/
+	    			}
+	    				system ( "cls" );
+	    		}
+		}
+		else{
+			printf("\nNúmero maximo de players, encerrando o jogo da forca.");
+			system("pause");
+			continue_=3;
+		}
   	}
   	system ( "cls" );
   	printf ("\n\n\nOBRIGADO POR JOGAR %d VEZES O JOGO DA FORCA!\n\n ##########\n # Placar #\n ##########\n\n", loops );

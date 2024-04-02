@@ -6,6 +6,7 @@
 typedef struct{
 	int winnerX, winner0, counter;
 }player;
+player players[10];
 
 int plays;
 
@@ -16,7 +17,6 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption);
 
 int main(){
 	setlocale(LC_ALL,"portuguese");
-	player players[10];
 	int lineChoose, xOption, winnerX=0, winner0=0, plays=0, pair=1, i,continue_=1;
     char ticTacToe[3][3];
     char winner;
@@ -24,49 +24,57 @@ int main(){
    			players[i].winner0=0;
    			players[i].winnerX=0;
 		   }
-		while(continue_==1 ||continue_==2 && pair<10){
-			ticTacToeLoop(ticTacToe);
-			winner='n';
-			xOption=1;
-			plays=0;
-			while(winner=='n'){
-				printf("\n\n\tDupla %d\n", pair);
-				xOption=ticTacToeSwitchCase(ticTacToe,xOption);
-				
-				winner=ticTacToeCheckWins(ticTacToe, winner);
-				
-				if(plays==9 && winner=='n') break;	
-			}
-			system("cls");
-			printf("\n\n    Dupla %d Resultados\n", pair);
-			ticTacToePrint(ticTacToe);
-			
-			if(winner=='X'){
-				players[pair].winnerX++;
-				players[pair].counter=1;
-				}
-			if(winner=='0'){
-					players[pair].winner0++;
-					players[pair].counter=1;
-				}
-			if(winner!='n'){
-				printf("O Ganhador foi o jogador: ' %c '\n\nSelecione uma opÃ§Ã£o:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n", winner);
-				fflush(stdin);
-				scanf("%d", &continue_);
-				if(continue_==2){
-					pair+=1;
+		while(continue_==1 ||continue_==2){
+			if(pair<10){
+				ticTacToeLoop(ticTacToe);
+				winner='n';
+				xOption=1;
+				plays=0;
+				while(winner=='n'){
+					printf("\n\n\tDupla %d\n", pair);
+					xOption=ticTacToeSwitchCase(ticTacToe,xOption);
+					
+					winner=ticTacToeCheckWins(ticTacToe, winner);
+					
+					if(plays==9 && winner=='n') break;	
 				}
 				system("cls");
+				printf("\n\n    Dupla %d Resultados\n", pair);
+				ticTacToePrint(ticTacToe);
+				
+				if(winner=='X'){
+					players[pair].winnerX++;
+					players[pair].counter=1;
+					}
+				if(winner=='0'){
+						players[pair].winner0++;
+						players[pair].counter=1;
+					}
+				if(winner!='n'){
+					printf("O Ganhador foi o jogador: ' %c '\n\nSelecione uma opção:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n", winner);
+					fflush(stdin);
+					scanf("%d", &continue_);
+					if(continue_==2){
+						pair+=1;
+					}
+					system("cls");
+				}
+				else{
+					printf("Nao houve vencedor.\n\nSelecione uma opção:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n");
+					fflush(stdin);
+					scanf("%d", &continue_);
+					if(continue_==2){
+						pair+=1;
+					}
+					system("cls");
+				}
 			}
 			else{
-				printf("Nao houve vencedor.\n\nSelecione uma opÃ§Ã£o:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n");
-				fflush(stdin);
-				scanf("%d", &continue_);
-				if(continue_==2){
-					pair+=1;
-				}
-				system("cls");
+				printf("\nNúmero maximo de players, encerrando o jogo da forca.");
+			  	system("pause");
+			  	continue_=3;
 			}
+			
 		}
 		printf("\n\tObrigado por jogar :)\n\n\n\t############\n\t###PLACAR###\n\t############\n\n");
 		for( i=1; i < 10; i++){
@@ -147,7 +155,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption){
 					}		
 				}
 	    		else{
-	    			printf("\nEste local ja foi jogado ou opÃ§Ã£o invalida\n");
+	    			printf("\nEste local ja foi jogado ou opção invalida\n");
 	    			system("pause");
 	    			break;
 				}
@@ -168,7 +176,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption){
 					}			
 				}
 	    		else{
-	    			printf("\nEste local ja foi jogado ou opÃ§Ã£o invalida\n");
+	    			printf("\nEste local ja foi jogado ou opção invalida\n");
 	    			system("pause");
 	    			break;
 				}
@@ -189,7 +197,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption){
 					}
 				}
 	    		else{
-	    			printf("\nEste local ja foi jogado ou opÃ§Ã£o invalida\n");
+	    			printf("\nEste local ja foi jogado ou opção invalida\n");
 	    			system("pause");
 	    			break;
 				}
@@ -210,7 +218,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption){
 					}
 				}
 	    		else{
-	    			printf("\nEste local ja foi jogado ou opÃ§Ã£o invalida\n");
+	    			printf("\nEste local ja foi jogado ou opção invalida\n");
 	    			system("pause");
 	    			break;
 	    		}
@@ -231,7 +239,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption){
 					}
 				}
 	    		else{
-	    			printf("\nEste local ja foi jogado ou opÃ§Ã£o invalida\n");
+	    			printf("\nEste local ja foi jogado ou opção invalida\n");
 	    			system("pause");
 	    			break;
 	    		}
@@ -252,7 +260,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption){
 					}
 				}
 	    		else{
-	    			printf("\nEste local ja foi jogado ou opÃ§Ã£o invalida\n");
+	    			printf("\nEste local ja foi jogado ou opção invalida\n");
 	    			system("pause");
 	    			break;
 	    		}
@@ -273,7 +281,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption){
 					}
 				}
 	    		else{
-	    			printf("\nEste local ja foi jogado ou opÃ§Ã£o invalida\n");
+	    			printf("\nEste local ja foi jogado ou opção invalida\n");
 	    			system("pause");
 	    			break;
 	    		}
@@ -294,7 +302,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption){
 					}
 				}
 	    		else{
-	    			printf("\nEste local ja foi jogado ou opÃ§Ã£o invalida\n");
+	    			printf("\nEste local ja foi jogado ou opção invalida\n");
 	    			system("pause");
 	    			break;
 	    		}
@@ -315,7 +323,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption){
 					}
 				}
 	    		else{
-	    			printf("\nEste local ja foi jogado ou opÃ§Ã£o invalida\n");
+	    			printf("\nEste local ja foi jogado ou opção invalida\n");
 	    			system("pause");
 	    			break;
 	    		}

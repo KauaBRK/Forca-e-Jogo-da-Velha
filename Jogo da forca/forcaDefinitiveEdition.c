@@ -15,18 +15,20 @@ typedef struct {
 	char playerName[50];	
 }Player;
 
+Player players[10];
+
 void hangMan(int errors);
 int hangManOption();
 void hangManWordUser( char  secretWord[MAX_NUMBER_OF_CHAR ], char  tipWord[20], char  screenWord[MAX_NUMBER_OF_CHAR ]);
 
 int main(){
   setlocale(LC_ALL,"portuguese");
-  Player players[10];
   int player = 1 , playerAux = 1, madeMistake ,option, errors=0 ,i, continue_=1, loops=0, streak=0;
   int playersScore[10][2]={0,0}, scoreSum[10][1]={0};
   char secretWord [MAX_NUMBER_OF_CHAR ] ,tipWord [MAX_NUMBER_OF_CHAR], screenWord [MAX_NUMBER_OF_CHAR ],guessWord;
   	while (continue_ == 1 || continue_ == 2){
-		loops+=1;
+  		if(player<10){
+  			loops+=1;
   		system ("cls");
   		errors = 0;
   		if(playerAux==player){
@@ -108,6 +110,12 @@ int main(){
     			}
     				system ( "cls" );
     		}
+		  }
+		  else {
+		  	printf("\nNúmero maximo de players, encerrando o jogo da forca.");
+		  	system("pause");
+		  	continue_=3;
+		  }
   	}
   	system ( "cls" );
   	printf ("\n\n\nOBRIGADO POR JOGAR %d VEZES O JOGO DA FORCA!\n\n ##########\n # Placar #\n ##########\n\n", loops );
