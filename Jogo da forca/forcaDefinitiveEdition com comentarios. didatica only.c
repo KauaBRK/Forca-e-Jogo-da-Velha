@@ -107,27 +107,28 @@ int hangManOption(){/*É UMA FUNCAO PARA DELIMITAR AS OPCOES DO USUARIO*/
 		aux = scanf("%d", &option);/*ESTA VARIAVEL AUXILIAR VAI VER SE ESTA DIGITANDO UM NUMERO, SE FOR LETRA NAO TERMINA A FUNCAO E REINICIA O LOOP*/
 		fflush(stdin);
 		while ( correctOption != 1 ){/*SEGUNDO LOOP PARA VER SE A OPCAO DIGITADA É VALIDA*/
-    			fflush ( stdin );
-  				for(i = 0; i <= 51; i++){/*ESTE FOR VAI DE 0 A 51 QUE É O NUMERO DE TENTATIVAS MAXIMAS*/
-  					if (option==1 || option==2 || option==3){/*CASO A OPCAO SEJA VALIDA O LOOP ACABA*/
-  						fflush ( stdin );
-  						correctOption = 1;/*CASO ESTEJA CERTO VIRA 1 E TERMINA O 2DO LOOP*/
-			  		}
-			  		else{
-			  			
-			  			fflush ( stdin );
-			  			printf ( "\nOpção inválida. Digite novamente.\n " );/*CASO O LOOP DO FOR REINICIE APARECE ESTA MENSAGEM*/
-			  			correctOption = 0;
-			  			aux = scanf("%d", &option);
-						fflush(stdin);
-			  			tryNumber++;/*ACUMULANDO TENTATIVAS*/
-			  		}
-			  		if(tryNumber == 51){/*CASO AS TENTATIVAS EXCEDAM 51 O PROGRAMA ENCERRA.*/
-			  			printf("\nNumero de tentativas excedidas. Encerrando programa");
-			  			abort();
-					}
-		  		}
-		  		system("cls");
+    		fflush ( stdin );
+  			for(i = 0; i <= 51; i++){/*ESTE FOR VAI DE 0 A 51 QUE É O NUMERO DE TENTATIVAS MAXIMAS*/
+  				if (option==1 || option==2 || option==3){/*CASO A OPCAO SEJA VALIDA O LOOP ACABA*/
+  					fflush ( stdin );
+  					correctOption = 1;/*CASO ESTEJA CERTO VIRA 1 E TERMINA O 2DO LOOP*/
+			  	}
+			  	else{
+			  		
+			  		fflush ( stdin );
+			  		printf ( "\nOpção inválida. Digite novamente.\n " );/*CASO O LOOP DO FOR REINICIE APARECE ESTA MENSAGEM*/
+			  		correctOption = 0;
+			  		aux = scanf("%d", &option);
+					fflush(stdin);
+			  		tryNumber++;/*ACUMULANDO TENTATIVAS*/
+			  	}
+			  	if(tryNumber == 51){/*CASO AS TENTATIVAS EXCEDAM 51 O PROGRAMA ENCERRA.*/
+			  		printf("\nNumero de tentativas excedidas. Encerrando programa");
+			  		option=2;/*DEFAULT*/
+			  		break;
+				}
+		  	}
+		  	system("cls");
 	  	}
 	}while(aux == 0 && option<=3);/*ESTA VARIAVEL AUXILIAR TEM DE SER = 1 POIS SO PODE SER NUMERO
 	FIM DO 1RO LOOP*/
@@ -163,24 +164,24 @@ void hangManWordUser(char  secretWord[MAX_NUMBER_OF_CHAR], char  tipWord[MAX_NUM
 				system("cls");
 				
 				if (option == 1 ){/*CASO O JOGADOR ESCOLHA DIGITAR A PALAVRA ELE ESTÁ QUERENDO DESAFIAR OUTRA PESSOA*/
-  				fflush(stdin);
-    			printf ( "\n\nBoa escolha!\nDigite qual vai ser a palavra secreta:" );
-
-    			for(i=0; i<MAX_NUMBER_OF_CHAR; i++){
-    				
-    				scanf("%c", &secretWordAux);/*RECOLHO A PALAVRA*/
-    						secretWord[i]=secretWordAux;/*PALAVRA SECRETA RECEBE A AUXILIAR*/
-    				
-    				if(secretWordAux=='\n'){/*CASO HAJA QUEBRA LINHA OU SEJA, ENTER, O FOR ACABA*/
-    					break;
+	  				fflush(stdin);
+	    			printf ( "\n\nBoa escolha!\nDigite qual vai ser a palavra secreta:" );
+	
+	    			for(i=0; i<MAX_NUMBER_OF_CHAR; i++){
+						
+	    				scanf("%c", &secretWordAux);/*RECOLHO A PALAVRA*/
+	    					secretWord[i]=secretWordAux;/*PALAVRA SECRETA RECEBE A AUXILIAR*/
+	    				
+	    				if(secretWordAux=='\n'){/*CASO HAJA QUEBRA LINHA OU SEJA, ENTER, O FOR ACABA*/
+	    					break;
+						}
 					}
-				}
-				
-				secretWord[i-0]='\0';/*IGUALO A PALAVRA EM NULO PARA QUE NAO HAJA ESPAÇOS SOBRESSALENTES*/
-	  			fflush ( stdin );
-   				printf ( "\n\nAgora digite a dica para esta palavra: " );/*RECOLHO A DICA*/
-				gets(tipWord);
-				break;/*FIM LOOP 2*/
+					
+					secretWord[i-0]='\0';/*IGUALO A PALAVRA EM NULO PARA QUE NAO HAJA ESPAÇOS SOBRESSALENTES*/
+		  			fflush ( stdin );
+	   				printf ( "\n\nAgora digite a dica para esta palavra: " );/*RECOLHO A DICA*/
+					gets(tipWord);
+					break;/*FIM LOOP 2*/
 	 			}
 		 		if(option==2){/*CASO O JOGADOR QUEIRA O BANCO DE DADOS*/
 					fflush(stdin);
@@ -213,13 +214,12 @@ void hangManWordUser(char  secretWord[MAX_NUMBER_OF_CHAR], char  tipWord[MAX_NUM
 				}
 			}/*FIM DO SEGUNDO LOOP*/
 			break;
-		}/*FIM DO PRIMEIRO LOOP*/
-			
+		}/*FIM DO PRIMEIRO LOOP*/	
 		strlwr(secretWord);/*ESTOU DEIXANDO A PALAVRA SECRETA EM MINUSCULO*/
 		strcpy ( screenWord , secretWord );/*ESTOU COPIANDO A PALAVRA SECRETA PARA A PALAVRA QUE VAI PRO USUARIO*/
-		for ( i = 0; i < strlen ( screenWord ) ; i++){/*ESTE FOR SERVE PARA CODIFICAR A PALAVRA EM "----"*/
-    		screenWord [ i ]  = '_';
-  		}
+		
+		for ( i = 0; i < strlen ( screenWord ) ; i++) screenWord [ i ]  = '_';/*ESTE FOR SERVE PARA CODIFICAR A PALAVRA EM "----"*/
+
   		printf ( "\n #########################################\n  Tudo pronto pro jogador começar a jogar \n #########################################\n\n");
   		system ( "pause" );
   		system ( "cls" );
@@ -246,6 +246,7 @@ int main(){
   SOMA OU SUBTRACAO DESSES PONTOS*/
   FILE *highScore;
   	while (continue_ == 1 || continue_ == 2){/*PRIMEIRO LOOP ENQUANTO O JOGADOR CONTINUE QUERENDO JOGAR*/
+  	/*ESTA PRIMEIRA PARTE SERVE APENAS PRA ZERAR TODOS OS PARAMETROS*/
 		if(player<10){/*DETERMINA APENAS 9 players no total*/
 			loops+=1;/*ADICIONA UM AO LOOP DE GAMEPLAY*/
 	  		system ("cls");
@@ -253,14 +254,12 @@ int main(){
 	  		if(playerAux==player){/*VEJO QUAL PLAYER ATUAL*/
 	  			printf("\n   ##################\n   # JOGO DA FORCA  #\n   ##################\n\n Boas vindas! Digite o nome do jogador atual: ");
 	    		gets(players[player].playerName);
-			  }
+			}
 	    	system("cls");
 			hangManWordUser(secretWord, tipWord, screenWord);/*CHAMANDO A FUNCAO PARA DIZER A PALAVRA SECRETA, DICA E AFINS ATRIBUINDO ÀS MINHAS
 			VARIAVEIS ATUAIS*/
-			
-	    	/*ESTA PRIMEIRA PARTE SERVE APENAS PRA ZERAR TODOS OS PARAMETROS*/
-	    	
 	    		while ( 1 ) {/*SEGUNDO LOOP*/
+	    		
 	    			fflush(stdin);
 	    			madeMistake = 1;/*IGUALO SEMPRE O MADEMISTAKE A 1, POIS SE EU NAO CONSIDERO O JOGADOR ERRAR SEMPRE FICA MAIS DIFICIL DIZER SE ELE VAI ACERTAR*/
 	    			printf ( "\n   ##################\n   # JOGO DA FORCA  #\n   ##################\n\n Bem vindo Jogador %s\n\n Número de letras da palavra: %lu\n\n A dica para a palavra é: %s\n\n Pontos do Jogador %s: %d\n\n" , players[player].playerName , strlen ( secretWord ), tipWord, players[player].playerName, players[player].scoreSum[player][1]);
@@ -271,9 +270,9 @@ int main(){
 																    CASO SIM O JOGADOR NAO COMETEU ERRO
 																    CASO NAO O JOGADO COMETEU ERRO*/
 																    
-	    					if ( guessWord  == secretWord [ i ] ){/*SE MEU CHUTE ATUAL FOR IGUAL A MINHA PALAVRA SECRETA NO CONTADOR I*/	
-	      					screenWord [ i ] = guessWord;/*MINHA PALAVRA CODIFICADA RECEBE O CONTADOR I*/
-	      					madeMistake = 0;/*ERRO NAO CONTABILIZADO*/
+	    				if ( guessWord  == secretWord [ i ] ){/*SE MEU CHUTE ATUAL FOR IGUAL A MINHA PALAVRA SECRETA NO CONTADOR I*/	
+	      				screenWord [ i ] = guessWord;/*MINHA PALAVRA CODIFICADA RECEBE O CONTADOR I*/
+	      				madeMistake = 0;/*ERRO NAO CONTABILIZADO*/
 	    				}
 	      			}	
 	    			if ( madeMistake == 1 ) errors++;/*SE O MADEMISTAKE NAO FOR ZERADO OS ERROS SAO ADMITIDOS*/
@@ -302,8 +301,7 @@ int main(){
 	      					player++;/*ADICIONO UM PLAYER*/
 	      					playerAux=player;/*O PLAYERAUX É A MESMA COISA DO PLAYER*/
 	      					streak=0;/*ZERO AS STREAKS DE VITORIAS */
-	      					break;
-	      					
+	      					break;	
 				  		}
 	      				break;/*CASO NAO QUEIRA MUDAR DE PLAYER SO REINICIA O LOOP
 						 	LEMBRANDO QUE O LOOP SO CONTINUA SE CONTINUE FOR IGUAL A SIM*/
@@ -330,8 +328,7 @@ int main(){
 	      					player++;/*ADICIONO UM PLAYER*/
 	      					playerAux=player;/*O PLAYERAUX É A MESMA COISA DO PLAYER*/
 	      					streak=0;/*ZERO AS STREAKS DE VITORIAS */
-	      					break;
-	      					
+	      					break;	
 				  		}
 	      				break;/*CASO NAO QUEIRA MUDAR DE PLAYER SO REINICIA O LOOP
 						 	LEMBRANDO QUE O LOOP SO CONTINUA SE CONTINUE FOR IGUAL A SIM*/
@@ -352,7 +349,7 @@ int main(){
   	int auxScore;/*AUXILIAR PRA TOPSCORE*/
 	  	highScore = fopen("HighScore.txt", "r");/*CHAMO O TEXTO DE HIGHSCORE E DOU READ*/
 	  	fscanf(highScore, "%d", &topScore.topTier);/*ATRIBUO O HIGHSCORE CONTIDO NA VARIAVEL TOP TIER*/
-	  	fscanf(highScore, "%s", topScore.playerName);/*ATRIBUO O NOME DE HIGHSCORE CONTIDO NA VARIAVEL PLAYER NAME*/
+	  	while(fgets(topScore.playerName, 50, highScore) != NULL);/*ATRIBUO O NOME DE HIGHSCORE CONTIDO NA VARIAVEL PLAYER NAME*/
 			for( i = 0 ; i < playerAux; i++){/*ESTE FOR VAI COMPARAR OS DADOS*/
 				auxScore=players[player].scoreSum[player][1];/*ATRIBUO AUXILIAR NO SCORE TOTAL*/
 				if(auxScore>=topScore.topTier){/*VEJO SE O SCORE TOTAL ATUAL É MAIOR QUE O HIGHSCORE
@@ -361,8 +358,8 @@ int main(){
 					topScore.topTier=auxScore;/*TOPSCORE É IGUALADO AO SCORE ATUAL*/
 					strcpy(topScore.playerName ,players[player].playerName);/*COPIANDO O NOME DO SCORE ATUAL PRO TOPSCORE*/
 					highScore = fopen("HighScore.txt", "w");/*COMEÇO A SOBRESCREVER O CODIGO*/
-					fprintf(highScore,"/*Pontos: */%d", auxScore);/*ATRIBUO AUXSCORE IGUALADO*/
-					fprintf(highScore,"\n/*Nome: */%s",topScore.playerName);/*ATRIBUO O NOME SOBRESCRITO*/
+					fprintf(highScore,"%d", auxScore);/*ATRIBUO AUXSCORE IGUALADO*/
+					fprintf(highScore,"\n%s",topScore.playerName);/*ATRIBUO O NOME SOBRESCRITO*/
 					fclose(highScore);/*FECHO O WRITE*/
 				}
 				printf ("\n XXXXXXXXXXXXXXXXX\n X %s \n X Pontos: %d \n XXXXXXXXXXXXXXXXX\n\n", players[player].playerName, players[player].scoreSum[player][1]);

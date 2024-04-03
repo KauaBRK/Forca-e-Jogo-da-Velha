@@ -310,11 +310,11 @@ int main(){
 				if(winner=='X'){
 					players[pair].winnerX++;/*ATRIBUINDO UM PONTO PRA X PARA O PLACAR*/
 					players[pair].counter=1;/*ATRIBUO 1 AO CONTADOR POR FINS DE CONTROLE*/
-					}
+				}
 				if(winner=='0'){
 						players[pair].winner0++;/*ATRIBUINDO UM PONTO PRA 0 PARA O PLACAR*/
 						players[pair].counter=1;/*ATRIBUO 1 AO CONTADOR POR FINS DE CONTROLE*/
-					}
+				}
 				if(winner!='n'){/*SE WINNER NAO FOR MAIS NONE O GANHADOR RECEBE WINNER*/
 					printf("O Ganhador foi o jogador: ' %c '\n\nSelecione uma opção:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n", winner);
 					fflush(stdin);

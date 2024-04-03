@@ -23,7 +23,7 @@ int main(){
    		for(i=1; i<10; i++){
    			players[i].winner0=0;
    			players[i].winnerX=0;
-		   }
+		}
 		while(continue_==1 ||continue_==2){
 			if(pair<10){
 				ticTacToeLoop(ticTacToe);
@@ -45,11 +45,11 @@ int main(){
 				if(winner=='X'){
 					players[pair].winnerX++;
 					players[pair].counter=1;
-					}
+				}
 				if(winner=='0'){
 						players[pair].winner0++;
 						players[pair].counter=1;
-					}
+				}
 				if(winner!='n'){
 					printf("O Ganhador foi o jogador: ' %c '\n\nSelecione uma opção:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n", winner);
 					fflush(stdin);
