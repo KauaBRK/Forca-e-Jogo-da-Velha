@@ -361,8 +361,8 @@ int main(){
 					topScore.topTier=auxScore;/*TOPSCORE É IGUALADO AO SCORE ATUAL*/
 					strcpy(topScore.playerName ,players[player].playerName);/*COPIANDO O NOME DO SCORE ATUAL PRO TOPSCORE*/
 					highScore = fopen("HighScore.txt", "w");/*COMEÇO A SOBRESCREVER O CODIGO*/
-					fprintf(highScore,"%d", auxScore);/*ATRIBUO AUXSCORE IGUALADO*/
-					fprintf(highScore,"\n%s",topScore.playerName);/*ATRIBUO O NOME SOBRESCRITO*/
+					fprintf(highScore,"/*Pontos: */%d", auxScore);/*ATRIBUO AUXSCORE IGUALADO*/
+					fprintf(highScore,"\n/*Nome: */%s",topScore.playerName);/*ATRIBUO O NOME SOBRESCRITO*/
 					fclose(highScore);/*FECHO O WRITE*/
 				}
 				printf ("\n XXXXXXXXXXXXXXXXX\n X %s \n X Pontos: %d \n XXXXXXXXXXXXXXXXX\n\n", players[player].playerName, players[player].scoreSum[player][1]);

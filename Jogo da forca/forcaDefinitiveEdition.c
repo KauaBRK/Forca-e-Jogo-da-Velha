@@ -140,8 +140,8 @@ int main(){
 					topScore.topTier=auxScore;
 					strcpy(topScore.playerName ,players[player].playerName);
 					highScore = fopen("HighScore.txt", "w");
-					fprintf(highScore,"%d", auxScore);
-					fprintf(highScore,"\n%s",topScore.playerName);
+					fprintf(highScore,"/*Pontos: */%d", auxScore);
+					fprintf(highScore,"\n/*Nome: */%s",topScore.playerName);
 					fclose(highScore);
 				}
 				printf ("\n XXXXXXXXXXXXXXXXX\n X %s \n X Pontos: %d \n XXXXXXXXXXXXXXXXX\n\n", players[player].playerName, players[player].scoreSum[player][1]);
