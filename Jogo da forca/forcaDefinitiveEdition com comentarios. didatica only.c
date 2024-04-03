@@ -10,12 +10,17 @@
 #define MAX_NUMBER_OF_WORDS 216/*DEFINI O MAXIMO DE PALAVRAS EM 216 QUE ESTOU USANDO NO MOMENTO*/
 #define MAX_NUMBER_OF_CATEGORY 10/*NUMERO DE PALAVRAS DISTRIBUIDAS EM 10 CATEGORIAS*/
 
-typedef struct {/*STRUCT GLOBAL*/
+typedef struct {
 	int scoreSum[10][1];
 	char playerName[50];	
-}Player;
+}Player;/*STRUCT PRA ARMAZENAR OS DADOS DE ATE 10 PLAYERS*/
+typedef struct{
+	int topTier;
+	char playerName[50];
+}HighScore;/*STRUCT PRA ARMAZENAR OS DADOS DE HIGHSCORE*/
+
 Player players[10];
-/*STRUCT PRA ARMAZENAR OS DADOS DE ATE 10 PLAYERS*/
+HighScore topScore;
 
 void hangMan(int errors){/*DETERMINA O ESTADO ATUAL DA FORCA*/
   if(errors==0){
@@ -239,8 +244,9 @@ int main(){
   int playersScore[10][2]={0,0}, scoreSum[10][1]={0};
   /*QUANTIDADE DE PONTOS QUE CADA JOGADOR TEM EM ERROS E ACERTOS
   SOMA OU SUBTRACAO DESSES PONTOS*/
+  FILE *highScore;
   	while (continue_ == 1 || continue_ == 2){/*PRIMEIRO LOOP ENQUANTO O JOGADOR CONTINUE QUERENDO JOGAR*/
-		if(player<10){
+		if(player<10){/*DETERMINA APENAS 9 players no total*/
 			loops+=1;/*ADICIONA UM AO LOOP DE GAMEPLAY*/
 	  		system ("cls");
 	  		errors = 0;/*ZERA OS ERROS*/
@@ -260,7 +266,6 @@ int main(){
 	    			printf ( "\n   ##################\n   # JOGO DA FORCA  #\n   ##################\n\n Bem vindo Jogador %s\n\n Número de letras da palavra: %lu\n\n A dica para a palavra é: %s\n\n Pontos do Jogador %s: %d\n\n" , players[player].playerName , strlen ( secretWord ), tipWord, players[player].playerName, players[player].scoreSum[player][1]);
 					hangMan ( errors );/*MOSTRO A FORCA BASEADA NOS ERROS*/
 	    			printf ( "\nPalavra: %s\nDigite uma letra ou a palavra inteira: " , screenWord );
-	    			
 	    			guessWord=getch();/*DOU UM GETCH PARA CAPTURAR TUDO OQ O USUARIO DIGITA E FICANDO MAIS DINAMICO*/
 	    			for ( i = 0; i < strlen ( screenWord ) ; i++){/*ESTE FOR DETERMINA SE O JOGADOR ACERTOU A LETRA.
 																    CASO SIM O JOGADOR NAO COMETEU ERRO
@@ -331,7 +336,7 @@ int main(){
 	      				break;/*CASO NAO QUEIRA MUDAR DE PLAYER SO REINICIA O LOOP
 						 	LEMBRANDO QUE O LOOP SO CONTINUA SE CONTINUE FOR IGUAL A SIM*/
 	    			}
-	    				system ( "cls" );
+	    			system("cls");
 	    		}
 		}
 		else{
@@ -344,10 +349,27 @@ int main(){
   	printf ("\n\n\nOBRIGADO POR JOGAR %d VEZES O JOGO DA FORCA!\n\n ##########\n # Placar #\n ##########\n\n", loops );
   	playerAux=player;/*IGUALO O CONTADOR AUXILIAR AO NUMERO DE PLAYERS*/
   	player=1;/*IGUALO OS PLAYERS EM 1*/
-  	
-		for( i = 0 ; i < playerAux; i++){
-			printf ("\n XXXXXXXXXXXXXXXXX\n X %s \n X Pontos: %d \n XXXXXXXXXXXXXXXXX\n\n", players[player].playerName, players[player].scoreSum[player][1] );
-			player ++;
-		}
+  	int auxScore;/*AUXILIAR PRA TOPSCORE*/
+	  	highScore = fopen("HighScore.txt", "r");/*CHAMO O TEXTO DE HIGHSCORE E DOU READ*/
+	  	fscanf(highScore, "%d", &topScore.topTier);/*ATRIBUO O HIGHSCORE CONTIDO NA VARIAVEL TOP TIER*/
+	  	fscanf(highScore, "%s", topScore.playerName);/*ATRIBUO O NOME DE HIGHSCORE CONTIDO NA VARIAVEL PLAYER NAME*/
+			for( i = 0 ; i < playerAux; i++){/*ESTE FOR VAI COMPARAR OS DADOS*/
+				auxScore=players[player].scoreSum[player][1];/*ATRIBUO AUXILIAR NO SCORE TOTAL*/
+				if(auxScore>=topScore.topTier){/*VEJO SE O SCORE TOTAL ATUAL É MAIOR QUE O HIGHSCORE
+												CASO SIM ESTE IF EXECUTA*/
+					fclose(highScore);/*FECHO O HIGHSCORE.TXT READ*/
+					topScore.topTier=auxScore;/*TOPSCORE É IGUALADO AO SCORE ATUAL*/
+					strcpy(topScore.playerName ,players[player].playerName);/*COPIANDO O NOME DO SCORE ATUAL PRO TOPSCORE*/
+					highScore = fopen("HighScore.txt", "w");/*COMEÇO A SOBRESCREVER O CODIGO*/
+					fprintf(highScore,"%d", auxScore);/*ATRIBUO AUXSCORE IGUALADO*/
+					fprintf(highScore,"\n%s",topScore.playerName);/*ATRIBUO O NOME SOBRESCRITO*/
+					fclose(highScore);/*FECHO O WRITE*/
+				}
+				printf ("\n XXXXXXXXXXXXXXXXX\n X %s \n X Pontos: %d \n XXXXXXXXXXXXXXXXX\n\n", players[player].playerName, players[player].scoreSum[player][1]);
+				/*MOSTRO OS PONTOS DE CADA UM*/
+				player ++;
+			}
+			printf ("\n *****************\n * O HIGHSCORE É DE %s \n * Pontos: %d \n *****************\n\n", topScore.playerName,topScore.topTier);
+			/*NO FIM O HIGHSCORE É MOSTRADO*/
   	system ( "pause" );
 }
