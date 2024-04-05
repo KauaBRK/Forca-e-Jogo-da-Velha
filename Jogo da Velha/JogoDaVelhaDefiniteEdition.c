@@ -3,42 +3,42 @@
 #include<string.h>
 #include<locale.h>
 
+#define MAX_PLAYERS 5
+
 typedef struct {
-	int winnerX, winner0, counter;
+	int winnerX, winner0, counter, plays;
 }player;
 
-player players[10];
-int plays = 0;
+player players[MAX_PLAYERS];
 
 void ticTacToeLoop(char ticTacToe[3][3]);
 void ticTacToePrint(char ticTacToe[3][3]);
 int ticTacToeCheckWins(char ticTacToe[3][3], char winner);
-int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption);
+int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption, int pair);
 
 int main() {
 	setlocale(LC_ALL, "portuguese");
 	int lineChoose, xOption, winnerX = 0, winner0 = 0, pair = 1, i, continue_ = 1;
   	char ticTacToe[3][3];
   	char winner;
-  	for (i = 1; i < 10; i++) {
+  	for (i = 1; i < MAX_PLAYERS; i++) {
     	players[i].winner0 = 0;
     	players[i].winnerX = 0;
+    	players[i].plays = 0;
   	}
   	while (continue_ == 1 || continue_ == 2) {
-		if (pair < 10) {
-		plays = 0;
-
+		if (pair < MAX_PLAYERS) {
 		system("cls");
       	winner = 'n';
       	ticTacToeLoop(ticTacToe);
       	xOption = 1;
-      	plays = 0;
+      	
       	while (winner == 'n') {
         	printf("\n\n\tDupla %d\n", pair);
-        	xOption = ticTacToeSwitchCase(ticTacToe, xOption);
+        	xOption = ticTacToeSwitchCase(ticTacToe, xOption, pair);
         	winner = ticTacToeCheckWins(ticTacToe, winner);
 
-        	if (plays == 9 && winner == 'n') break;
+        	if (players[pair].plays == 9 && winner == 'n') break;
       	}
       	system("cls");
       	printf("\n\n    Dupla %d Resultados\n", pair);
@@ -69,14 +69,16 @@ int main() {
 		else {
       		printf("\nNumero Maximo de jogadores alcançado. Indo pro placar.\n");
       		continue_ = 3;
+      		system("pause");
     	}
   	}
   	printf("\n\tObrigado por jogar :)\n\n\n\t############\n\t###PLACAR###\n\t############\n\n");
-  	for (i = 1; i < 10; i++) {
-    	if (players[1].winner0 == 0 && players[1].winnerX == 0) printf("\n\t#################\n\t# DUPLA %d\n\t#\n\t# PONTOS DO X: %d\n\t# PONTOS DO 0: %d\n\t#################\n\n", i, players[i].winnerX, players[i].winner0);
-    	if (players[i].counter == 0) break;
-
-    	printf("\n\t#################\n\t# DUPLA %d\n\t#\n\t# PONTOS DO X: %d\n\t# PONTOS DO 0: %d\n\t#################\n\n", i, players[i].winnerX, players[i].winner0);
+  	pair=1;
+  	for (i = 1; i < MAX_PLAYERS; i++) {
+  		
+  			if (players[pair].winner0 == 0 && players[pair].winnerX == 0) printf("\n\t#################\n\t# DUPLA %d SEM PONTOS!\n\t#\n\t#\n\t#################\n\n", pair);
+  			
+			else printf("\n\t#################\n\t# DUPLA %d\n\t#\n\t# PONTOS DO X: %d\n\t# PONTOS DO 0: %d\n\t#################\n\n", pair, players[i].winnerX, players[i].winner0);
     	pair++;
   	}
 }
@@ -121,7 +123,7 @@ if (ticTacToe[0][2] == ticTacToe[1][1] && ticTacToe[1][1] == ticTacToe[2][0]) wi
 
 return winner;
 }
-int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
+int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption, int pair) {
   	int lineChoose;
   		ticTacToePrint(ticTacToe);
   		printf("\n\nDigite qual lugar vai jogar: ");
@@ -130,7 +132,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
   		switch (lineChoose) {
   			case 1:
     			if (ticTacToe[0][0] == '1' && ticTacToe[0][0] != '\n') {
-      				plays++;
+      				players[pair].plays++;
       				fflush(stdin);
       				if (xOption == 1) {
         				ticTacToe[0][0] = 'X';
@@ -150,7 +152,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
     			}
   			case 2:
     			if (ticTacToe[0][1] == '2') {
-      				plays++;
+      				players[pair].plays++;
       				fflush(stdin);
       				if (xOption == 1) {
         				ticTacToe[0][1] = 'X';
@@ -170,7 +172,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
     			}
   			case 3:
     			if (ticTacToe[0][2] == '3') {
-      				plays++;
+      				players[pair].plays++;
       				fflush(stdin);
       				if (xOption == 1) {
         				ticTacToe[0][2] = 'X';
@@ -190,7 +192,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
     			}
   			case 4:
     			if (ticTacToe[1][0] == '4') {
-      				plays++;
+      				players[pair].plays++;
       				fflush(stdin);
       				if (xOption == 1) {
         				ticTacToe[1][0] = 'X';
@@ -210,7 +212,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
     			}
   			case 5:
     			if (ticTacToe[1][1] == '5') {
-      				plays++;
+      				players[pair].plays++;
       				fflush(stdin);
       				if (xOption == 1) {
         			ticTacToe[1][1] = 'X';
@@ -230,7 +232,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
     			}
   			case 6:
     			if (ticTacToe[1][2] == '6') {
-      				plays++;
+      				players[pair].plays++;
       				fflush(stdin);
       				if (xOption == 1) {
         				ticTacToe[1][2] = 'X';
@@ -250,7 +252,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
     			}
   			case 7:
     			if (ticTacToe[2][0] == '7') {
-      				plays++;
+      				players[pair].plays++;
       				fflush(stdin);
       				if (xOption == 1) {
         				ticTacToe[2][0] = 'X';
@@ -270,7 +272,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
     			}
   			case 8:
     			if (ticTacToe[2][1] == '8') {
-      				plays++;
+      				players[pair].plays++;
       				fflush(stdin);
       				if (xOption == 1) {
         				ticTacToe[2][1] = 'X';
@@ -291,7 +293,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
   			case 9:
     			if (ticTacToe[2][2] == '9') {
       				fflush(stdin);
-      				plays++;
+      				players[pair].plays++;
       				if (xOption == 1) {
         				ticTacToe[2][2] = 'X';
         				xOption = 0;
