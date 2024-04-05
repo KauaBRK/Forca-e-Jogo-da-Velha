@@ -1,17 +1,14 @@
 #include<stdio.h>
-
 #include<stdlib.h>
-
 #include<string.h>
-
 #include<locale.h>
 
 typedef struct {
   int winnerX, winner0, counter;
 }
 player;
-player players[10];
 
+player players[10];
 int plays = 0;
 
 void ticTacToeLoop(char ticTacToe[3][3]);
