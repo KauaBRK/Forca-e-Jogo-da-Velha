@@ -81,6 +81,7 @@ int main() {
 			else printf("\n\t#################\n\t# DUPLA %d\n\t#\n\t# PONTOS DO X: %d\n\t# PONTOS DO 0: %d\n\t#################\n\n", par, jogadores[i].vencedorX, jogadores[i].vencedor0);
     	par++;
   	}
+  	system("pause");
 }
 void loopJogoDaVelha(char jogoDaVelha[3][3]) {
 	jogoDaVelha[0][0] = '1';

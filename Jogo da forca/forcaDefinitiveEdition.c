@@ -155,6 +155,7 @@ int main() {
     player++;
   }
   printf("\n *****************\n * O HIGHSCORE É DE %s \n * Pontos: %d \n *****************\n\n", topScore.playerName, topScore.topTier);
+  system("pause");
 }
 void hangManWordUser(char secretWord[MAX_NUMBER_OF_CHAR], char tipWord[MAX_NUMBER_OF_CHAR], char screenWord[MAX_NUMBER_OF_CHAR]) {
   char secretWordSystem[MAX_NUMBER_OF_WORDS][50] = {

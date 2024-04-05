@@ -81,6 +81,7 @@ int main() {
 			else printf("\n\t#################\n\t# DUPLA %d\n\t#\n\t# PONTOS DO X: %d\n\t# PONTOS DO 0: %d\n\t#################\n\n", pair, players[i].winnerX, players[i].winner0);
     	pair++;
   	}
+  	system("pause");
 }
 void ticTacToeLoop(char ticTacToe[3][3]) {
 	ticTacToe[0][0] = '1';
