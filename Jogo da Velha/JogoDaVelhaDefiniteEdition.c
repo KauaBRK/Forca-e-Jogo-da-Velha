@@ -12,17 +12,16 @@ typedef struct {
 player;
 player players[10];
 
-int * pointer;
+int plays = 0;
 
 void ticTacToeLoop(char ticTacToe[3][3]);
 void ticTacToePrint(char ticTacToe[3][3]);
 int ticTacToeCheckWins(char ticTacToe[3][3], char winner);
 int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption);
-int pointerUpdate(int * pointer);
 
 int main() {
   setlocale(LC_ALL, "portuguese");
-  int lineChoose, xOption, winnerX = 0, winner0 = 0, plays = 0, pair = 1, i, continue_ = 1;
+  int lineChoose, xOption, winnerX = 0, winner0 = 0, pair = 1, i, continue_ = 1;
   char ticTacToe[3][3];
   char winner;
   for (i = 1; i < 10; i++) {
@@ -32,7 +31,7 @@ int main() {
   while (continue_ == 1 || continue_ == 2) {
     if (pair < 10) {
       plays = 0;
-      pointer = & plays;
+
       system("cls");
       winner = 'n';
       ticTacToeLoop(ticTacToe);
@@ -76,9 +75,9 @@ int main() {
   }
   printf("\n\tObrigado por jogar :)\n\n\n\t############\n\t###PLACAR###\n\t############\n\n");
   for (i = 1; i < 10; i++) {
-    if (players[i].counter == 0) {
-      break;
-    }
+    if (players[1].winner0 == 0 && players[1].winnerX == 0) printf("\n\t#################\n\t# DUPLA %d\n\t#\n\t# PONTOS DO X: %d\n\t# PONTOS DO 0: %d\n\t#################\n\n", i, players[i].winnerX, players[i].winner0);
+    if (players[i].counter == 0) break;
+
     printf("\n\t#################\n\t# DUPLA %d\n\t#\n\t# PONTOS DO X: %d\n\t# PONTOS DO 0: %d\n\t#################\n\n", i, players[i].winnerX, players[i].winner0);
     pair++;
   }
@@ -138,7 +137,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
   switch (lineChoose) {
   case 1:
     if (ticTacToe[0][0] == '1' && ticTacToe[0][0] != '\n') {
-      pointerUpdate(pointer);
+      plays++;
       fflush(stdin);
       if (xOption == 1) {
         ticTacToe[0][0] = 'X';
@@ -157,7 +156,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
     }
   case 2:
     if (ticTacToe[0][1] == '2') {
-      pointerUpdate(pointer);
+      plays++;
       fflush(stdin);
       if (xOption == 1) {
         ticTacToe[0][1] = 'X';
@@ -176,7 +175,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
     }
   case 3:
     if (ticTacToe[0][2] == '3') {
-      pointerUpdate(pointer);
+      plays++;
       fflush(stdin);
       if (xOption == 1) {
         ticTacToe[0][2] = 'X';
@@ -195,7 +194,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
     }
   case 4:
     if (ticTacToe[1][0] == '4') {
-      pointerUpdate(pointer);
+      plays++;
       fflush(stdin);
       if (xOption == 1) {
         ticTacToe[1][0] = 'X';
@@ -214,7 +213,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
     }
   case 5:
     if (ticTacToe[1][1] == '5') {
-      pointerUpdate(pointer);
+      plays++;
       fflush(stdin);
       if (xOption == 1) {
         ticTacToe[1][1] = 'X';
@@ -233,7 +232,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
     }
   case 6:
     if (ticTacToe[1][2] == '6') {
-      pointerUpdate(pointer);
+      plays++;
       fflush(stdin);
       if (xOption == 1) {
         ticTacToe[1][2] = 'X';
@@ -252,7 +251,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
     }
   case 7:
     if (ticTacToe[2][0] == '7') {
-      pointerUpdate(pointer);
+      plays++;
       fflush(stdin);
       if (xOption == 1) {
         ticTacToe[2][0] = 'X';
@@ -271,7 +270,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
     }
   case 8:
     if (ticTacToe[2][1] == '8') {
-      pointerUpdate(pointer);
+      plays++;
       fflush(stdin);
       if (xOption == 1) {
         ticTacToe[2][1] = 'X';
@@ -291,7 +290,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
   case 9:
     if (ticTacToe[2][2] == '9') {
       fflush(stdin);
-      pointerUpdate(pointer);
+      plays++;
       if (xOption == 1) {
         ticTacToe[2][2] = 'X';
         xOption = 0;
@@ -310,7 +309,4 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
   }
   system("cls");
   return xOption;
-}
-int pointerUpdate(int * pointer) {
-  * pointer = * pointer += 1;
 }
