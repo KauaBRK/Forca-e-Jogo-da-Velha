@@ -12,12 +12,13 @@ typedef struct {
 player;
 player players[10];
 
-int plays;
+int * pointer;
 
 void ticTacToeLoop(char ticTacToe[3][3]);
 void ticTacToePrint(char ticTacToe[3][3]);
 int ticTacToeCheckWins(char ticTacToe[3][3], char winner);
 int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption);
+int pointerUpdate(int * pointer);
 
 int main() {
   setlocale(LC_ALL, "portuguese");
@@ -30,14 +31,16 @@ int main() {
   }
   while (continue_ == 1 || continue_ == 2) {
     if (pair < 10) {
-      ticTacToeLoop(ticTacToe);
+      plays = 0;
+      pointer = & plays;
+      system("cls");
       winner = 'n';
+      ticTacToeLoop(ticTacToe);
       xOption = 1;
       plays = 0;
       while (winner == 'n') {
         printf("\n\n\tDupla %d\n", pair);
         xOption = ticTacToeSwitchCase(ticTacToe, xOption);
-
         winner = ticTacToeCheckWins(ticTacToe, winner);
 
         if (plays == 9 && winner == 'n') break;
@@ -45,7 +48,6 @@ int main() {
       system("cls");
       printf("\n\n    Dupla %d Resultados\n", pair);
       ticTacToePrint(ticTacToe);
-
       if (winner == 'X') {
         players[pair].winnerX++;
         players[pair].counter = 1;
@@ -58,25 +60,19 @@ int main() {
         printf("O Ganhador foi o jogador: ' %c '\n\nSelecione uma opção:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n", winner);
         fflush(stdin);
         scanf("%d", & continue_);
-        if (continue_ == 2) {
-          pair += 1;
-        }
+        if (continue_ == 2) pair += 1;
         system("cls");
       } else {
         printf("Nao houve vencedor.\n\nSelecione uma opção:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n");
         fflush(stdin);
-        scanf("%d", & continue_);
-        if (continue_ == 2) {
-          pair += 1;
-        }
+        scanf(" %d", & continue_);
+        if (continue_ == 2) pair += 1;
         system("cls");
       }
     } else {
-      printf("\nNúmero maximo de players, encerrando o jogo da forca.");
-      system("pause");
+      printf("\nNumero Maximo de jogadores alcançado. Indo pro placar.\n");
       continue_ = 3;
     }
-
   }
   printf("\n\tObrigado por jogar :)\n\n\n\t############\n\t###PLACAR###\n\t############\n\n");
   for (i = 1; i < 10; i++) {
@@ -97,10 +93,11 @@ void ticTacToeLoop(char ticTacToe[3][3]) {
   ticTacToe[2][0] = '7';
   ticTacToe[2][1] = '8';
   ticTacToe[2][2] = '9';
+
 }
 void ticTacToePrint(char ticTacToe[3][3]) {
   int line, column;
-  printf("\n\n   ####################\n   ###JOGO DA VELHA####\n   ####################\n\n");
+  printf("\n\n\n   ###JOGO DA VELHA####\n\n\n");
   for (line = 0; line < 3; line++) {
     for (column = 0; column < 3; column++) {
       printf("    %c  ", ticTacToe[line][column]);
@@ -134,7 +131,6 @@ int ticTacToeCheckWins(char ticTacToe[3][3], char winner) {
 }
 int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
   int lineChoose;
-
   ticTacToePrint(ticTacToe);
   printf("\n\nDigite qual lugar vai jogar: ");
   scanf("%d", & lineChoose);
@@ -142,185 +138,179 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xOption) {
   switch (lineChoose) {
   case 1:
     if (ticTacToe[0][0] == '1' && ticTacToe[0][0] != '\n') {
+      pointerUpdate(pointer);
       fflush(stdin);
       if (xOption == 1) {
         ticTacToe[0][0] = 'X';
         xOption = 0;
-        plays++;
         break;
       }
       if (xOption == 0) {
         ticTacToe[0][0] = '0';
         xOption = 1;
-        plays++;
         break;
       }
     } else {
-      printf("\nEste local ja foi jogado ou opção invalida\n");
+      printf("\nEste local ja foi jogado ou op??o invalida\n");
       system("pause");
       break;
     }
   case 2:
     if (ticTacToe[0][1] == '2') {
+      pointerUpdate(pointer);
       fflush(stdin);
       if (xOption == 1) {
         ticTacToe[0][1] = 'X';
         xOption = 0;
-        plays++;
         break;
       }
       if (xOption == 0) {
         ticTacToe[0][1] = '0';
         xOption = 1;
-        plays++;
         break;
       }
     } else {
-      printf("\nEste local ja foi jogado ou opção invalida\n");
+      printf("\nEste local ja foi jogado ou op??o invalida\n");
       system("pause");
       break;
     }
   case 3:
     if (ticTacToe[0][2] == '3') {
+      pointerUpdate(pointer);
       fflush(stdin);
       if (xOption == 1) {
         ticTacToe[0][2] = 'X';
         xOption = 0;
-        plays++;
         break;
       }
       if (xOption == 0) {
         ticTacToe[0][2] = '0';
         xOption = 1;
-        plays++;
         break;
       }
     } else {
-      printf("\nEste local ja foi jogado ou opção invalida\n");
+      printf("\nEste local ja foi jogado ou op??o invalida\n");
       system("pause");
       break;
     }
   case 4:
     if (ticTacToe[1][0] == '4') {
+      pointerUpdate(pointer);
       fflush(stdin);
       if (xOption == 1) {
         ticTacToe[1][0] = 'X';
         xOption = 0;
-        plays++;
         break;
       }
       if (xOption == 0) {
         ticTacToe[1][0] = '0';
         xOption = 1;
-        plays++;
         break;
       }
     } else {
-      printf("\nEste local ja foi jogado ou opção invalida\n");
+      printf("\nEste local ja foi jogado ou op??o invalida\n");
       system("pause");
       break;
     }
   case 5:
     if (ticTacToe[1][1] == '5') {
+      pointerUpdate(pointer);
       fflush(stdin);
       if (xOption == 1) {
         ticTacToe[1][1] = 'X';
         xOption = 0;
-        plays++;
         break;
       }
       if (xOption == 0) {
         ticTacToe[1][1] = '0';
         xOption = 1;
-        plays++;
         break;
       }
     } else {
-      printf("\nEste local ja foi jogado ou opção invalida\n");
+      printf("\nEste local ja foi jogado ou op??o invalida\n");
       system("pause");
       break;
     }
   case 6:
     if (ticTacToe[1][2] == '6') {
+      pointerUpdate(pointer);
       fflush(stdin);
       if (xOption == 1) {
         ticTacToe[1][2] = 'X';
         xOption = 0;
-        plays++;
         break;
       }
       if (xOption == 0) {
         ticTacToe[1][2] = '0';
         xOption = 1;
-        plays++;
         break;
       }
     } else {
-      printf("\nEste local ja foi jogado ou opção invalida\n");
+      printf("\nEste local ja foi jogado ou op??o invalida\n");
       system("pause");
       break;
     }
   case 7:
     if (ticTacToe[2][0] == '7') {
+      pointerUpdate(pointer);
       fflush(stdin);
       if (xOption == 1) {
         ticTacToe[2][0] = 'X';
         xOption = 0;
-        plays++;
         break;
       }
       if (xOption == 0) {
         ticTacToe[2][0] = '0';
         xOption = 1;
-        plays++;
         break;
       }
     } else {
-      printf("\nEste local ja foi jogado ou opção invalida\n");
+      printf("\nEste local ja foi jogado ou op??o invalida\n");
       system("pause");
       break;
     }
   case 8:
     if (ticTacToe[2][1] == '8') {
+      pointerUpdate(pointer);
       fflush(stdin);
       if (xOption == 1) {
         ticTacToe[2][1] = 'X';
         xOption = 0;
-        plays++;
         break;
       }
       if (xOption == 0) {
         ticTacToe[2][1] = '0';
         xOption = 1;
-        plays++;
         break;
       }
     } else {
-      printf("\nEste local ja foi jogado ou opção invalida\n");
+      printf("\nEste local ja foi jogado ou op??o invalida\n");
       system("pause");
       break;
     }
   case 9:
     if (ticTacToe[2][2] == '9') {
       fflush(stdin);
+      pointerUpdate(pointer);
       if (xOption == 1) {
         ticTacToe[2][2] = 'X';
         xOption = 0;
-        plays++;
         break;
       }
       if (xOption == 0) {
         ticTacToe[2][2] = '0';
         xOption = 1;
-        plays++;
         break;
       }
     } else {
-      printf("\nEste local ja foi jogado ou opção invalida\n");
+      printf("\nEste local ja foi jogado ou op??o invalida\n");
       system("pause");
       break;
     }
   }
   system("cls");
   return xOption;
+}
+int pointerUpdate(int * pointer) {
+  * pointer = * pointer += 1;
 }
