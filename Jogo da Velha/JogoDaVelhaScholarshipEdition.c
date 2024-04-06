@@ -24,13 +24,13 @@ int main() {
   	for (i = 1; i < MAXIMO_DE_PLAYERS; i++) {
     	jogadores[i].vencedor0 = 0;
     	jogadores[i].vencedorX = 0;
-    	jogadores[i].jogadas = 0;
   	}
   	while (continue_ == 1 || continue_ == 2) {
 		if (par < MAXIMO_DE_PLAYERS) {
 		system("cls");
       	vencedor = 'n';
       	loopJogoDaVelha(jogoDaVelha);
+      	for(i=1;i<MAXIMO_DE_PLAYERS;i++) jogadores[i].jogadas = 0;
       	vezX = 1;
       	
       	while (vencedor == 'n') {

@@ -24,13 +24,13 @@ int main() {
   	for (i = 1; i < MAX_PLAYERS; i++) {
     	players[i].winner0 = 0;
     	players[i].winnerX = 0;
-    	players[i].plays = 0;
   	}
   	while (continue_ == 1 || continue_ == 2) {
 		if (pair < MAX_PLAYERS) {
 		system("cls");
       	winner = 'n';
       	ticTacToeLoop(ticTacToe);
+      	for(i=1;i<MAX_PLAYERS;i++) players[i].plays = 0;
       	xTurn = 1;
       	
       	while (winner == 'n') {
