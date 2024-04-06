@@ -96,16 +96,16 @@ void loopJogoDaVelha(char jogoDaVelha[3][3]) {
 }
 void loopJogoDaVelhaTela(char jogoDaVelha[3][3]) {
 	int linha, coluna;
-  		printf("\n\n   \t####################\n   \t###JOGO DA VELHA####\n   \t####################\n\n");
+  		printf("\n\n   ####################\n   ###JOGO DA VELHA####\n   ####################\n\n");
   		for (linha = 0; linha < 3; linha++) {
     		for (coluna = 0; coluna < 3; coluna++) {
-      			printf("\t%c", jogoDaVelha[linha][coluna]);
-      			if (coluna < 2) printf("    |");
+      			printf("    %c  ", jogoDaVelha[linha][coluna]);
+      			if (coluna < 2) printf("|");
         		
       			if (coluna == 0) printf("");
         
     		}
-    		if (linha < 2)   printf("\n     \t---------------------\n");
+    		if (linha < 2)   printf("\n  ---------------------\n");
   		}
   		printf("\n\n\n");
 }
@@ -127,7 +127,7 @@ return vencedor;
 int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par) {
   	int escolhaDeLinha;
   		loopJogoDaVelhaTela(jogoDaVelha);
-  		printf("\n\n\tDigite qual lugar vai jogar: ");
+  		printf("\n\nDigite qual lugar vai jogar: ");
   		scanf("%d", & escolhaDeLinha);
   		fflush(stdin);
   		switch (escolhaDeLinha) {
