@@ -17,7 +17,7 @@ int ticTacToeCheckWins(char ticTacToe[3][3], char winner);
 int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair);
 
 int main() {
-	setlocale(LC_ALL, "portuguese");
+	setlocale(LC_ALL, "");
 	int xTurn, winnerX = 0, winner0 = 0, pair = 1, i, continue_ = 1;
   	char ticTacToe[3][3];
   	char winner;
@@ -76,7 +76,7 @@ int main() {
   	pair=1;
   	for (i = 1; i < MAX_PLAYERS; i++) {
   		
-  			if (players[pair].winner0 == 0 && players[pair].winnerX == 0) printf("\n\t#################\n\t# DUPLA %d SEM PONTOS!\n\t#\n\t#\n\t#################\n\n", pair);
+  			if (players[pair].winner0 == 0 && players[pair].winnerX == 0) printf("\n\t####################\n\t#\n\t# DUPLA %d SEM PONTOS\n\t####################\n\n", pair);
   			
 			else printf("\n\t#################\n\t# DUPLA %d\n\t#\n\t# PONTOS DO X: %d\n\t# PONTOS DO 0: %d\n\t#################\n\n", pair, players[i].winnerX, players[i].winner0);
     	pair++;
