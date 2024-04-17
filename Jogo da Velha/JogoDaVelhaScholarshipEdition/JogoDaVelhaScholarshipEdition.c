@@ -3,6 +3,10 @@
 #include<string.h>
 #include<locale.h>
 
+#include "loopJogoDaVelha.c"
+#include "loopJogoDaVelhaTela.c"
+#include "jogoDaVelhaChecaVitoria.c"
+
 #define MAXIMO_DE_PLAYERS 5
 
 typedef struct {
@@ -11,9 +15,6 @@ typedef struct {
 
 Jogador jogadores[MAXIMO_DE_PLAYERS];
 
-void loopJogoDaVelha(char jogoDaVelha[3][3]);
-void loopJogoDaVelhaTela(char jogoDaVelha[3][3]);
-int jogoDaVelhaChecaVitoria(char jogoDaVelha[3][3], char vencedor);
 int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par);
 
 int main() {
@@ -52,14 +53,14 @@ int main() {
         	jogadores[par].contador = 1;
       	}
       	if (vencedor != 'n') {
-        	printf("O Ganhador foi o jogador: ' %c '\n\nSelecione uma opção:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n", vencedor);
+        	printf("O Ganhador foi o jogador: ' %c '\n\nSelecione uma opÃ§Ã£o:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n", vencedor);
         	fflush(stdin);
         	scanf("%d", & continue_);
         	if (continue_ == 2) par += 1;
         	system("cls");
       	}
 		else {
-        	printf("Nao houve vencedor.\n\nSelecione uma opção:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n");
+        	printf("Nao houve vencedor.\n\nSelecione uma opÃ§Ã£o:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n");
         	fflush(stdin);
         	scanf(" %d", & continue_);
         	if (continue_ == 2) par += 1;
@@ -67,7 +68,7 @@ int main() {
       	}
     	}
 		else {
-      		printf("\nNumero Maximo de jogadores alcançado. Indo pro placar.\n");
+      		printf("\nNumero Maximo de jogadores alcanÃ§ado. Indo pro placar.\n");
       		continue_ = 3;
       		system("pause");
     	}
@@ -82,47 +83,6 @@ int main() {
     	par++;
   	}
   	system("pause");
-}
-void loopJogoDaVelha(char jogoDaVelha[3][3]) {
-	jogoDaVelha[0][0] = '1';
-  	jogoDaVelha[0][1] = '2';
-  	jogoDaVelha[0][2] = '3';
-  	jogoDaVelha[1][0] = '4';
-  	jogoDaVelha[1][1] = '5';
-  	jogoDaVelha[1][2] = '6';
-  	jogoDaVelha[2][0] = '7';
-  	jogoDaVelha[2][1] = '8';
-  	jogoDaVelha[2][2] = '9';
-}
-void loopJogoDaVelhaTela(char jogoDaVelha[3][3]) {
-	int linha, coluna;
-  		printf("\n\n   ####################\n   ###JOGO DA VELHA####\n   ####################\n\n");
-  		for (linha = 0; linha < 3; linha++) {
-    		for (coluna = 0; coluna < 3; coluna++) {
-      			printf("    %c  ", jogoDaVelha[linha][coluna]);
-      			if (coluna < 2) printf("|");
-        		
-      			if (coluna == 0) printf("");
-        
-    		}
-    		if (linha < 2)   printf("\n  ---------------------\n");
-  		}
-  		printf("\n\n\n");
-}
-int jogoDaVelhaChecaVitoria(char jogoDaVelha[3][3], char vencedor) {
-
-if (jogoDaVelha[0][0] == jogoDaVelha[0][1] && jogoDaVelha[0][1] == jogoDaVelha[0][2]) vencedor = jogoDaVelha[0][0];
-if (jogoDaVelha[1][0] == jogoDaVelha[1][1] && jogoDaVelha[1][1] == jogoDaVelha[1][2]) vencedor = jogoDaVelha[1][0];
-if (jogoDaVelha[2][0] == jogoDaVelha[2][1] && jogoDaVelha[2][1] == jogoDaVelha[2][2]) vencedor = jogoDaVelha[2][0];
-
-if (jogoDaVelha[0][0] == jogoDaVelha[1][0] && jogoDaVelha[1][0] == jogoDaVelha[2][0]) vencedor = jogoDaVelha[0][0];
-if (jogoDaVelha[0][1] == jogoDaVelha[1][1] && jogoDaVelha[1][1] == jogoDaVelha[2][1]) vencedor = jogoDaVelha[0][1];
-if (jogoDaVelha[0][2] == jogoDaVelha[1][2] && jogoDaVelha[1][2] == jogoDaVelha[2][2]) vencedor = jogoDaVelha[0][2];
-
-if (jogoDaVelha[0][0] == jogoDaVelha[1][1] && jogoDaVelha[1][1] == jogoDaVelha[2][2]) vencedor = jogoDaVelha[0][0];
-if (jogoDaVelha[0][2] == jogoDaVelha[1][1] && jogoDaVelha[1][1] == jogoDaVelha[2][0]) vencedor = jogoDaVelha[0][2];
-
-return vencedor;
 }
 int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par) {
   	int escolhaDeLinha;
