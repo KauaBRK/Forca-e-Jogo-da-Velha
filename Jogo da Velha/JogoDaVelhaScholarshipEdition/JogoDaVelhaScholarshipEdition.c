@@ -6,6 +6,7 @@
 #include "loopJogoDaVelha.c"
 #include "loopJogoDaVelhaTela.c"
 #include "jogoDaVelhaChecaVitoria.c"
+#include "jogoDaVelhaSwitchCase.c"
 
 #define MAXIMO_DE_PLAYERS 5
 
@@ -13,19 +14,18 @@ typedef struct {
 	int vencedorX, vencedor0, contador, jogadas;
 }Jogador;
 
-Jogador jogadores[MAXIMO_DE_PLAYERS];
-
-int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par);
-
 int main() {
 	setlocale(LC_ALL, "portuguese");
-	int vezX, vencedorX = 0, vencedor0 = 0, par = 1, i, continue_ = 1;
+	Jogador jogadores[MAXIMO_DE_PLAYERS];
+	int vezX, vencedorX = 0, vencedor0 = 0, par = 1, i, continue_ = 1, jogadas;
   	char jogoDaVelha[3][3];
   	char vencedor;
+  	
   	for (i = 1; i < MAXIMO_DE_PLAYERS; i++) {
     	jogadores[i].vencedor0 = 0;
     	jogadores[i].vencedorX = 0;
   	}
+  	
   	while (continue_ == 1 || continue_ == 2) {
 		if (par < MAXIMO_DE_PLAYERS) {
 		system("cls");
@@ -33,13 +33,14 @@ int main() {
       	loopJogoDaVelha(jogoDaVelha);
       	for(i=1;i<MAXIMO_DE_PLAYERS;i++) jogadores[i].jogadas = 0;
       	vezX = 1;
-      	
+      	jogadas=0;
       	while (vencedor == 'n') {
         	printf("\n\n\tDupla %d\n", par);
         	vezX = jogoDaVelhaSwitchCase(jogoDaVelha, vezX, par);
+        	if(vezX==0) jogadas++;
         	vencedor = jogoDaVelhaChecaVitoria(jogoDaVelha, vencedor);
 
-        	if (jogadores[par].jogadas == 9 && vencedor == 'n') break;
+        	if (jogadas >4 && vencedor == 'n') break;
       	}
       	system("cls");
       	printf("\n\n    Dupla %d Resultados\n", par);
@@ -73,8 +74,10 @@ int main() {
       		system("pause");
     	}
   	}
+  	
   	printf("\n\tObrigado por jogar :)\n\n\n\t############\n\t###PLACAR###\n\t############\n\n");
   	par=1;
+  	
   	for (i = 1; i < MAXIMO_DE_PLAYERS; i++) {
   		
   			if (jogadores[par].vencedor0 == 0 && jogadores[par].vencedorX == 0) printf("\n\t#################\n\t# DUPLA %d SEM PONTOS!\n\t#\n\t#\n\t#################\n\n", par);
@@ -83,195 +86,4 @@ int main() {
     	par++;
   	}
   	system("pause");
-}
-int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par) {
-  	int escolhaDeLinha;
-  		loopJogoDaVelhaTela(jogoDaVelha);
-  		printf("\n\nDigite qual lugar vai jogar: ");
-  		scanf("%d", & escolhaDeLinha);
-  		fflush(stdin);
-  		switch (escolhaDeLinha) {
-  			case 1:
-    			if (jogoDaVelha[0][0] == '1' && jogoDaVelha[0][0] != '\n') {
-      				jogadores[par].jogadas++;
-      				fflush(stdin);
-      				if (vezX == 1) {
-        				jogoDaVelha[0][0] = 'X';
-        				vezX = 0;
-        				break;
-      				}
-      				if (vezX == 0) {
-        				jogoDaVelha[0][0] = '0';
-        				vezX = 1;
-        				break;
-      				}
-    			}
-				else {
-      				printf("\nEste local ja foi jogado ou op??o invalida\n");
-      				system("pause");
-				    break;
-    			}
-  			case 2:
-    			if (jogoDaVelha[0][1] == '2') {
-      				jogadores[par].jogadas++;
-      				fflush(stdin);
-      				if (vezX == 1) {
-        				jogoDaVelha[0][1] = 'X';
-        				vezX = 0;
-        				break;
-      				}
-      				if (vezX == 0) {
-        				jogoDaVelha[0][1] = '0';
-        				vezX = 1;
-        				break;
-      				}
-    			}
-				else {
-      				printf("\nEste local ja foi jogado ou op??o invalida\n");
-      				system("pause");
-      				break;
-    			}
-  			case 3:
-    			if (jogoDaVelha[0][2] == '3') {
-      				jogadores[par].jogadas++;
-      				fflush(stdin);
-      				if (vezX == 1) {
-        				jogoDaVelha[0][2] = 'X';
-        				vezX = 0;
-        				break;
-      				}
-      				if (vezX == 0) {
-        				jogoDaVelha[0][2] = '0';
-        				vezX = 1;
-        				break;
-      				}
-    			}
-				else {
-      				printf("\nEste local ja foi jogado ou op??o invalida\n");
-      				system("pause");
-      				break;
-    			}
-  			case 4:
-    			if (jogoDaVelha[1][0] == '4') {
-      				jogadores[par].jogadas++;
-      				fflush(stdin);
-      				if (vezX == 1) {
-        				jogoDaVelha[1][0] = 'X';
-        				vezX = 0;
-        				break;
-      				}
-      				if (vezX == 0) {
-        			jogoDaVelha[1][0] = '0';
-        			vezX = 1;
-        			break;
-      				}
-    			}
-				else {
-      				printf("\nEste local ja foi jogado ou op??o invalida\n");
-      				system("pause");
-      				break;
-    			}
-  			case 5:
-    			if (jogoDaVelha[1][1] == '5') {
-      				jogadores[par].jogadas++;
-      				fflush(stdin);
-      				if (vezX == 1) {
-        			jogoDaVelha[1][1] = 'X';
-        			vezX = 0;
-        			break;
-      				}
-      				if (vezX == 0) {
-        			jogoDaVelha[1][1] = '0';
-        			vezX = 1;
-        			break;
-      				}
-    			}
-				else {
-      				printf("\nEste local ja foi jogado ou op??o invalida\n");
-      				system("pause");
-      				break;
-    			}
-  			case 6:
-    			if (jogoDaVelha[1][2] == '6') {
-      				jogadores[par].jogadas++;
-      				fflush(stdin);
-      				if (vezX == 1) {
-        				jogoDaVelha[1][2] = 'X';
-        				vezX = 0;
-        				break;
-      				}
-      				if (vezX == 0) {
-        				jogoDaVelha[1][2] = '0';
-        				vezX = 1;
-        				break;
-      				}
-    			}
-				else {
-      				printf("\nEste local ja foi jogado ou op??o invalida\n");
-      				system("pause");
-      				break;
-    			}
-  			case 7:
-    			if (jogoDaVelha[2][0] == '7') {
-      				jogadores[par].jogadas++;
-      				fflush(stdin);
-      				if (vezX == 1) {
-        				jogoDaVelha[2][0] = 'X';
-        				vezX = 0;
-        				break;
-      				}
-      				if (vezX == 0) {
-        				jogoDaVelha[2][0] = '0';
-        				vezX = 1;
-        				break;
-      				}
-    			}
-				else {
-      				printf("\nEste local ja foi jogado ou op??o invalida\n");
-      				system("pause");
-      				break;
-    			}
-  			case 8:
-    			if (jogoDaVelha[2][1] == '8') {
-      				jogadores[par].jogadas++;
-      				fflush(stdin);
-      				if (vezX == 1) {
-        				jogoDaVelha[2][1] = 'X';
-        				vezX = 0;
-        				break;
-      				}
-      				if (vezX == 0) {
-        				jogoDaVelha[2][1] = '0';
-        				vezX = 1;
-        				break;
-      				}
-    			}
-				else {
-      				printf("\nEste local ja foi jogado ou op??o invalida\n");
-      				system("pause");
-      				break;
-    			}
-  			case 9:
-    			if (jogoDaVelha[2][2] == '9') {
-      				fflush(stdin);
-      				jogadores[par].jogadas++;
-      				if (vezX == 1) {
-        				jogoDaVelha[2][2] = 'X';
-        				vezX = 0;
-        				break;
-      				}
-      				if (vezX == 0) {
-        				jogoDaVelha[2][2] = '0';
-        				vezX = 1;
-        				break;
-      				}
-    			}
-				else {
-      				printf("\nEste local ja foi jogado ou op??o invalida\n");
-      				system("pause");
-      				break;
-    			}
-  		}
-  		system("cls");
-  		return vezX;
 }
