@@ -27,19 +27,20 @@ int main() {
   	}
   	
   	while (continue_ == 1 || continue_ == 2) {
-		if (pair < MAX_PLAYERS) {
-		system("cls");
+      
+  		if (pair < MAX_PLAYERS) {
+  		system("cls");
       	winner = 'n';
       	ticTacToeLoop(ticTacToe);
       	for(i=1;i<MAX_PLAYERS;i++) players[i].plays = 0;
       	xTurn = 1;
       	plays=0;
       	while (winner == 'n') {
+          
         	printf("\n\n\tDupla %d\n", pair);
         	xTurn = ticTacToeSwitchCase(ticTacToe, xTurn, pair);
         	if(xTurn==0) plays++;
         	winner = ticTacToeCheckWins(ticTacToe, winner);
-
         	if (plays >4 && winner == 'n') break;
       	}
       	system("cls");
