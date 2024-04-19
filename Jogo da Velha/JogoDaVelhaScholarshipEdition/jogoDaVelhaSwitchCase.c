@@ -3,6 +3,7 @@
 
 int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par) {
   	int escolhaDeLinha;
+  	
   		loopJogoDaVelhaTela(jogoDaVelha);
   		printf("\n\nDigite qual lugar vai jogar: ");
   		scanf("%d", & escolhaDeLinha);
@@ -188,6 +189,7 @@ int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par) {
       				break;
     			}
   		}
+  		
   		system("cls");
   		return vezX;
 }
