@@ -66,7 +66,7 @@ int main() {
         	scanf(" %d", & continue_);
         	if (continue_ == 2) pair += 1;
         	system("cls");
-      	}
+        	}
     	}
 		else {
       		printf("\nNumero Maximo de jogadores alcançado. Indo pro placar.\n");
