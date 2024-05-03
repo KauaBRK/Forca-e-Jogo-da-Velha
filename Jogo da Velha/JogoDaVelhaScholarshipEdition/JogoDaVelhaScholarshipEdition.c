@@ -37,11 +37,10 @@ int main() {
 		      	
 		      	while (vencedor == 'n') {
 		        	printf("\n\n\tDupla %d\n", par);
-		        	vezX = jogoDaVelhaSwitchCase(jogoDaVelha, vezX, par);
-		        	if(vezX==0) jogadas++;
+		        	vezX = jogoDaVelhaSwitchCase(jogoDaVelha, vezX, par, &jogadas);
 		        	vencedor = jogoDaVelhaChecaVitoria(jogoDaVelha, vencedor);
-		
-		        	if (jogadas >4 && vencedor == 'n') break;
+		        	printf("%d", jogadas);
+		        	if (jogadas >=9 && vencedor == 'n') break;
 		      	}
 		      	
 		      	system("cls");

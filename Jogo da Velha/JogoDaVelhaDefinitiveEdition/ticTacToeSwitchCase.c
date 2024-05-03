@@ -1,11 +1,11 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair) {
+int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair, int * plays) {
   	int lineChoose;
   		ticTacToePrint(ticTacToe);
   		printf("\n\nDigite qual lugar vai jogar: ");
-  		scanf("%d", & lineChoose);
+  		scanf("%d", &lineChoose);
   		fflush(stdin);
   		switch (lineChoose) {
   			case 1:
@@ -14,11 +14,13 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair) {
       				if (xTurn == 1) {
         				ticTacToe[0][0] = 'X';
         				xTurn = 0;
+        				*plays+=1;
         				break;
       				}
       				if (xTurn == 0) {
         				ticTacToe[0][0] = '0';
         				xTurn = 1;
+        				*plays+=1;
         				break;
       				}
     			}
@@ -33,13 +35,16 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair) {
       				if (xTurn == 1) {
         				ticTacToe[0][1] = 'X';
         				xTurn = 0;
+        				*plays+=1;
         				break;
       				}
       				if (xTurn == 0) {
         				ticTacToe[0][1] = '0';
         				xTurn = 1;
+        				*plays+=1;
         				break;
       				}
+      				
     			}
 				else {
       				printf("\nEste local ja foi jogado ou op??o invalida\n");
@@ -52,11 +57,13 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair) {
       				if (xTurn == 1) {
         				ticTacToe[0][2] = 'X';
         				xTurn = 0;
+        				*plays+=1;
         				break;
       				}
       				if (xTurn == 0) {
         				ticTacToe[0][2] = '0';
         				xTurn = 1;
+        				*plays+=1;
         				break;
       				}
     			}
@@ -71,12 +78,14 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair) {
       				if (xTurn == 1) {
         				ticTacToe[1][0] = 'X';
         				xTurn = 0;
+        				*plays+=1;
         				break;
       				}
       				if (xTurn == 0) {
-        			ticTacToe[1][0] = '0';
-        			xTurn = 1;
-        			break;
+	        			ticTacToe[1][0] = '0';
+	        			xTurn = 1;
+	        			*plays+=1;
+        				break;
       				}
     			}
 				else {
@@ -88,14 +97,16 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair) {
     			if (ticTacToe[1][1] == '5') {
       				fflush(stdin);
       				if (xTurn == 1) {
-        			ticTacToe[1][1] = 'X';
-        			xTurn = 0;
-        			break;
+	        			ticTacToe[1][1] = 'X';
+	        			xTurn = 0;
+	        			*plays+=1;
+        				break;
       				}
       				if (xTurn == 0) {
-        			ticTacToe[1][1] = '0';
-        			xTurn = 1;
-        			break;
+	        			ticTacToe[1][1] = '0';
+	        			xTurn = 1;
+	        			*plays+=1;
+        				break;
       				}
     			}
 				else {
@@ -109,11 +120,13 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair) {
       				if (xTurn == 1) {
         				ticTacToe[1][2] = 'X';
         				xTurn = 0;
+        				*plays+=1;
         				break;
       				}
       				if (xTurn == 0) {
         				ticTacToe[1][2] = '0';
         				xTurn = 1;
+        				*plays+=1;
         				break;
       				}
     			}
@@ -128,11 +141,13 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair) {
       				if (xTurn == 1) {
         				ticTacToe[2][0] = 'X';
         				xTurn = 0;
+        				*plays+=1;
         				break;
       				}
       				if (xTurn == 0) {
         				ticTacToe[2][0] = '0';
         				xTurn = 1;
+        				*plays+=1;
         				break;
       				}
     			}
@@ -147,11 +162,13 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair) {
       				if (xTurn == 1) {
         				ticTacToe[2][1] = 'X';
         				xTurn = 0;
+        				*plays+=1;
         				break;
       				}
       				if (xTurn == 0) {
         				ticTacToe[2][1] = '0';
         				xTurn = 1;
+        				*plays+=1;
         				break;
       				}
     			}
@@ -166,11 +183,13 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair) {
       				if (xTurn == 1) {
         				ticTacToe[2][2] = 'X';
         				xTurn = 0;
+        				*plays+=1;
         				break;
       				}
       				if (xTurn == 0) {
         				ticTacToe[2][2] = '0';
         				xTurn = 1;
+        				*plays+=1;
         				break;
       				}
     			}

@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par) {
+int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par, int * jogadas) {
   	int escolhaDeLinha;
   	
   		loopJogoDaVelhaTela(jogoDaVelha);
@@ -15,11 +15,13 @@ int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par) {
       				if (vezX == 1) {
         				jogoDaVelha[0][0] = 'X';
         				vezX = 0;
+        				*jogadas+=1;
         				break;
       				}
       				if (vezX == 0) {
         				jogoDaVelha[0][0] = '0';
         				vezX = 1;
+        				*jogadas+=1;
         				break;
       				}
     			}
@@ -35,11 +37,13 @@ int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par) {
       				if (vezX == 1) {
         				jogoDaVelha[0][1] = 'X';
         				vezX = 0;
+        				*jogadas+=1;
         				break;
       				}
       				if (vezX == 0) {
         				jogoDaVelha[0][1] = '0';
         				vezX = 1;
+        				*jogadas+=1;
         				break;
       				}
     			}
@@ -55,11 +59,13 @@ int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par) {
       				if (vezX == 1) {
         				jogoDaVelha[0][2] = 'X';
         				vezX = 0;
+        				*jogadas+=1;
         				break;
       				}
       				if (vezX == 0) {
         				jogoDaVelha[0][2] = '0';
         				vezX = 1;
+        				*jogadas+=1;
         				break;
       				}
     			}
@@ -75,12 +81,14 @@ int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par) {
       				if (vezX == 1) {
         				jogoDaVelha[1][0] = 'X';
         				vezX = 0;
+        				*jogadas+=1;
         				break;
       				}
       				if (vezX == 0) {
         			jogoDaVelha[1][0] = '0';
         			vezX = 1;
-        			break;
+        			*jogadas+=1;
+        				break;
       				}
     			}
 				else {
@@ -95,12 +103,14 @@ int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par) {
       				if (vezX == 1) {
         			jogoDaVelha[1][1] = 'X';
         			vezX = 0;
-        			break;
+        			*jogadas+=1;
+        				break;
       				}
       				if (vezX == 0) {
         			jogoDaVelha[1][1] = '0';
         			vezX = 1;
-        			break;
+        			*jogadas+=1;
+        				break;
       				}
     			}
 				else {
@@ -115,11 +125,13 @@ int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par) {
       				if (vezX == 1) {
         				jogoDaVelha[1][2] = 'X';
         				vezX = 0;
+        				*jogadas+=1;
         				break;
       				}
       				if (vezX == 0) {
         				jogoDaVelha[1][2] = '0';
         				vezX = 1;
+        				*jogadas+=1;
         				break;
       				}
     			}
@@ -135,11 +147,13 @@ int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par) {
       				if (vezX == 1) {
         				jogoDaVelha[2][0] = 'X';
         				vezX = 0;
+        				*jogadas+=1;
         				break;
       				}
       				if (vezX == 0) {
         				jogoDaVelha[2][0] = '0';
         				vezX = 1;
+        				*jogadas+=1;
         				break;
       				}
     			}
@@ -155,11 +169,13 @@ int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par) {
       				if (vezX == 1) {
         				jogoDaVelha[2][1] = 'X';
         				vezX = 0;
+        				*jogadas+=1;
         				break;
       				}
       				if (vezX == 0) {
         				jogoDaVelha[2][1] = '0';
         				vezX = 1;
+        				*jogadas+=1;
         				break;
       				}
     			}
@@ -175,11 +191,13 @@ int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par) {
       				if (vezX == 1) {
         				jogoDaVelha[2][2] = 'X';
         				vezX = 0;
+        				*jogadas+=1;
         				break;
       				}
       				if (vezX == 0) {
         				jogoDaVelha[2][2] = '0';
         				vezX = 1;
+        				*jogadas+=1;
         				break;
       				}
     			}

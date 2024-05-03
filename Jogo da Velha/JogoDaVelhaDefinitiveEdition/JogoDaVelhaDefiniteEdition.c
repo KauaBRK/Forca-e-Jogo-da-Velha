@@ -38,12 +38,10 @@ int main() {
 	      	
 	      	while (winner == 'n') {  
 	        	printf("\n\n\tDupla %d\n", pair);
-	        	xTurn = ticTacToeSwitchCase(ticTacToe, xTurn, pair);
-	        	if(xTurn==0) plays++;
+	        	xTurn = ticTacToeSwitchCase(ticTacToe, xTurn, pair, &plays);
 	        	winner = ticTacToeCheckWins(ticTacToe, winner);
-	        	if (plays >4 && winner == 'n') break;
+	        	if (plays >=9 && winner == 'n') break;
 	      	}
-	      	
 	      	system("cls");
 	      	printf("\n\n    Dupla %d Resultados\n", pair);
 	      	ticTacToePrint(ticTacToe);
