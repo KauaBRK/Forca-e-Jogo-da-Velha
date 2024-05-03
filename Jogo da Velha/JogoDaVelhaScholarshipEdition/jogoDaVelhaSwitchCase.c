@@ -26,7 +26,7 @@ int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par, int * jogad
       				}
     			}
 				else {
-      				printf("\nEste local ja foi jogado ou op??o invalida\n");
+      				printf("\nEste local ja foi jogado.\n");
       				system("pause");
 				    break;
     			}
@@ -48,7 +48,7 @@ int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par, int * jogad
       				}
     			}
 				else {
-      				printf("\nEste local ja foi jogado ou op??o invalida\n");
+      				printf("\nEste local ja foi jogado.\n");
       				system("pause");
       				break;
     			}
@@ -70,7 +70,7 @@ int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par, int * jogad
       				}
     			}
 				else {
-      				printf("\nEste local ja foi jogado ou op??o invalida\n");
+      				printf("\nEste local ja foi jogado.\n");
       				system("pause");
       				break;
     			}
@@ -92,7 +92,7 @@ int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par, int * jogad
       				}
     			}
 				else {
-      				printf("\nEste local ja foi jogado ou op??o invalida\n");
+      				printf("\nEste local ja foi jogado.\n");
       				system("pause");
       				break;
     			}
@@ -114,7 +114,7 @@ int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par, int * jogad
       				}
     			}
 				else {
-      				printf("\nEste local ja foi jogado ou op??o invalida\n");
+      				printf("\nEste local ja foi jogado.\n");
       				system("pause");
       				break;
     			}
@@ -136,7 +136,7 @@ int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par, int * jogad
       				}
     			}
 				else {
-      				printf("\nEste local ja foi jogado ou op??o invalida\n");
+      				printf("\nEste local ja foi jogado.\n");
       				system("pause");
       				break;
     			}
@@ -158,7 +158,7 @@ int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par, int * jogad
       				}
     			}
 				else {
-      				printf("\nEste local ja foi jogado ou op??o invalida\n");
+      				printf("\nEste local ja foi jogado.\n");
       				system("pause");
       				break;
     			}
@@ -180,7 +180,7 @@ int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par, int * jogad
       				}
     			}
 				else {
-      				printf("\nEste local ja foi jogado ou op??o invalida\n");
+      				printf("\nEste local ja foi jogado.\n");
       				system("pause");
       				break;
     			}
@@ -202,7 +202,7 @@ int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par, int * jogad
       				}
     			}
 				else {
-      				printf("\nEste local ja foi jogado ou op??o invalida\n");
+      				printf("\nEste local ja foi jogado.\n");
       				system("pause");
       				break;
     			}

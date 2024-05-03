@@ -39,7 +39,6 @@ int main() {
 		        	printf("\n\n\tDupla %d\n", par);
 		        	vezX = jogoDaVelhaSwitchCase(jogoDaVelha, vezX, par, &jogadas);
 		        	vencedor = jogoDaVelhaChecaVitoria(jogoDaVelha, vencedor);
-		        	printf("%d", jogadas);
 		        	if (jogadas >=9 && vencedor == 'n') break;
 		      	}
 		      	
@@ -55,14 +54,14 @@ int main() {
 		        	jogadores[par].contador = 1;
 		      	}
 		      	if (vencedor != 'n') {
-		        	printf("O Ganhador foi o jogador: ' %c '\n\nSelecione uma opÃ§Ã£o:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n", vencedor);
+		        	printf("O Ganhador foi o jogador: ' %c '\n\nSelecione uma opção:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n", vencedor);
 		        	fflush(stdin);
 		        	scanf("%d", & continue_);
 		        	if (continue_ == 2) par += 1;
 		        	system("cls");
 		      	}
 				else {
-		        	printf("Nao houve vencedor.\n\nSelecione uma opÃ§Ã£o:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n");
+		        	printf("Nao houve vencedor.\n\nSelecione uma opção:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n");
 		        	fflush(stdin);
 		        	scanf(" %d", & continue_);
 		        	if (continue_ == 2) par += 1;
@@ -71,7 +70,7 @@ int main() {
 	    	}
 	    	
 			else {
-	      		printf("\nNumero Maximo de jogadores alcanÃ§ado. Indo pro placar.\n");
+	      		printf("\nNumero Maximo de jogadores alcançado. Indo pro placar.\n");
 	      		continue_ = 3;
 	      		system("pause");
 	    	}
