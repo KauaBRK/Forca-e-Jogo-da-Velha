@@ -7,6 +7,7 @@
 #include "ticTacToePrint.c"
 #include "ticTacToeCheckWins.c"
 #include "ticTacToeSwitchCase.c"
+#include "ticTacToeWinner.c"
 
 #define MAX_PLAYERS 5
 
@@ -17,7 +18,7 @@ typedef struct {
 int main() {
 	setlocale(LC_ALL, "");
 	Player players[MAX_PLAYERS];
-	int xTurn, winnerX = 0, winner0 = 0, pair = 1, i, continue_ = 1, plays;
+	int xTurn, winnerX = 0, winner0 = 0, pair = 1, pairAux = 1, i, continue_ = 1, plays;
   	char ticTacToe[3][3];
   	char winner;
   	
@@ -45,28 +46,16 @@ int main() {
 	      	system("cls");
 	      	printf("\n\n    Dupla %d Resultados\n", pair);
 	      	ticTacToePrint(ticTacToe);
-	      	if (winner == 'X') {
-	        	players[pair].winnerX++;
-	        	players[pair].counter = 1;
-	      	}
-	      	if (winner == '0') {
-	        	players[pair].winner0++;
-	        	players[pair].counter = 1;
-	      	}
-	      	if (winner != 'n') {
-	        	printf("O Ganhador foi o jogador: ' %c '\n\nSelecione uma opção:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n", winner);
-	        	fflush(stdin);
-	        	scanf("%d", & continue_);
-	        	if (continue_ == 2) pair += 1;
-	        	system("cls");
-	      	}
-			else {
-	        	printf("Nao houve vencedor.\n\nSelecione uma opção:\n1- Desafiar mesmo adversario\n2- Desafiar outro adversario\n3- Sair\n");
-	        	fflush(stdin);
-	        	scanf(" %d", & continue_);
-	        	if (continue_ == 2) pair += 1;
-	        	system("cls");
-	        }
+	      	continue_ = ticTacToeWinner(winner, continue_, &pair);
+	      		if (winner == 'X') {
+			    	players[pairAux].winnerX++;
+			    	players[pairAux].counter = 1;
+			  	}
+			  	if (winner == '0') {
+			    	players[pairAux].winner0++;
+			    	players[pairAux].counter = 1;
+			  	}
+			  	if(continue_==2) pairAux++;
 	    }
 		else {
       		printf("\nNumero Maximo de jogadores alcançado. Indo pro placar.\n");
