@@ -1,26 +1,27 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair, int * plays) {
-  	int lineChoose;
-  		ticTacToePrint(ticTacToe);
+int jogoDaVelhaSwitchCase(char jogoDaVelha[3][3], int vezX, int par, int * jogadas) {
+  	int escolhaDeLinha;
+  	
+  		loopJogoDaVelhaTela(jogoDaVelha);
   		printf("\n\nDigite qual lugar vai jogar: ");
-  		scanf("%d", &lineChoose);
+  		scanf("%d", & escolhaDeLinha);
   		fflush(stdin);
-  		switch (lineChoose) {
+  		switch (escolhaDeLinha) {
   			case 1:
-    			if (ticTacToe[0][0] == '1' && ticTacToe[0][0] != '\n') {
+    			if (jogoDaVelha[0][0] == '1' && jogoDaVelha[0][0] != '\n') {
       				fflush(stdin);
-      				if (xTurn == 1) {
-        				ticTacToe[0][0] = 'X';
-        				xTurn = 0;
-        				*plays+=1;
+      				if (vezX == 1) {
+        				jogoDaVelha[0][0] = 'X';
+        				vezX = 0;
+        				*jogadas+=1;
         				break;
       				}
-      				if (xTurn == 0) {
-        				ticTacToe[0][0] = '0';
-        				xTurn = 1;
-        				*plays+=1;
+      				if (vezX == 0) {
+        				jogoDaVelha[0][0] = '0';
+        				vezX = 1;
+        				*jogadas+=1;
         				break;
       				}
     			}
@@ -29,41 +30,42 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair, int * plays) 
       				system("pause");
 				    break;
     			}
+    			
   			case 2:
-    			if (ticTacToe[0][1] == '2') {
+    			if (jogoDaVelha[0][1] == '2') {
       				fflush(stdin);
-      				if (xTurn == 1) {
-        				ticTacToe[0][1] = 'X';
-        				xTurn = 0;
-        				*plays+=1;
+      				if (vezX == 1) {
+        				jogoDaVelha[0][1] = 'X';
+        				vezX = 0;
+        				*jogadas+=1;
         				break;
       				}
-      				if (xTurn == 0) {
-        				ticTacToe[0][1] = '0';
-        				xTurn = 1;
-        				*plays+=1;
+      				if (vezX == 0) {
+        				jogoDaVelha[0][1] = '0';
+        				vezX = 1;
+        				*jogadas+=1;
         				break;
       				}
-      				
     			}
 				else {
       				printf("\nEste local ja foi jogado.\n");
       				system("pause");
       				break;
     			}
+    			
   			case 3:
-    			if (ticTacToe[0][2] == '3') {
+    			if (jogoDaVelha[0][2] == '3') {
       				fflush(stdin);
-      				if (xTurn == 1) {
-        				ticTacToe[0][2] = 'X';
-        				xTurn = 0;
-        				*plays+=1;
+      				if (vezX == 1) {
+        				jogoDaVelha[0][2] = 'X';
+        				vezX = 0;
+        				*jogadas+=1;
         				break;
       				}
-      				if (xTurn == 0) {
-        				ticTacToe[0][2] = '0';
-        				xTurn = 1;
-        				*plays+=1;
+      				if (vezX == 0) {
+        				jogoDaVelha[0][2] = '0';
+        				vezX = 1;
+        				*jogadas+=1;
         				break;
       				}
     			}
@@ -72,19 +74,20 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair, int * plays) 
       				system("pause");
       				break;
     			}
+    			
   			case 4:
-    			if (ticTacToe[1][0] == '4') {	
+    			if (jogoDaVelha[1][0] == '4') {
       				fflush(stdin);
-      				if (xTurn == 1) {
-        				ticTacToe[1][0] = 'X';
-        				xTurn = 0;
-        				*plays+=1;
+      				if (vezX == 1) {
+        				jogoDaVelha[1][0] = 'X';
+        				vezX = 0;
+        				*jogadas+=1;
         				break;
       				}
-      				if (xTurn == 0) {
-	        			ticTacToe[1][0] = '0';
-	        			xTurn = 1;
-	        			*plays+=1;
+      				if (vezX == 0) {
+        			jogoDaVelha[1][0] = '0';
+        			vezX = 1;
+        			*jogadas+=1;
         				break;
       				}
     			}
@@ -93,19 +96,20 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair, int * plays) 
       				system("pause");
       				break;
     			}
+    			
   			case 5:
-    			if (ticTacToe[1][1] == '5') {
+    			if (jogoDaVelha[1][1] == '5') {
       				fflush(stdin);
-      				if (xTurn == 1) {
-	        			ticTacToe[1][1] = 'X';
-	        			xTurn = 0;
-	        			*plays+=1;
+      				if (vezX == 1) {
+        			jogoDaVelha[1][1] = 'X';
+        			vezX = 0;
+        			*jogadas+=1;
         				break;
       				}
-      				if (xTurn == 0) {
-	        			ticTacToe[1][1] = '0';
-	        			xTurn = 1;
-	        			*plays+=1;
+      				if (vezX == 0) {
+        			jogoDaVelha[1][1] = '0';
+        			vezX = 1;
+        			*jogadas+=1;
         				break;
       				}
     			}
@@ -114,19 +118,20 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair, int * plays) 
       				system("pause");
       				break;
     			}
+    			
   			case 6:
-    			if (ticTacToe[1][2] == '6') {
+    			if (jogoDaVelha[1][2] == '6') {
       				fflush(stdin);
-      				if (xTurn == 1) {
-        				ticTacToe[1][2] = 'X';
-        				xTurn = 0;
-        				*plays+=1;
+      				if (vezX == 1) {
+        				jogoDaVelha[1][2] = 'X';
+        				vezX = 0;
+        				*jogadas+=1;
         				break;
       				}
-      				if (xTurn == 0) {
-        				ticTacToe[1][2] = '0';
-        				xTurn = 1;
-        				*plays+=1;
+      				if (vezX == 0) {
+        				jogoDaVelha[1][2] = '0';
+        				vezX = 1;
+        				*jogadas+=1;
         				break;
       				}
     			}
@@ -135,19 +140,20 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair, int * plays) 
       				system("pause");
       				break;
     			}
+    			
   			case 7:
-    			if (ticTacToe[2][0] == '7') {
+    			if (jogoDaVelha[2][0] == '7') {
       				fflush(stdin);
-      				if (xTurn == 1) {
-        				ticTacToe[2][0] = 'X';
-        				xTurn = 0;
-        				*plays+=1;
+      				if (vezX == 1) {
+        				jogoDaVelha[2][0] = 'X';
+        				vezX = 0;
+        				*jogadas+=1;
         				break;
       				}
-      				if (xTurn == 0) {
-        				ticTacToe[2][0] = '0';
-        				xTurn = 1;
-        				*plays+=1;
+      				if (vezX == 0) {
+        				jogoDaVelha[2][0] = '0';
+        				vezX = 1;
+        				*jogadas+=1;
         				break;
       				}
     			}
@@ -156,19 +162,20 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair, int * plays) 
       				system("pause");
       				break;
     			}
+    			
   			case 8:
-    			if (ticTacToe[2][1] == '8') {
+    			if (jogoDaVelha[2][1] == '8') {	
       				fflush(stdin);
-      				if (xTurn == 1) {
-        				ticTacToe[2][1] = 'X';
-        				xTurn = 0;
-        				*plays+=1;
+      				if (vezX == 1) {
+        				jogoDaVelha[2][1] = 'X';
+        				vezX = 0;
+        				*jogadas+=1;
         				break;
       				}
-      				if (xTurn == 0) {
-        				ticTacToe[2][1] = '0';
-        				xTurn = 1;
-        				*plays+=1;
+      				if (vezX == 0) {
+        				jogoDaVelha[2][1] = '0';
+        				vezX = 1;
+        				*jogadas+=1;
         				break;
       				}
     			}
@@ -177,19 +184,20 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair, int * plays) 
       				system("pause");
       				break;
     			}
+    			
   			case 9:
-    			if (ticTacToe[2][2] == '9') {
+    			if (jogoDaVelha[2][2] == '9') {
       				fflush(stdin);
-      				if (xTurn == 1) {
-        				ticTacToe[2][2] = 'X';
-        				xTurn = 0;
-        				*plays+=1;
+      				if (vezX == 1) {
+        				jogoDaVelha[2][2] = 'X';
+        				vezX = 0;
+        				*jogadas+=1;
         				break;
       				}
-      				if (xTurn == 0) {
-        				ticTacToe[2][2] = '0';
-        				xTurn = 1;
-        				*plays+=1;
+      				if (vezX == 0) {
+        				jogoDaVelha[2][2] = '0';
+        				vezX = 1;
+        				*jogadas+=1;
         				break;
       				}
     			}
@@ -214,6 +222,7 @@ int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair, int * plays) 
 				system("cls");
 				break;
   		}
+  		
   		system("cls");
-  		return xTurn;
+  		return vezX;
 }
