@@ -12,7 +12,7 @@
 #define MAXIMO_DE_PLAYERS 4
 
 typedef struct {
-	int vencedorX, vencedor0, contador, jogadas;
+	int vencedorX, vencedor0, jogadas;
 }Jogador;
 
 int main() {
@@ -46,14 +46,8 @@ int main() {
 			      	printf("\n\n    Dupla %d Resultados\n", par);
 			      	loopJogoDaVelhaTela(jogoDaVelha);
 			      	continue_=jogoDaVelhaVencedor(vencedor, continue_, &par);//Função nova
-		      		if (vencedor == 'X') {
-				    	jogadores[parAux].vencedorX++;
-				    	jogadores[parAux].contador = 1;
-				  	}
-				  	if (vencedor == '0') {
-				    	jogadores[parAux].vencedor0++;
-				    	jogadores[parAux].contador = 1;
-				  	}
+		      		if (vencedor == 'X') jogadores[parAux].vencedorX++;
+				  	if (vencedor == '0') jogadores[parAux].vencedor0++;
 				  	if(continue_==2) parAux++;
 		    }
 			else {
