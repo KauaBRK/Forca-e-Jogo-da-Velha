@@ -9,7 +9,7 @@
 #include "ticTacToeSwitchCase.c"
 #include "ticTacToeWinner.c"
 
-#define MAX_PLAYERS 5
+#define MAX_PLAYERS 4
 
 typedef struct {
 	int winnerX, winner0, counter, plays;
@@ -22,9 +22,10 @@ int main() {
   	char ticTacToe[3][3];
   	char winner;
   	
-  	for (i = 1; i < MAX_PLAYERS; i++) {
+  	for (i = 1; i < MAX_PLAYERS + 1; i++) {
     	players[i].winner0 = 0;
     	players[i].winnerX = 0;
+    	players[i].plays = 0;
   	}
   	
   	while (continue_ == 1 || continue_ == 2) {
@@ -33,7 +34,6 @@ int main() {
 	  		system("cls");
 	      	winner = 'n';
 	      	ticTacToeLoop(ticTacToe);
-	      	for(i=1;i<MAX_PLAYERS;i++) players[i].plays = 0;
 	      	xTurn = 1;
 	      	plays=0;
 	      	
@@ -67,7 +67,7 @@ int main() {
   	printf("\n\tObrigado por jogar :)\n\n\n\t############\n\t###PLACAR###\n\t############\n\n");
   	pair=1;
   	
-  	for (i = 1; i < MAX_PLAYERS; i++) {  		
+  	for (i = 1; i < MAX_PLAYERS + 1; i++) {  		
   			if (players[pair].winner0 == 0 && players[pair].winnerX == 0) printf("\n\t####################\n\t#\n\t# DUPLA %d SEM PONTOS\n\t####################\n\n", pair);
 			else printf("\n\t#################\n\t# DUPLA %d\n\t#\n\t# PONTOS DO X: %d\n\t# PONTOS DO 0: %d\n\t#################\n\n", pair, players[i].winnerX, players[i].winner0);
     	pair++;
