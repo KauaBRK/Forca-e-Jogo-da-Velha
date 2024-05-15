@@ -2,7 +2,7 @@
 #include<stdlib.h>
 
 int ticTacToeSwitchCase(char ticTacToe[3][3], int xTurn, int pair, int * plays) {
-  	int lineChoose;
+  	int lineChoose
   		ticTacToePrint(ticTacToe);
   		printf("\n\nDigite qual lugar vai jogar: ");
   		scanf("%d", &lineChoose);
