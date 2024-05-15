@@ -1,5 +1,5 @@
 void ticTacToeLoop(char ticTacToe[3][3]) {
-	ticTacToe[0][0] = '1';
+	ticTacToe[0][0] = '1'
   	ticTacToe[0][1] = '2';
   	ticTacToe[0][2] = '3';
   	ticTacToe[1][0] = '4';
