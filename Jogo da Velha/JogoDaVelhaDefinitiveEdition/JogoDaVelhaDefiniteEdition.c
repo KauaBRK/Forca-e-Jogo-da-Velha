@@ -12,7 +12,7 @@
 #define MAX_PLAYERS 4
 
 typedef struct {
-	int winnerX, winner0, plays;
+	int winnerX, winner0, plays
 }Player;
 
 int main() {
@@ -52,7 +52,7 @@ int main() {
 			  	if(continue_==2) pairAux++;
 		    }
 			else {
-	      		printf("\nNumero Maximo de jogadores alcançado. Indo pro placar.\n");
+	      		printf("\nNumero Maximo de jogadores alcanÃ§ado. Indo pro placar.\n");
 	      		continue_ = 3;
 	      		system("pause");
 	    	}
